@@ -1,0 +1,98 @@
+import 'package:flutter/material.dart';
+
+class AppColor {
+  const AppColor(Color color);
+  // Light Themes
+  static const Color backgroundColor = Color(0xFFF9F9F9);
+  static const Color blackColor = Color(0xFF333333);
+  static const Color buttonColor = Color(0xFF4A67FF);
+  static const Color whiteColor = Color(0xFFFFFFFF);
+  static const Color greywhiteColor = Color(0xFFD9D9D9);
+  static const Color greyColor = Color(0xFFC6C1C1);
+  static const Color yellowColor = Color(0xFFEFE734);
+  static const Color lightGreen = Color(0xFF39BA7C);
+  static const Color tabColor = Color(0xFF2BA24C);
+  static const Color focusColor = Color(0xFF80BC97);
+  static const Color lightRed = Color(0xFFE14A4A);
+  static const Color transparentColor = Colors.transparent;
+  static const Color barrierColor = Color(0xff303D50);
+  static const Color lightBlack = Color(0xFF4A4A4A);
+  static const Color labelColor = Color(0xFFC0B7B7);
+  static const Color disableColor = Color(0xFFE8EAF2);
+  static const Color buttonDisableColor = Color(0xFFE7F3FF);
+  static const Color decisionDisableColor = Color(0xFFE9E9E9);
+  static const Color decisionDisableTextColor = Color(0xFFB6B6B6);
+  static const Color criteriaDescColor = Color(0xFF444444);
+  static const Color choiceCriteriaDisableTextColor = Color(0xFFC7BEBE);
+  static const Color sliderBorderColor = Color(0xFFBFB8B8);
+  static const Color sliderPinkColor = Color(0xFFC54AFF);
+  static const Color sliderPurpleColor = Color(0xFF4A67FF);
+  static const Color sliderGreenColor = Color(0xFF2BA24C);
+  static const Color choiceTabColor = Color(0xFFFFECBB);
+  static const Color buttonSheetBarrierColor = Color(0xFF5F6DB5);
+  static const Color buttonSheetLabelColor = Color(0xFF323E81);
+  static const Color resultRedColor = Color(0xFFB66767);
+  static const Color resultYellowColor = Color(0xFFDAA849);
+  static const Color resultPurpleColor = Color(0xFF9C67B6);
+  static const Color resultPinkColor = Color(0xFF813266);
+  static const Color resultBlueColor = Color(0xFF3B26B8);
+  static const Color lightBlueColor = Color(0xFF6E7DCB);
+  static const Color lightLightBlueClolor = Color(0xFFF4F7FC);
+  static const Color lightGreyColor = Color(0xFFE8E9EC);
+  static const Color searchHintColor = Color(0xFFB6ACAC);
+  static const Color homeCartColor = Color(0xFF5C69B0);
+  static const Color homeCartLabelColor = Color(0xFF34D185);
+  static const Color homeLabelColor = Color(0xFF9CAAFC);
+  static const Color coloredLabel = Color(0xFFCAD1FA);
+  static const Color ciColor = Color(0xFF39BC0B);
+  static const Color lightGreen2 = Color.fromRGBO(68, 231, 152, 0.2);
+  static const Color shadow1 = Color.fromRGBO(0, 0, 0, 0.25);
+  static const Color freeTextColor = Color(0xff1AB068);
+  static const Color iconColor = Color(0xFF3E3E3E);
+  static const Color labelLightGreen = Color(0xFF3BC68B);
+  static const Color lightPurple = Color(0xFF6C78B8);
+  static const Color lightindicatorColor = Color(0xFF7D87C0);
+  static const Color showResultButtonColor = Color(0xFFDEDEDE);
+  static const Color showResultLabelColor = Color(0xFF8B8B8B);
+  static const Color alertDialogBodyColor = Color(0xFF787878);
+  static const Color dialogCancelButtonColor = Color(0xFFEAEAEA);
+  static const Color showModalBottomSheetBgColor = Color(0xFF3D4A5C);
+  static const Color buttonDisablePurpleColor = Color(0xFF92A4FF);
+  static const Color snackbarSuccess = Color(0xffC4EEDC);
+  static const Color snackbarError = Color(0xffFE989E);
+  static const Color pinkColor = Color(0xffEA4C89);
+  static const Color planButtonColor = Color(0xffF082AC);
+  static const Color featuredButtonColor = Color(0xffFF9800);
+  static const Color premiumButtonColor = Color(0xff393939);
+  static const Color hintGreyColor = Color(0xff9A9A9A);
+  static const Color onboardingCriteriaBGColor = Color(0xffF5F5F5);
+  static const Color logoGreenColor = Color(0xff44E798);
+  static const Color navSelectedLabelColor = Color(0xff5571FF);
+  static const Color webImageBgColor = Color(0xffF3F9FF);
+  static const Color borderColor = Color(0XFFBDBDBD);
+  static const Color cardSelectedColor = Color(0XFFF9FAFF);
+  static const Color resultButtonDisableColor = Color(0XFFC9D2FF);
+  static const Color disableTextColor = Color(0XFF9D9D9D);
+  static const Color criteriaSliderColor = Color(0XFFEBEBEB);
+  static const Color criteriaSliderBlueColor = Color(0XFF92AAFF);
+  static const Color radarAxisColor = Color(0XFFB0B0B0);
+  static const Color sliderValueIndicatorColor = Color(0XFF646464);
+  static const Color bottomBarColor = Color(0xFFF9FEFF);
+
+  // Dark Theme
+  static const Color darkBackgroundColor = Color(0xFF222E41);
+  static const Color lightDarkColor = Color(0xFF394658);
+  static const Color pinkredColor = Color(0xFFFF6A6A);
+  static const Color richToolbarColor = Color(0xFF3D4A5C);
+
+  // Slider colors
+  static const Color slider1 = Color(0xffED91B6);
+  static const Color slider2 = Color(0xffFCB86E);
+  static const Color slider3 = Color(0xffA6E8AA);
+  static const Color slider4 = Color(0xffB0CFFE);
+  static const Color slider5 = Color(0xffBA97FF);
+  static const Color slider6 = Color(0xff997D65);
+  static const Color slider7 = Color(0xff008080);
+  static const Color slider8 = Color(0xffFE6A6A);
+  static const Color slider9 = Color(0xff4A67FF);
+}
