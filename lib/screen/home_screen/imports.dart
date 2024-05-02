@@ -5,3 +5,6 @@ export '../widgets/categories_list.dart';
 export '../widgets/home_appbar.dart';
 export '../widgets/recommendation.dart';
 export '../widgets/title_heading.dart';
+export '../../themes/color_theme.dart';
+export 'package:cached_network_image/cached_network_image.dart';
+export 'package:flutter/services.dart';

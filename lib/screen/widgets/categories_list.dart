@@ -1,7 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-
-import '../../themes/color_theme.dart';
+import '../home_screen/imports.dart';
 
 class CategoriesList extends StatelessWidget {
   const CategoriesList({
@@ -13,15 +10,19 @@ class CategoriesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const EdgeInsetsGeometry gapPadding = EdgeInsets.only(top: 15, bottom: 30);
+    const EdgeInsetsGeometry horizontalPadding = EdgeInsets.only(right: 20);
+    const EdgeInsetsGeometry spacePadding = EdgeInsets.only(top: 10);
+
     return Padding(
-      padding: const EdgeInsets.only(bottom: 30, top: 15),
+      padding: gapPadding,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           children: List.generate(
               12,
               (index) => Padding(
-                    padding: const EdgeInsets.only(right: 20),
+                    padding: horizontalPadding,
                     child: Column(
                       children: [
                         CircleAvatar(
@@ -40,8 +41,7 @@ class CategoriesList extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Text('$index ghb nn'))
+                            padding: spacePadding, child: Text('$index ghb nn'))
                       ],
                     ),
                   )),

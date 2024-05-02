@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import '../../themes/color_theme.dart';
+import '../home_screen/imports.dart';
 
 class TitleHeading extends StatelessWidget {
   final String title;

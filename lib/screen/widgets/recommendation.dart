@@ -1,7 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-
-import '../../themes/color_theme.dart';
+import '../home_screen/imports.dart';
 
 class Recommendation extends StatelessWidget {
   const Recommendation({
@@ -13,6 +10,10 @@ class Recommendation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const EdgeInsetsGeometry boxMargin = EdgeInsets.only(bottom: 30);
+    const EdgeInsetsGeometry boxPadding = EdgeInsets.all(12);
+    const EdgeInsetsGeometry textPadding = EdgeInsets.only(top: 5, bottom: 2);
+
     return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -27,8 +28,8 @@ class Recommendation extends StatelessWidget {
             fit: StackFit.loose,
             children: [
               Container(
-                margin: const EdgeInsets.only(bottom: 30),
-                padding: const EdgeInsets.all(12),
+                margin: boxMargin,
+                padding: boxPadding,
                 decoration: BoxDecoration(
                     color: AppColor.searchColor,
                     borderRadius: BorderRadius.circular(15)),
@@ -50,7 +51,7 @@ class Recommendation extends StatelessWidget {
                       ),
                     ),
                     const Padding(
-                      padding: EdgeInsets.only(top: 5, bottom: 2),
+                      padding: textPadding,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

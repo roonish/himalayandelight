@@ -1,9 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import '../../themes/color_theme.dart';
+import '../home_screen/imports.dart';
 
 AppBar appBar(BuildContext context) {
+  const EdgeInsetsGeometry bannerPadding =
+      EdgeInsets.only(left: 20, top: 9, bottom: 5);
+  const EdgeInsetsGeometry actionPadding =
+      EdgeInsets.only(top: 9, bottom: 5, right: 10);
+
   return AppBar(
     systemOverlayStyle: const SystemUiOverlayStyle(
       systemNavigationBarColor: AppColor.searchColor, // Navigation bar
@@ -12,7 +14,7 @@ AppBar appBar(BuildContext context) {
     leadingWidth: MediaQuery.of(context).size.width / 1.2,
     scrolledUnderElevation: 0.0,
     leading: const Padding(
-      padding: EdgeInsets.only(left: 20, top: 9, bottom: 5),
+      padding: bannerPadding,
       child: TextField(
         style: TextStyle(color: AppColor.textColor),
         decoration: InputDecoration(
@@ -30,7 +32,7 @@ AppBar appBar(BuildContext context) {
     ),
     actions: [
       Padding(
-        padding: const EdgeInsets.only(top: 9, bottom: 5, right: 10),
+        padding: actionPadding,
         child: IconButton(
             onPressed: () {}, icon: const Icon(Icons.notifications_none)),
       )
