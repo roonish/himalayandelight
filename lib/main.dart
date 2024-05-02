@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:himalayan_delights/themes/color_theme.dart';
-import 'package:himalayan_delights/utils/enums.dart';
-
+import 'package:go_router/go_router.dart';
 import 'bloc/theme_bloc.dart';
+import 'screen/category_screen/category_screen.dart';
+import 'screen/home_screen/home_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +18,23 @@ class MyApp extends StatelessWidget {
       create: (context) => ThemeBloc(),
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
-          return MaterialApp(
-              theme: state.themeData,
-              home: Scaffold(
-                appBar: AppBar(title: const Text('Hi')),
-                body: const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('hi'),
-                  ],
-                ),
-              ));
+          return MaterialApp.router(
+              routerConfig: _router, theme: state.themeData);
         },
       ),
     );
   }
+
+  final GoRouter _router = GoRouter(
+    routes: [
+      GoRoute(
+        path: "/",
+        builder: (context, state) => const HomeScreen(),
+      ),
+      GoRoute(
+        path: "/category",
+        builder: (context, state) => const CategoryScreen(),
+      )
+    ],
+  );
 }
