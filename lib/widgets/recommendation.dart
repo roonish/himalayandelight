@@ -5,14 +5,18 @@ class Recommendation extends StatelessWidget {
     super.key,
     required this.contentImage,
     required this.itemCount,
+    this.bottomPosition = 15,
+    this.boxWidth = 30,
   });
 
   final List contentImage;
   final int itemCount;
+  final double bottomPosition;
+  final double boxWidth;
 
   @override
   Widget build(BuildContext context) {
-    const EdgeInsetsGeometry boxMargin = EdgeInsets.only(bottom: 30);
+    EdgeInsetsGeometry boxMargin = EdgeInsets.only(bottom: boxWidth);
     const EdgeInsetsGeometry boxPadding = EdgeInsets.all(12);
     const EdgeInsetsGeometry textPadding = EdgeInsets.only(top: 5, bottom: 2);
 
@@ -82,7 +86,7 @@ class Recommendation extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 15,
+                bottom: bottomPosition,
                 right: 15,
                 child: SizedBox(
                   height: 35,

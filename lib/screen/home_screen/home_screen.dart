@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: appBar(context),
+      appBar: homeAppBar(context),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(

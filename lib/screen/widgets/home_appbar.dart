@@ -1,6 +1,6 @@
 import '../home_screen/imports.dart';
 
-AppBar appBar(BuildContext context) {
+AppBar homeAppBar(BuildContext context) {
   const EdgeInsetsGeometry bannerPadding =
       EdgeInsets.only(left: 20, top: 9, bottom: 5);
   const EdgeInsetsGeometry actionPadding =
