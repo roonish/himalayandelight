@@ -28,13 +28,15 @@ class MyApp extends StatelessWidget {
   final GoRouter _router = GoRouter(
     routes: [
       GoRoute(
-        path: "/",
-        builder: (context, state) => const HomeScreen(),
-      ),
-      GoRoute(
-        path: "/category",
-        builder: (context, state) => const CategoryScreen(),
-      )
+          path: "/",
+          builder: (context, state) => const HomeScreen(),
+          routes: [
+            //path home/category
+            GoRoute(
+              path: "category",
+              builder: (context, state) => const CategoryScreen(),
+            )
+          ]),
     ],
   );
 }

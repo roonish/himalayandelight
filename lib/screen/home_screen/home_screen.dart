@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:himalayan_delights/screen/home_screen/imports.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -39,7 +40,7 @@ class HomeScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: appBar(context),
+      appBar: homeAppBar(context),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -49,19 +50,23 @@ class HomeScreen extends StatelessWidget {
               padding: gapPadding,
               child: Column(
                 children: [
-                  const TitleHeading(
+                  TitleHeading(
                     title: 'Categories',
                     seeMoreText: 'See All',
+                    showSeeAll: true,
+                    onSeeMoreTap: () => context.go('/category'),
                   ),
                   CategoriesList(images: images),
-                  const Padding(
+                  Padding(
                     padding: titleBottomPadding,
                     child: TitleHeading(
                       title: 'Recommend',
+                      showSeeAll: true,
                       seeMoreText: 'See All',
+                      onSeeMoreTap: () {},
                     ),
                   ),
-                  Recommendation(contentImage: contentImage)
+                  Recommendation(contentImage: contentImage, itemCount: 4)
                 ],
               ),
             )

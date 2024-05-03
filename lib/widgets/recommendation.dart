@@ -1,23 +1,29 @@
-import '../home_screen/imports.dart';
+import '../screen/home_screen/imports.dart';
 
 class Recommendation extends StatelessWidget {
   const Recommendation({
     super.key,
     required this.contentImage,
+    required this.itemCount,
+    this.bottomPosition = 15,
+    this.boxWidth = 30,
   });
 
   final List contentImage;
+  final int itemCount;
+  final double bottomPosition;
+  final double boxWidth;
 
   @override
   Widget build(BuildContext context) {
-    const EdgeInsetsGeometry boxMargin = EdgeInsets.only(bottom: 30);
+    EdgeInsetsGeometry boxMargin = EdgeInsets.only(bottom: boxWidth);
     const EdgeInsetsGeometry boxPadding = EdgeInsets.all(12);
     const EdgeInsetsGeometry textPadding = EdgeInsets.only(top: 5, bottom: 2);
 
     return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: 4,
+        itemCount: itemCount,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 15,
@@ -44,8 +50,15 @@ class Recommendation extends StatelessWidget {
                       child: CachedNetworkImage(
                         imageUrl: contentImage[index],
                         fit: BoxFit.cover,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
+                        placeholder: (context, url) => const Center(
+                          child: SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: AppColor.headerColor,
+                            ),
+                          ),
+                        ),
                         errorWidget: (context, url, error) =>
                             const Icon(Icons.error),
                       ),
@@ -73,12 +86,14 @@ class Recommendation extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 15,
+                bottom: bottomPosition,
                 right: 15,
                 child: SizedBox(
                   height: 35,
                   width: 35,
                   child: FloatingActionButton(
+                    //making every floating button unique
+                    heroTag: UniqueKey(),
                     backgroundColor: AppColor.primaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)),
