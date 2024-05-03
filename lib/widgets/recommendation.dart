@@ -1,12 +1,14 @@
-import '../home_screen/imports.dart';
+import '../screen/home_screen/imports.dart';
 
 class Recommendation extends StatelessWidget {
   const Recommendation({
     super.key,
     required this.contentImage,
+    required this.itemCount,
   });
 
   final List contentImage;
+  final int itemCount;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class Recommendation extends StatelessWidget {
     return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: 4,
+        itemCount: itemCount,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 15,
@@ -44,8 +46,15 @@ class Recommendation extends StatelessWidget {
                       child: CachedNetworkImage(
                         imageUrl: contentImage[index],
                         fit: BoxFit.cover,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
+                        placeholder: (context, url) => const Center(
+                          child: SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              color: AppColor.headerColor,
+                            ),
+                          ),
+                        ),
                         errorWidget: (context, url, error) =>
                             const Icon(Icons.error),
                       ),
@@ -79,6 +88,8 @@ class Recommendation extends StatelessWidget {
                   height: 35,
                   width: 35,
                   child: FloatingActionButton(
+                    //making every floating button unique
+                    heroTag: UniqueKey(),
                     backgroundColor: AppColor.primaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)),
