@@ -1,3 +1,4 @@
+import '../../widgets/app_image.dart';
 import '../home_screen/imports.dart';
 
 class CategoriesList extends StatelessWidget {
@@ -29,16 +30,10 @@ class CategoriesList extends StatelessWidget {
                           radius: 30,
                           backgroundColor: AppColor.darkBackgroundColor,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(40),
-                            child: CachedNetworkImage(
-                              fit: BoxFit.fill,
-                              imageUrl: images[index],
-                              placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                            ),
-                          ),
+                              borderRadius: BorderRadius.circular(40),
+                              child: AppImage(
+                                image: images[index],
+                              )),
                         ),
                         Padding(
                             padding: spacePadding, child: Text('$index ghb nn'))

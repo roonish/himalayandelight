@@ -1,3 +1,5 @@
+import 'package:himalayan_delights/widgets/app_button.dart';
+
 import '../home_screen/imports.dart';
 
 class BannerCard extends StatelessWidget {
@@ -11,10 +13,7 @@ class BannerCard extends StatelessWidget {
         EdgeInsets.only(top: 15, bottom: 30);
     const EdgeInsetsGeometry gapPadding = EdgeInsets.only(left: 30, top: 40);
     const EdgeInsetsGeometry buttonSpacePadding = EdgeInsets.only(top: 20);
-    const EdgeInsetsGeometry buttonPadding = EdgeInsets.symmetric(
-      vertical: 10,
-      horizontal: 10,
-    );
+
     return Padding(
       padding: bannerPadding,
       child: Stack(
@@ -34,18 +33,13 @@ class BannerCard extends StatelessWidget {
                     style: TextStyle(color: AppColor.headerColor),
                   ),
                   Padding(
-                    padding: buttonSpacePadding,
-                    child: Container(
-                      padding: buttonPadding,
-                      decoration: BoxDecoration(
-                          color: AppColor.headerColor,
-                          borderRadius: BorderRadius.circular(25)),
-                      child: Text(
-                        'Order Now',
-                        style: TextStyle(color: AppColor.primaryColor),
-                      ),
-                    ),
-                  )
+                      padding: buttonSpacePadding,
+                      child: AppButton(
+                        width: 120,
+                        text: 'Order Now',
+                        color: AppColor.headerColor,
+                        textColor: AppColor.primaryColor,
+                      ))
                 ],
               ),
             ),

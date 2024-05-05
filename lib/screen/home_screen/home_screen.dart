@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:himalayan_delights/screen/category_screen/imports.dart';
 import 'package:himalayan_delights/screen/home_screen/imports.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,7 +10,7 @@ class HomeScreen extends StatelessWidget {
     const EdgeInsetsGeometry gapPadding = EdgeInsets.symmetric(horizontal: 20);
     const EdgeInsetsGeometry titleBottomPadding = EdgeInsets.only(bottom: 15);
 
-    List images = [
+    List<String> images = [
       'https://live.staticflickr.com/65535/53617693698_9a55f62c16_o.png',
       'https://live.staticflickr.com/65535/53618118025_5d5e220b88_o.png',
       'https://live.staticflickr.com/65535/53616607487_9869776fea_o.png',
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
       'https://live.staticflickr.com/65535/53616483042_8ca21b57ba_o.jpg',
     ];
 
-    List contentImage = [
+    List<String> contentImage = [
       // 'https://live.staticflickr.com/65535/53620349151_14d4a1ecb7_o.jpg',
       // 'https://live.staticflickr.com/65535/53620560348_cd902e2931_o.jpg',
       // 'https://live.staticflickr.com/65535/53620684234_a382356732_o.jpg',
@@ -38,7 +39,12 @@ class HomeScreen extends StatelessWidget {
       'https://live.staticflickr.com/65535/53620246002_2bbe9eec72_o.jpg',
       'https://live.staticflickr.com/65535/53621572825_abe447c506_o.jpg',
     ];
-
+    Map<String, String> foodItem = {
+      'Chinese': '4.00',
+      'BBQ': '7.00',
+      'Vegeterian': '2.00',
+      'Drinks': '2.00',
+    };
     return Scaffold(
       appBar: homeAppBar(context),
       body: SingleChildScrollView(
@@ -56,7 +62,9 @@ class HomeScreen extends StatelessWidget {
                     showSeeAll: true,
                     onSeeMoreTap: () => context.go('/category'),
                   ),
-                  CategoriesList(images: images),
+                  GestureDetector(
+                      onTap: () => context.go('/category'),
+                      child: CategoriesList(images: images)),
                   Padding(
                     padding: titleBottomPadding,
                     child: TitleHeading(
@@ -66,7 +74,11 @@ class HomeScreen extends StatelessWidget {
                       onSeeMoreTap: () {},
                     ),
                   ),
-                  Recommendation(contentImage: contentImage, itemCount: 4)
+                  Recommendation(
+                    contentImage: contentImage,
+                    itemCount: 4,
+                    foodDetail: foodItem,
+                  )
                 ],
               ),
             )
