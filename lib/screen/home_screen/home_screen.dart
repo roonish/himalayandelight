@@ -1,5 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:himalayan_delights/screen/category_screen/imports.dart';
 import 'package:himalayan_delights/screen/home_screen/imports.dart';
 
 class HomeScreen extends StatelessWidget {

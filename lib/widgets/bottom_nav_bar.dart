@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../themes/color_theme.dart';
+import 'package:himalayan_delights/screen/home_screen/imports.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({
@@ -9,8 +7,12 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size mediaQ = MediaQuery.of(context).size;
+    const EdgeInsetsGeometry iconPadding = EdgeInsets.symmetric(vertical: 5);
+    const EdgeInsetsGeometry gapPadding = EdgeInsets.all(6.0);
+
     return SizedBox(
-      height: 70,
+      height: getDeviceExactHeight(67, mediaQ),
       child: BottomNavigationBar(
           showUnselectedLabels: true,
           unselectedLabelStyle:
@@ -19,13 +21,13 @@ class BottomNavBar extends StatelessWidget {
           items: [
             BottomNavigationBarItem(
                 icon: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: iconPadding,
                   child: Icon(Icons.home),
                 ),
                 activeIcon: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  padding: iconPadding,
                   child: Container(
-                    padding: const EdgeInsets.all(6.0),
+                    padding: gapPadding,
                     decoration: BoxDecoration(
                         color: AppColor.primaryColor, shape: BoxShape.circle),
                     child: const Icon(Icons.home),
@@ -35,19 +37,19 @@ class BottomNavBar extends StatelessWidget {
                 backgroundColor: AppColor.searchColor),
             BottomNavigationBarItem(
                 icon: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: iconPadding,
                   child: Icon(
                     Icons.favorite,
                     color: AppColor.textColor,
                   ),
                 ),
                 activeIcon: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  padding: iconPadding,
                   child: Container(
                     decoration: BoxDecoration(
                         color: AppColor.primaryColor, shape: BoxShape.circle),
                     child: const Padding(
-                      padding: EdgeInsets.all(6.0),
+                      padding: gapPadding,
                       child: Icon(Icons.favorite),
                     ),
                   ),
@@ -55,19 +57,19 @@ class BottomNavBar extends StatelessWidget {
                 label: 'Favourite'),
             BottomNavigationBarItem(
                 icon: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: iconPadding,
                   child: Icon(
                     Icons.local_grocery_store,
                     color: AppColor.textColor,
                   ),
                 ),
                 activeIcon: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  padding: iconPadding,
                   child: Container(
                     decoration: BoxDecoration(
                         color: AppColor.primaryColor, shape: BoxShape.circle),
                     child: const Padding(
-                      padding: EdgeInsets.all(6.0),
+                      padding: gapPadding,
                       child: Icon(Icons.local_grocery_store),
                     ),
                   ),
@@ -75,19 +77,19 @@ class BottomNavBar extends StatelessWidget {
                 label: 'My cart'),
             BottomNavigationBarItem(
                 icon: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: iconPadding,
                   child: Icon(
                     Icons.mail,
                     color: AppColor.textColor,
                   ),
                 ),
                 activeIcon: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  padding: iconPadding,
                   child: Container(
                     decoration: BoxDecoration(
                         color: AppColor.primaryColor, shape: BoxShape.circle),
                     child: const Padding(
-                      padding: EdgeInsets.all(6.0),
+                      padding: gapPadding,
                       child: Icon(Icons.mail),
                     ),
                   ),
@@ -95,19 +97,19 @@ class BottomNavBar extends StatelessWidget {
                 label: 'Message'),
             BottomNavigationBarItem(
                 icon: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
+                  padding: iconPadding,
                   child: Icon(
                     Icons.person_off_outlined,
                     color: AppColor.textColor,
                   ),
                 ),
                 activeIcon: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  padding: iconPadding,
                   child: Container(
                     decoration: BoxDecoration(
                         color: AppColor.primaryColor, shape: BoxShape.circle),
                     child: const Padding(
-                      padding: EdgeInsets.all(6.0),
+                      padding: gapPadding,
                       child: Icon(Icons.home),
                     ),
                   ),

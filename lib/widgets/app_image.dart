@@ -1,4 +1,5 @@
 import 'package:himalayan_delights/screen/home_screen/imports.dart';
+import 'package:himalayan_delights/utils/safe_size.dart';
 
 class AppImage extends StatelessWidget {
   final String image;
@@ -6,14 +7,16 @@ class AppImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size mediaQ = MediaQuery.of(context).size;
+
     return CachedNetworkImage(
       imageUrl: image,
       fit: BoxFit.cover,
-      placeholder: (context, url) => const Center(
+      placeholder: (context, url) => Center(
         child: SizedBox(
-          height: 20,
-          width: 20,
-          child: CircularProgressIndicator(
+          height: getDeviceExactHeight(20, mediaQ),
+          width: getDeviceExactWidth(20, mediaQ),
+          child: const CircularProgressIndicator(
             color: AppColor.headerColor,
           ),
         ),

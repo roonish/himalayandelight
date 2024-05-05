@@ -1,5 +1,3 @@
-import 'package:himalayan_delights/widgets/app_button.dart';
-
 import '../home_screen/imports.dart';
 
 class BannerCard extends StatelessWidget {
@@ -9,6 +7,7 @@ class BannerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size mediaQ = MediaQuery.of(context).size;
     const EdgeInsetsGeometry bannerPadding =
         EdgeInsets.only(top: 15, bottom: 30);
     const EdgeInsetsGeometry gapPadding = EdgeInsets.only(left: 30, top: 40);
@@ -19,8 +18,7 @@ class BannerCard extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            //:todo: add responsive height
-            height: 200,
+            height: getDeviceExactHeight(170, mediaQ),
             width: double.infinity,
             color: AppColor.primaryColor,
             child: Padding(
@@ -30,12 +28,12 @@ class BannerCard extends StatelessWidget {
                 children: [
                   const Text(
                     '"There is no love sincerer than \n the love of food"',
-                    style: TextStyle(color: AppColor.headerColor),
+                    style: TextStyle(color: Color.fromRGBO(234, 234, 234, 1)),
                   ),
                   Padding(
                       padding: buttonSpacePadding,
                       child: AppButton(
-                        width: 120,
+                        width: getDeviceExactWidth(120, mediaQ),
                         text: 'Order Now',
                         color: AppColor.headerColor,
                         textColor: AppColor.primaryColor,
@@ -46,11 +44,11 @@ class BannerCard extends StatelessWidget {
           ),
           Positioned(
               right: -45,
-              bottom: -83,
+              bottom: -78,
               child: Image.asset(
                 'assets/images/banner_food.png',
                 fit: BoxFit.cover,
-                height: 280,
+                height: getDeviceExactHeight(260, mediaQ),
               )),
         ],
       ),

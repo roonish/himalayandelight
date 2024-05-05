@@ -1,6 +1,4 @@
 import 'package:go_router/go_router.dart';
-import 'package:himalayan_delights/widgets/app_image.dart';
-
 import '../screen/home_screen/imports.dart';
 
 class Recommendation extends StatelessWidget {
@@ -24,6 +22,7 @@ class Recommendation extends StatelessWidget {
     EdgeInsetsGeometry boxMargin = EdgeInsets.only(bottom: boxWidth);
     const EdgeInsetsGeometry boxPadding = EdgeInsets.all(12);
     const EdgeInsetsGeometry textPadding = EdgeInsets.only(top: 5, bottom: 2);
+    final Size mediaQ = MediaQuery.of(context).size;
 
     return GridView.builder(
         shrinkWrap: true,
@@ -53,7 +52,7 @@ class Recommendation extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                          height: 95,
+                          height: getDeviceExactHeight(90, mediaQ),
                           width: double.infinity,
                           decoration: BoxDecoration(
                               color: AppColor.primaryColor,

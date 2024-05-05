@@ -1,4 +1,3 @@
-import '../../widgets/app_image.dart';
 import '../home_screen/imports.dart';
 
 class CategoriesList extends StatelessWidget {
