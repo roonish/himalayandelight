@@ -31,7 +31,7 @@ class LabelText extends StatelessWidget {
       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
           color: color,
           fontFamily: fontFamily ?? 'ProximaNova',
-          fontSize: size ?? 16,
+          fontSize: size ?? 20,
           fontWeight: fontWeight ?? FontWeight.w700,
           decoration: textDecoration),
     );

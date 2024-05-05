@@ -18,18 +18,15 @@ class TitleHeading extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 20, color: AppColor.headerColor),
-        ),
+        LabelText(text: title, color: AppColor.headerColor),
         showSeeAll
             ? InkWell(
                 onTap: onSeeMoreTap,
-                child: Text(
-                  seeMoreText,
-                  style: TextStyle(fontSize: 15, color: AppColor.primaryColor),
-                ),
-              )
+                child: LabelText(
+                  text: seeMoreText,
+                  size: 15,
+                  color: AppColor.primaryColor,
+                ))
             : const SizedBox(),
       ],
     );
