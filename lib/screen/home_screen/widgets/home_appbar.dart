@@ -1,3 +1,5 @@
+import 'package:go_router/go_router.dart';
+
 import '../imports.dart';
 
 AppBar homeAppBar(BuildContext context) {
@@ -34,7 +36,8 @@ AppBar homeAppBar(BuildContext context) {
       Padding(
         padding: actionPadding,
         child: IconButton(
-            onPressed: () {}, icon: const Icon(Icons.notifications_none)),
+            onPressed: () => context.go('/notification'),
+            icon: const Icon(Icons.notifications_none)),
       )
     ],
   );

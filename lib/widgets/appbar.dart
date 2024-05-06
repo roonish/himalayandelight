@@ -29,7 +29,7 @@ AppBar appBar(
     actions: [
       showAction
           ? InkWell(
-              onTap: () {},
+              onTap: () => context.go('/notification'),
               child: Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Icon(Icons.notifications_none,

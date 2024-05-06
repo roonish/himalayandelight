@@ -5,6 +5,7 @@ import 'bloc/navbar_bloc/navbar_bloc.dart';
 import 'bloc/theme_bloc/theme_bloc.dart';
 import 'screen/category_screen/category_screen.dart';
 import 'screen/detail_screen/detail_screen.dart';
+import 'screen/notification_screen/notification_screen.dart';
 import 'screen/root_screen/root_screen.dart';
 
 void main() {
@@ -56,6 +57,10 @@ class MyApp extends StatelessWidget {
                       image: args['image'] as String);
                 }),
           ]),
+      GoRoute(
+        path: "/notification",
+        builder: (context, state) => const NotificationScreen(),
+      ),
     ],
   );
 }
