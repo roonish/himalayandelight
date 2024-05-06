@@ -29,7 +29,7 @@ class DetailScreen extends StatelessWidget {
             FoodImage(mediaQ: mediaQ, image: image),
             Padding(
               padding: quantityButtonPadding,
-              child: QuantityButton(mediaQ: mediaQ, itemCount: itemCount),
+              child: QuantityButton( itemCount: itemCount),
             ),
             Padding(
               padding: bodyPadding,

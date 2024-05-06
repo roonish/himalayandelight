@@ -25,7 +25,7 @@ class FavouriteScreen extends StatelessWidget {
       'https://live.staticflickr.com/65535/53616483042_8ca21b57ba_o.jpg',
     ];
     return Scaffold(
-        appBar: appBar(context, title: 'Favourite'),
+        appBar: appBar(context, title: 'Favourite', showLeadingIcon: false),
         body: Padding(
           padding: bodyPadding,
           child: ListView.builder(
