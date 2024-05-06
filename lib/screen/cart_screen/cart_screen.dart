@@ -1,63 +1,54 @@
-import 'package:himalayan_delights/screen/detail_screen/imports.dart';
+import 'package:himalayan_delights/screen/cart_screen/imports.dart';
 
-class DetailScreen extends StatelessWidget {
-  final String title;
-  final String price;
-  final String image;
-  const DetailScreen(
-      {super.key,
-      required this.title,
-      required this.price,
-      required this.image});
+class CartScreen extends StatelessWidget {
+  const CartScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final Size mediaQ = MediaQuery.of(context).size;
-    const EdgeInsetsGeometry bodyPadding = EdgeInsets.symmetric(horizontal: 18);
     final ValueNotifier<int> itemCount = ValueNotifier<int>(1);
-    const EdgeInsetsGeometry quantityButtonPadding =
-        EdgeInsets.only(top: 30, bottom: 10);
-    const EdgeInsetsGeometry descPadding = EdgeInsets.symmetric(vertical: 20);
-    const EdgeInsetsGeometry buttonPadding = EdgeInsets.symmetric(vertical: 20);
+
+    List<String> images = [
+      'https://live.staticflickr.com/65535/53617693698_9a55f62c16_o.png',
+      'https://live.staticflickr.com/65535/53618118025_5d5e220b88_o.png',
+      'https://live.staticflickr.com/65535/53616607487_9869776fea_o.png',
+      'https://live.staticflickr.com/65535/53617689693_ebdfd3f69d_o.png',
+      'https://live.staticflickr.com/65535/53617817444_fcbbbe1d9d_o.png',
+      'https://live.staticflickr.com/65535/53616799242_b058204944_o.png',
+      'https://live.staticflickr.com/65535/53616610952_c650a01233_o.png',
+      'https://live.staticflickr.com/65535/53616610192_9bf2ccdac9_o.png',
+      'https://live.staticflickr.com/65535/53617933095_ec64419a9e_o.png',
+      'https://live.staticflickr.com/65535/53617489501_9dc8b39717_o.png',
+      'https://live.staticflickr.com/65535/53617674586_72541f5a53_o.png',
+      'https://live.staticflickr.com/65535/53616483042_8ca21b57ba_o.jpg',
+    ];
 
     return Scaffold(
-      appBar: appBar(context, title: 'Food detail'),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            FoodImage(mediaQ: mediaQ, image: image),
-            Padding(
-              padding: quantityButtonPadding,
-              child: QuantityButton(mediaQ: mediaQ, itemCount: itemCount),
-            ),
-            Padding(
-              padding: bodyPadding,
-              child: Column(
-                children: [
-                  FoodTitle(title: title, price: price),
-                  Padding(
-                    padding: descPadding,
-                    child: LabelText(
-                        maxLine: 6,
-                        size: 15,
-                        text:
-                            '$title fjnk j gk  kngij gnkdn kgn kn  jg bfkh kohio s ep vmlfmdbl jhtoi gn fbfgh rtoi gp/jmbkmgfgrtkjp r;d jbngfgn b skg s.ghsroe. ggj/ s/ijgs j ghresh rg dhg .hrt  j ghd.ig hsgj s'),
-                  ),
-                  const FoodDetail(),
-                  const Padding(
-                    padding: buttonPadding,
-                    child: AppButton(
-                      text: 'Add to cart',
-                      verticalPadding: 12,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
+      appBar: appBar(
+        context,
+        title: 'My cart',
+        showAction: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CartList(images: images, itemCount: itemCount),
+              const TotalCost(),
+              const AppButton(
+                text: 'Check Out',
+                verticalPadding: 13,
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
+

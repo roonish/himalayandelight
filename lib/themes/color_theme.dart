@@ -15,4 +15,6 @@ class AppColor {
   static const Color textColor = Color(0xFFADADAD);
   static const Color headerColor = Color(0xFFEAEAEA);
   static const Color searchColor = Color(0xFF424749);
+    static const Color buttonColor = Color(0xFF525e66);
+
 }
