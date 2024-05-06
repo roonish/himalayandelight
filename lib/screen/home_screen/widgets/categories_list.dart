@@ -1,4 +1,4 @@
-import '../home_screen/imports.dart';
+import '../imports.dart';
 
 class CategoriesList extends StatelessWidget {
   const CategoriesList({
@@ -25,15 +25,7 @@ class CategoriesList extends StatelessWidget {
                     padding: horizontalPadding,
                     child: Column(
                       children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundColor: AppColor.darkBackgroundColor,
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(40),
-                              child: AppImage(
-                                image: images[index],
-                              )),
-                        ),
+                        CircularImage(image: images[index]),
                         Padding(
                             padding: spacePadding, child: Text('$index ghb nn'))
                       ],

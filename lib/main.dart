@@ -5,7 +5,6 @@ import 'bloc/navbar_bloc/navbar_bloc.dart';
 import 'bloc/theme_bloc/theme_bloc.dart';
 import 'screen/category_screen/category_screen.dart';
 import 'screen/detail_screen/detail_screen.dart';
-import 'screen/home_screen/home_screen.dart';
 import 'screen/root_screen/root_screen.dart';
 
 void main() {

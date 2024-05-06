@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:himalayan_delights/bloc/navbar_bloc/navbar_bloc.dart';
-import 'package:himalayan_delights/screen/category_screen/category_screen.dart';
 import 'package:himalayan_delights/screen/home_screen/home_screen.dart';
 import 'package:himalayan_delights/screen/home_screen/imports.dart';
+import '../favourite_screen/favourite_screen.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key});
@@ -12,7 +12,7 @@ class RootScreen extends StatelessWidget {
     //limited to 5 screen
     List<Widget> navBarScreen = const [
       HomeScreen(),
-      CategoryScreen(),
+      FavouriteScreen(),
       Text('3'),
       Text('4'),
       Text('5'),

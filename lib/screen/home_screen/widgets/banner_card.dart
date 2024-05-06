@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 
-import '../home_screen/imports.dart';
+import '../imports.dart';
 
 class BannerCard extends StatelessWidget {
   const BannerCard({

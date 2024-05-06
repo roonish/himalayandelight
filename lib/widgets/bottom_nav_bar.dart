@@ -15,7 +15,7 @@ class BottomNavBar extends StatelessWidget {
 
     final navBarEvent = BlocProvider.of<NavbarBloc>(context);
     return SizedBox(
-      height: getDeviceExactHeight(67, mediaQ),
+      height: getDeviceExactHeight(66, mediaQ),
       child: BottomNavigationBar(
           currentIndex: index,
           backgroundColor: AppColor.searchColor,

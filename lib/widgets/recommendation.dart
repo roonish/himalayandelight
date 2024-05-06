@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:himalayan_delights/widgets/rating_star.dart';
 import '../screen/home_screen/imports.dart';
 
 class Recommendation extends StatelessWidget {
@@ -70,15 +71,7 @@ class Recommendation extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Row(
-                        children: List.generate(
-                            5,
-                            (index) => const Icon(
-                                  Icons.star,
-                                  color: AppColor.ratingColor,
-                                  size: 12,
-                                )),
-                      )
+                      const RatingStar(starCount: 5)
                     ],
                   ),
                 ),
