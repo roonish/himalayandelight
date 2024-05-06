@@ -1,8 +1,8 @@
 export 'package:flutter/material.dart';
 export '../../widgets/bottom_nav_bar.dart';
-export '../widgets/banner_card.dart';
-export '../widgets/categories_list.dart';
-export '../widgets/home_appbar.dart';
+export 'widgets/banner_card.dart';
+export 'widgets/categories_list.dart';
+export 'widgets/home_appbar.dart';
 export '../../widgets/recommendation.dart';
 export '../../widgets/title_heading.dart';
 export '../../themes/color_theme.dart';
@@ -12,3 +12,4 @@ export 'package:himalayan_delights/widgets/label_text.dart';
 export 'package:himalayan_delights/widgets/app_button.dart';
 export '../../utils/safe_size.dart';
 export '../../widgets/app_image.dart';
+export 'package:himalayan_delights/widgets/circularImage.dart';

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'bloc/theme_bloc.dart';
+import 'bloc/navbar_bloc/navbar_bloc.dart';
+import 'bloc/theme_bloc/theme_bloc.dart';
 import 'screen/category_screen/category_screen.dart';
 import 'screen/detail_screen/detail_screen.dart';
-import 'screen/home_screen/home_screen.dart';
+import 'screen/root_screen/root_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,8 +16,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ThemeBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ThemeBloc(),
+        ),
+        BlocProvider(
+          create: (context) => NavbarBloc(),
+        ),
+      ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
           return MaterialApp.router(
@@ -30,7 +38,7 @@ class MyApp extends StatelessWidget {
     routes: [
       GoRoute(
           path: "/",
-          builder: (context, state) => const HomeScreen(),
+          builder: (context, state) => const RootScreen(),
           routes: [
             //path home/category
             GoRoute(

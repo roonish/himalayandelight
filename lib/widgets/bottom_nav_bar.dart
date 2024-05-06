@@ -1,121 +1,67 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:himalayan_delights/screen/home_screen/imports.dart';
+import '../bloc/navbar_bloc/navbar_bloc.dart';
 
 class BottomNavBar extends StatelessWidget {
+  final int index;
   const BottomNavBar({
     super.key,
+    required this.index,
   });
 
   @override
   Widget build(BuildContext context) {
     final Size mediaQ = MediaQuery.of(context).size;
+
+    final navBarEvent = BlocProvider.of<NavbarBloc>(context);
+    return SizedBox(
+      height: getDeviceExactHeight(66, mediaQ),
+      child: BottomNavigationBar(
+          currentIndex: index,
+          backgroundColor: AppColor.searchColor,
+          type: BottomNavigationBarType.fixed,
+          showUnselectedLabels: true,
+          selectedItemColor: AppColor.headerColor,
+          unselectedItemColor: AppColor.textColor,
+          unselectedLabelStyle: const TextStyle(fontSize: 10),
+          selectedLabelStyle: const TextStyle(fontSize: 10),
+          onTap: (value) => navBarEvent.add(TabChange(tabIndex: value)),
+          items: [
+            navBarItem(icon: Icons.home, label: 'Home'),
+            navBarItem(icon: Icons.favorite, label: 'Favourite'),
+            navBarItem(icon: Icons.local_grocery_store, label: 'My cart'),
+            navBarItem(icon: Icons.mail, label: 'Message'),
+            navBarItem(icon: Icons.person, label: 'Profile'),
+          ]),
+    );
+  }
+
+  BottomNavigationBarItem navBarItem(
+      {required IconData icon, required String label}) {
     const EdgeInsetsGeometry iconPadding = EdgeInsets.symmetric(vertical: 5);
     const EdgeInsetsGeometry gapPadding = EdgeInsets.all(6.0);
 
-    return SizedBox(
-      height: getDeviceExactHeight(67, mediaQ),
-      child: BottomNavigationBar(
-          showUnselectedLabels: true,
-          unselectedLabelStyle:
-              const TextStyle(color: AppColor.textColor, fontSize: 10),
-          selectedLabelStyle: const TextStyle(fontSize: 10),
-          items: [
-            BottomNavigationBarItem(
-                icon: const Padding(
-                  padding: iconPadding,
-                  child: Icon(Icons.home),
-                ),
-                activeIcon: Padding(
-                  padding: iconPadding,
-                  child: Container(
-                    padding: gapPadding,
-                    decoration: BoxDecoration(
-                        color: AppColor.primaryColor, shape: BoxShape.circle),
-                    child: const Icon(Icons.home),
-                  ),
-                ),
-                label: 'Home',
-                backgroundColor: AppColor.searchColor),
-            BottomNavigationBarItem(
-                icon: const Padding(
-                  padding: iconPadding,
-                  child: Icon(
-                    Icons.favorite,
-                    color: AppColor.textColor,
-                  ),
-                ),
-                activeIcon: Padding(
-                  padding: iconPadding,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: AppColor.primaryColor, shape: BoxShape.circle),
-                    child: const Padding(
-                      padding: gapPadding,
-                      child: Icon(Icons.favorite),
-                    ),
-                  ),
-                ),
-                label: 'Favourite'),
-            BottomNavigationBarItem(
-                icon: const Padding(
-                  padding: iconPadding,
-                  child: Icon(
-                    Icons.local_grocery_store,
-                    color: AppColor.textColor,
-                  ),
-                ),
-                activeIcon: Padding(
-                  padding: iconPadding,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: AppColor.primaryColor, shape: BoxShape.circle),
-                    child: const Padding(
-                      padding: gapPadding,
-                      child: Icon(Icons.local_grocery_store),
-                    ),
-                  ),
-                ),
-                label: 'My cart'),
-            BottomNavigationBarItem(
-                icon: const Padding(
-                  padding: iconPadding,
-                  child: Icon(
-                    Icons.mail,
-                    color: AppColor.textColor,
-                  ),
-                ),
-                activeIcon: Padding(
-                  padding: iconPadding,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: AppColor.primaryColor, shape: BoxShape.circle),
-                    child: const Padding(
-                      padding: gapPadding,
-                      child: Icon(Icons.mail),
-                    ),
-                  ),
-                ),
-                label: 'Message'),
-            BottomNavigationBarItem(
-                icon: const Padding(
-                  padding: iconPadding,
-                  child: Icon(
-                    Icons.person_off_outlined,
-                    color: AppColor.textColor,
-                  ),
-                ),
-                activeIcon: Padding(
-                  padding: iconPadding,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: AppColor.primaryColor, shape: BoxShape.circle),
-                    child: const Padding(
-                      padding: gapPadding,
-                      child: Icon(Icons.home),
-                    ),
-                  ),
-                ),
-                label: 'Profile'),
-          ]),
+    return BottomNavigationBarItem(
+      icon: Padding(
+        padding: iconPadding,
+        child: Icon(
+          icon,
+          color: AppColor.textColor,
+        ),
+      ),
+      activeIcon: Padding(
+        padding: iconPadding,
+        child: Container(
+          padding: gapPadding,
+          decoration: BoxDecoration(
+              color: AppColor.primaryColor, shape: BoxShape.circle),
+          child: Icon(
+            icon,
+            color: AppColor.headerColor,
+          ),
+        ),
+      ),
+      label: label,
     );
   }
 }

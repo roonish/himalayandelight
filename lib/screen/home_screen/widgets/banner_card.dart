@@ -1,4 +1,6 @@
-import '../home_screen/imports.dart';
+import 'package:go_router/go_router.dart';
+
+import '../imports.dart';
 
 class BannerCard extends StatelessWidget {
   const BannerCard({
@@ -35,6 +37,7 @@ class BannerCard extends StatelessWidget {
                       child: AppButton(
                         width: getDeviceExactWidth(120, mediaQ),
                         text: 'Order Now',
+                        ontap: () => context.go('/category'),
                         color: AppColor.headerColor,
                         textColor: AppColor.primaryColor,
                       ))
