@@ -4,6 +4,7 @@ import 'package:himalayan_delights/screen/cart_screen/cart_screen.dart';
 import 'package:himalayan_delights/screen/home_screen/home_screen.dart';
 import 'package:himalayan_delights/screen/home_screen/imports.dart';
 import '../favourite_screen/favourite_screen.dart';
+import '../message_screen/message_screen.dart';
 
 class RootScreen extends StatelessWidget {
   const RootScreen({super.key});
@@ -15,7 +16,7 @@ class RootScreen extends StatelessWidget {
       HomeScreen(),
       FavouriteScreen(),
       CartScreen(),
-      Text('4'),
+      MessagesScreen(),
       Text('5'),
     ];
 
