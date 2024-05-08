@@ -27,7 +27,7 @@ class ProfileCard extends StatelessWidget {
     return Column(
         children: List.generate(
             settingCard.length,
-            (index) => InkWell(
+            (index) => GestureDetector(
                   onTap: () {},
                   child: Container(
                     margin: containerMargin,

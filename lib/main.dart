@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:himalayan_delights/screen/login_screen/login_screen.dart';
+import 'package:himalayan_delights/screen/root_screen/root_screen.dart';
 import 'bloc/navbar_bloc/navbar_bloc.dart';
 import 'bloc/theme_bloc/theme_bloc.dart';
 import 'screen/category_screen/category_screen.dart';
 import 'screen/detail_screen/detail_screen.dart';
 import 'screen/notification_screen/notification_screen.dart';
-import 'screen/root_screen/root_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -38,7 +39,11 @@ class MyApp extends StatelessWidget {
   final GoRouter _router = GoRouter(
     routes: [
       GoRoute(
-          path: "/",
+        path: "/",
+        builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+          path: "/home",
           builder: (context, state) => const RootScreen(),
           routes: [
             //path home/category
@@ -60,6 +65,10 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: "/notification",
         builder: (context, state) => const NotificationScreen(),
+      ),
+      GoRoute(
+        path: "/login",
+        builder: (context, state) => const LoginScreen(),
       ),
     ],
   );
