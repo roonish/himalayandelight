@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:himalayan_delights/screen/login_screen/login_screen.dart';
+import 'package:himalayan_delights/screen/authentication_screen/login_screen/login_screen.dart';
+import 'package:himalayan_delights/screen/authentication_screen/register_screen/register_screen.dart';
 import 'package:himalayan_delights/screen/root_screen/root_screen.dart';
 import 'bloc/navbar_bloc/navbar_bloc.dart';
 import 'bloc/theme_bloc/theme_bloc.dart';
@@ -41,6 +42,12 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: "/",
         builder: (context, state) => const LoginScreen(),
+        routes: [
+          GoRoute(
+            path: "register",
+            builder: (context, state) => const RegisterScreen(),
+          ),
+        ],
       ),
       GoRoute(
           path: "/home",

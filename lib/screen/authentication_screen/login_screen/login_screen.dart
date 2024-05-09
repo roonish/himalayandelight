@@ -1,5 +1,4 @@
-import 'package:go_router/go_router.dart';
-import 'package:himalayan_delights/screen/login_screen/imports.dart';
+import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -46,7 +45,11 @@ class LoginScreen extends StatelessWidget {
               const LoginDivider(),
               const SocialLogin(),
               const Spacer(),
-              const SignUpText()
+              SignUpText(
+                signUpPreText: 'Dont have an account? ',
+                signInOrUpText: 'Sign up',
+                onTap: () => context.go('/register'),
+              )
             ],
           ),
         ),
