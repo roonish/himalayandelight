@@ -1,4 +1,4 @@
-import 'package:himalayan_delights/screen/login_screen/imports.dart';
+import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
 
 class SocialLogin extends StatelessWidget {
   const SocialLogin({

@@ -1,8 +1,14 @@
-import 'package:himalayan_delights/screen/login_screen/imports.dart';
+import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
 
 class SignUpText extends StatelessWidget {
+  final String signUpPreText;
+  final String signInOrUpText;
+  final VoidCallback onTap;
   const SignUpText({
     super.key,
+    required this.signUpPreText,
+    required this.signInOrUpText,
+    required this.onTap,
   });
 
   @override
@@ -11,11 +17,12 @@ class SignUpText extends StatelessWidget {
       child: Text.rich(
         TextSpan(
           children: [
-            const TextSpan(text: 'Dont have an account? '),
+            TextSpan(text: signUpPreText),
             TextSpan(
-              text: 'Sign up',
+              text: signInOrUpText,
               style: TextStyle(
                   color: AppColor.primaryColor, fontWeight: FontWeight.bold),
+              recognizer: TapGestureRecognizer()..onTap = onTap,
             ),
           ],
         ),

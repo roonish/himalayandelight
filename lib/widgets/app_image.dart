@@ -1,5 +1,4 @@
 import 'package:himalayan_delights/screen/home_screen/imports.dart';
-import 'package:himalayan_delights/utils/safe_size.dart';
 
 class AppImage extends StatelessWidget {
   final String image;

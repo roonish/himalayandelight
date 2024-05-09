@@ -41,6 +41,8 @@ dependencies:
   go_router: ^14.0.1
   http: ^1.1.0
   cached_network_image: ^3.3.1
+  bloc: ^8.1.4
+  meta: ^1.11.0
 
 dev_dependencies:
   build_runner: ^2.3.3

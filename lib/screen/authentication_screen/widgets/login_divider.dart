@@ -1,4 +1,5 @@
-import 'package:himalayan_delights/screen/login_screen/imports.dart';
+
+import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
 
 class LoginDivider extends StatelessWidget {
   const LoginDivider({
