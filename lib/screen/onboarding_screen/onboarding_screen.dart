@@ -68,10 +68,12 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
             skip
-                ? const LabelText(
-                    text: 'Skip',
-                    size: 17,
-                  )
+                ? InkWell(
+                  child: const LabelText(
+                      text: 'Skip',
+                      size: 17,
+                    ),
+                )
                 : const SizedBox(),
           ],
         ),
