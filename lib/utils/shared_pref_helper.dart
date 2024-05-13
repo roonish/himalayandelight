@@ -1,19 +1,20 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
-import 'package:himalayan_delights/utils/enums.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPrefsHelper {
-  static String showOnboarding = 'showOnboarding';
-  static late SharedPreferences prefs;
+class SharedPrefs {
+  late final SharedPreferences _sharedPrefs;
+  static final SharedPrefs _instance = SharedPrefs._internal();
+  factory SharedPrefs() => _instance;
+  SharedPrefs._internal();
 
-  static Future<void> init() async {
-    prefs = await SharedPreferences.getInstance();
+  Future<void> init() async {
+    _sharedPrefs = await SharedPreferences.getInstance();
   }
 
-    static Future<void> resetIntro() async {
-    prefs = await SharedPreferences.getInstance();
-    prefs.setBool(showOnboarding, true);
+  bool get showOnboarding => _sharedPrefs.getBool(onboarding) ?? true;
+
+  set showOnboarding(bool value) {
+    _sharedPrefs.setBool(onboarding,value);
   }
 }
+
+const String onboarding = "showOnboarding";

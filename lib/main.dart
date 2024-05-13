@@ -5,13 +5,16 @@ import 'package:himalayan_delights/screen/authentication_screen/login_screen/log
 import 'package:himalayan_delights/screen/authentication_screen/register_screen/register_screen.dart';
 import 'package:himalayan_delights/screen/onboarding_screen/onboarding_root_screen.dart';
 import 'package:himalayan_delights/screen/root_screen/root_screen.dart';
+import 'package:himalayan_delights/utils/shared_pref_helper.dart';
 import 'bloc/navbar_bloc/navbar_bloc.dart';
 import 'bloc/theme_bloc/theme_bloc.dart';
 import 'screen/category_screen/category_screen.dart';
 import 'screen/detail_screen/detail_screen.dart';
 import 'screen/notification_screen/notification_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPrefs().init();
   runApp(MyApp());
 }
 
@@ -42,7 +45,13 @@ class MyApp extends StatelessWidget {
     routes: [
       GoRoute(
         path: "/",
-        builder: (context, state) => const OnboardingRootScreen(),
+        builder: (context, state) {
+          bool showOnboarding = SharedPrefs().showOnboarding;
+
+          return showOnboarding
+              ? const OnboardingRootScreen()
+              : const RegisterScreen();
+        },
         routes: [
           GoRoute(
             path: "register",

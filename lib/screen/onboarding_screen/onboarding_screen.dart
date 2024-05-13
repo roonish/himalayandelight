@@ -1,4 +1,5 @@
 import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
+import 'package:himalayan_delights/utils/shared_pref_helper.dart';
 import 'package:himalayan_delights/widgets/app_image.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -61,19 +62,23 @@ class OnboardingScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 15),
               child: AppButton(
-                text: skip ? 'Next' : 'Get Start',
-                color: AppColor.primaryColor,
-                verticalPadding: 12,
-                ontap: skip ? nextPage : () => context.go('/home'),
-              ),
+                  text: skip ? 'Next' : 'Get Start',
+                  color: AppColor.primaryColor,
+                  verticalPadding: 12,
+                  ontap: skip
+                      ? nextPage
+                      : () {
+                          SharedPrefs().showOnboarding = false;
+                          context.go('/home');
+                        }),
             ),
             skip
-                ? InkWell(
-                  child: const LabelText(
+                ? const InkWell(
+                    child: LabelText(
                       text: 'Skip',
                       size: 17,
                     ),
-                )
+                  )
                 : const SizedBox(),
           ],
         ),
