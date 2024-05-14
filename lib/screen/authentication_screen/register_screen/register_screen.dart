@@ -54,7 +54,7 @@ class RegisterScreen extends StatelessWidget {
                 SignUpText(
                   signUpPreText: 'Already have an account? ',
                   signInOrUpText: 'Sign in',
-                  onTap: () => context.go('/'),
+                  onTap: () => context.go('/login'),
                 )
               ],
             ),
