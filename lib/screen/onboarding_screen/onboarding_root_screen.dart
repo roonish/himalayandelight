@@ -43,24 +43,21 @@ class _OnboardingRootScreenState extends State<OnboardingRootScreen> {
   final List<Map<String, dynamic>> _pages = [
     {
       'title': 'Order your food now',
-      'image':
-          'https://freepngimg.com/save/139195-food-plate-top-view-download-hq/607x468',
+      'image': 'assets/images/food.png',
       'description':
           "A variety of foods made by the best chef. Ingredients are easy to find, all delicious flavors can only be found at cookbunda",
       'skip': true,
     },
     {
       'title': 'Carefully Prepared',
-      'image':
-          'https://cdn.pixabay.com/photo/2023/08/05/15/52/ai-generated-8171361_640.png',
+      'image': 'assets/images/chef.png',
       'description':
           'Not all food, we provide clear healthy drink options for you. Fresh taste always accompanies you',
       'skip': true
     },
     {
       'title': 'Fast Delivery',
-      'image':
-          'https://static.vecteezy.com/system/resources/previews/008/492/069/non_2x/delivery-cartoon-illustration-png.png',
+      'image': 'assets/images/deliveryboy.webp',
       'description':
           'Are you ready to make a dish for your friends or family? create an account and cooks',
       'skip': false

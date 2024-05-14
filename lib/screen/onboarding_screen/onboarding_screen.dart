@@ -21,13 +21,17 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size mediaQ = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(32.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            AppImage(image: image),
+            SizedBox(
+                height: getDeviceExactHeight(200, mediaQ),
+                child: AppImage(isAssetImage: true, image: image)),
             Padding(
               padding: const EdgeInsets.only(top: 30, bottom: 10),
               child: LabelText(
@@ -69,12 +73,16 @@ class OnboardingScreen extends StatelessWidget {
                       ? nextPage
                       : () {
                           SharedPrefs().showOnboarding = false;
-                          context.go('/home');
+                          context.go('/login');
                         }),
             ),
             skip
-                ? const InkWell(
-                    child: LabelText(
+                ? InkWell(
+                    onTap: () {
+                      SharedPrefs().showOnboarding = false;
+                      context.go('/login');
+                    },
+                    child: const LabelText(
                       text: 'Skip',
                       size: 17,
                     ),

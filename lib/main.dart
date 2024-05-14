@@ -50,25 +50,13 @@ class MyApp extends StatelessWidget {
 
           return showOnboarding
               ? const OnboardingRootScreen()
-              : const RegisterScreen();
+              : const LoginScreen();
         },
-        routes: [
-          GoRoute(
-            path: "register",
-            builder: (context, state) => const RegisterScreen(),
-          ),
-        ],
       ),
-      // GoRoute(
-      //   path: "/",
-      //   builder: (context, state) => const LoginScreen(),
-      //   routes: [
-      //     GoRoute(
-      //       path: "register",
-      //       builder: (context, state) => const RegisterScreen(),
-      //     ),
-      //   ],
-      // ),
+      GoRoute(
+        path: "/register",
+        builder: (context, state) => const RegisterScreen(),
+      ),
       GoRoute(
           path: "/home",
           builder: (context, state) => const RootScreen(),
