@@ -29,7 +29,7 @@ class DetailScreen extends StatelessWidget {
             FoodImage(mediaQ: mediaQ, image: image),
             Padding(
               padding: quantityButtonPadding,
-              child: QuantityButton( itemCount: itemCount),
+              child: QuantityButton(itemCount: itemCount),
             ),
             Padding(
               padding: bodyPadding,
@@ -45,11 +45,12 @@ class DetailScreen extends StatelessWidget {
                             '$title fjnk j gk  kngij gnkdn kgn kn  jg bfkh kohio s ep vmlfmdbl jhtoi gn fbfgh rtoi gp/jmbkmgfgrtkjp r;d jbngfgn b skg s.ghsroe. ggj/ s/ijgs j ghresh rg dhg .hrt  j ghd.ig hsgj s'),
                   ),
                   const FoodDetail(),
-                  const Padding(
+                  Padding(
                     padding: buttonPadding,
                     child: AppButton(
                       text: 'Add to cart',
                       verticalPadding: 12,
+                      ontap: () => context.go('/orderSuccess'),
                     ),
                   )
                 ],

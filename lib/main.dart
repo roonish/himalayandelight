@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:himalayan_delights/screen/authentication_screen/login_screen/login_screen.dart';
 import 'package:himalayan_delights/screen/authentication_screen/register_screen/register_screen.dart';
 import 'package:himalayan_delights/screen/onboarding_screen/onboarding_root_screen.dart';
+import 'package:himalayan_delights/screen/order_status_screen/order_success_screen.dart';
+import 'package:himalayan_delights/screen/order_status_screen/order_unsuccess_screen.dart';
 import 'package:himalayan_delights/screen/root_screen/root_screen.dart';
 import 'package:himalayan_delights/utils/shared_pref_helper.dart';
 import 'bloc/navbar_bloc/navbar_bloc.dart';
@@ -84,6 +86,14 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: "/login",
         builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        path: "/orderSuccess",
+        builder: (context, state) => const OrderSuccessScreen(),
+      ),
+      GoRoute(
+        path: "/orderUnSuccess",
+        builder: (context, state) => const OrderUnSuccessScreen(),
       ),
     ],
   );

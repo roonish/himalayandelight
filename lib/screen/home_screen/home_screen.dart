@@ -59,10 +59,10 @@ class HomeScreen extends StatelessWidget {
                     title: 'Categories',
                     seeMoreText: 'See All',
                     showSeeAll: true,
-                    onSeeMoreTap: () => context.go('/category'),
+                    onSeeMoreTap: () => context.go('/home/category'),
                   ),
                   GestureDetector(
-                      onTap: () => context.go('/category'),
+                      onTap: () => context.go('/home/category'),
                       child: CategoriesList(images: images)),
                   Padding(
                     padding: titleBottomPadding,

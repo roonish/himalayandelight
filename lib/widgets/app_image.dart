@@ -3,7 +3,9 @@ import 'package:himalayan_delights/screen/home_screen/imports.dart';
 class AppImage extends StatelessWidget {
   final bool isAssetImage;
   final String image;
-  const AppImage({super.key, this.isAssetImage = false, required this.image});
+  final Color? color;
+  const AppImage(
+      {super.key, this.isAssetImage = false, required this.image, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class AppImage extends StatelessWidget {
             fit: BoxFit.cover,
           )
         : CachedNetworkImage(
+            color: color,
             imageUrl: image,
             fit: BoxFit.cover,
             placeholder: (context, url) => Center(
