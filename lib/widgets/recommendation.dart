@@ -36,7 +36,7 @@ class Recommendation extends StatelessWidget {
             mainAxisSpacing: 10),
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: () => context.go('/detail', extra: {
+            onTap: () => context.go('/home/detail', extra: {
               'title': foodDetail.keys.elementAt(index),
               'price': foodDetail.values.elementAt(index),
               'image': contentImage[index]
@@ -87,7 +87,7 @@ class Recommendation extends StatelessWidget {
                       backgroundColor: AppColor.primaryColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50)),
-                      onPressed: () => context.go('/detail', extra: {
+                      onPressed: () => context.go('/home/detail', extra: {
                         'title': foodDetail.keys.elementAt(index),
                         'price': foodDetail.values.elementAt(index),
                         'image': contentImage[index]

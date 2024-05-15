@@ -20,7 +20,7 @@ AppBar appBar(
     leading: showLeadingIcon
         ? InkWell(
             onTap: () {
-              context.go('/');
+              context.go('/home');
             },
             child: Icon(Icons.arrow_back_ios_outlined,
                 size: 20, color: AppColor.primaryColor))
