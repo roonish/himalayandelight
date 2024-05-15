@@ -5,57 +5,27 @@ class OrderSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const  Scaffold(
+    const EdgeInsetsGeometry gapPadding =
+        EdgeInsets.symmetric(vertical: 60, horizontal: 20);
+    return const Scaffold(
       body: Padding(
-        padding:  EdgeInsets.symmetric(vertical: 60, horizontal: 20),
+        padding: gapPadding,
         child: Column(
           children: [
-            SuccessImage(),
-            SuccessTitle(),
-            SuccessCongrats(),
-             SuccessDesc(),
-             TrackOrderButton(),
-             BackToHomeButton(),
+            StatusImage(
+                image:
+                    'https://cdni.iconscout.com/illustration/premium/thumb/girl-makes-online-purchase-successful-10767343-8687278.png'),
+            StatusHeading(text: 'Successful'),
+            CongratsOrFailureText(
+                text: 'Congratulation your order is successful.'),
+            StatusDescText(
+                text:
+                    'F KJ IHG GRT GJROEIH GOIREGOIRJ JGRJOJ O JH GGJO JO JGOITRJ J '),
+            TrackOrderButton(),
+            BackToHomeButton(),
           ],
         ),
       ),
     );
   }
 }
-
-class BackToHomeButton extends StatelessWidget {
-  const BackToHomeButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-     padding: EdgeInsets.only(top: 20),
-     child: AppButton(
-       text: 'Back to home',
-       verticalPadding: 15,
-       fontSize: 18,
-     ),
-                );
-  }
-}
-
-class TrackOrderButton extends StatelessWidget {
-  const TrackOrderButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const  AppButton(
-     text: 'Track order',
-     verticalPadding: 15,
-     fontSize: 18,
-                );
-  }
-}
-
-
-
-

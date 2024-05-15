@@ -1,8 +1,10 @@
 import 'package:himalayan_delights/screen/order_status_screen/imports.dart';
 
-class SuccessImage extends StatelessWidget {
-  const SuccessImage({
+class StatusImage extends StatelessWidget {
+  final String image;
+  const StatusImage({
     super.key,
+    required this.image,
   });
 
   @override
@@ -11,9 +13,7 @@ class SuccessImage extends StatelessWidget {
 
     return SizedBox(
       height: getDeviceExactHeight(180, mediaQ),
-      child: const AppImage(
-          image:
-              'https://cdni.iconscout.com/illustration/premium/thumb/girl-makes-online-purchase-successful-10767343-8687278.png'),
+      child: AppImage(image: image),
     );
   }
 }

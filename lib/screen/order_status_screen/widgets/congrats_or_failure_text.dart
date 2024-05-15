@@ -1,14 +1,16 @@
 import 'package:himalayan_delights/screen/order_status_screen/imports.dart';
 
-class SuccessCongrats extends StatelessWidget {
-  const SuccessCongrats({
+class CongratsOrFailureText extends StatelessWidget {
+  final String text;
+   const CongratsOrFailureText({
     super.key,
+    required this.text,
   });
 
   @override
   Widget build(BuildContext context) {
-    return const LabelText(
-      text: 'Congratulation your order is successful.',
+    return LabelText(
+      text: text,
       size: 16,
       textAlign: TextAlign.center,
       maxLine: 2,

@@ -1,8 +1,10 @@
 import 'package:himalayan_delights/screen/order_status_screen/imports.dart';
 
-class SuccessTitle extends StatelessWidget {
-  const SuccessTitle({
+class StatusHeading extends StatelessWidget {
+  final String text;
+  const StatusHeading({
     super.key,
+    required this.text,
   });
 
   @override
@@ -11,7 +13,7 @@ class SuccessTitle extends StatelessWidget {
     return Padding(
       padding: textPadding,
       child: LabelText(
-        text: 'Successful',
+        text: text,
         color: AppColor.primaryColor,
         size: 26,
       ),
