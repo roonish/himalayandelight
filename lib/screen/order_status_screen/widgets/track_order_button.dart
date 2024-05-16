@@ -11,7 +11,7 @@ class TrackOrderButton extends StatelessWidget {
       text: 'Track order',
       verticalPadding: 15,
       fontSize: 18,
-      ontap: () => context.go('/orderUnSuccess'),
+      ontap: () => context.go('/trackOrderScreen'),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:himalayan_delights/screen/onboarding_screen/onboarding_root_scre
 import 'package:himalayan_delights/screen/order_status_screen/order_success_screen.dart';
 import 'package:himalayan_delights/screen/order_status_screen/order_unsuccess_screen.dart';
 import 'package:himalayan_delights/screen/root_screen/root_screen.dart';
+import 'package:himalayan_delights/screen/track_order/track_order_screen.dart';
 import 'package:himalayan_delights/utils/shared_pref_helper.dart';
 import 'bloc/navbar_bloc/navbar_bloc.dart';
 import 'bloc/theme_bloc/theme_bloc.dart';
@@ -94,6 +95,10 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: "/orderUnSuccess",
         builder: (context, state) => const OrderUnSuccessScreen(),
+      ),
+      GoRoute(
+        path: "/trackOrderScreen",
+        builder: (context, state) => const TrackOrderScreen(),
       ),
     ],
   );
