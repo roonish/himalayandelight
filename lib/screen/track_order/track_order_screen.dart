@@ -25,144 +25,165 @@ class TrackOrderScreen extends StatelessWidget {
                 height: getDeviceExactHeight(200, mediaQ),
                 color: AppColor.primaryColor,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(
-                      4,
-                      (index) => Column(
-                            children: [
-                              Container(
-                                  color: AppColor.searchColor,
-                                  height: 60,
-                                  width: 60,
-                                  child: Icon(
-                                    deliveryStatus.keys.elementAt(index),
-                                    color: AppColor.primaryColor,
-                                  )),
-                              const SizedBox(height: 10),
-                              LabelText(
-                                  text: deliveryStatus.values.elementAt(index),
-                                  size: 15)
-                            ],
-                          )),
-                ),
-              ),
+              OrderStatus(deliveryStatus: deliveryStatus),
               const OrderDetail(title: 'Order Number', detail: '5564353445'),
               const OrderDetail(title: 'Address', detail: '52 Stanland Dr. ON'),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: AppColor.searchColor,
-                      borderRadius: BorderRadius.circular(8)),
-                  padding: const EdgeInsets.only(top: 14),
-                  child: Column(
+              const DeliveryCart(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DeliveryCart extends StatelessWidget {
+  const DeliveryCart({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppColor.searchColor,
+            borderRadius: BorderRadius.circular(8)),
+        padding: const EdgeInsets.only(top: 14),
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                DeliveryDetail(
-                                  text: '9:20 pm',
-                                  fontSize: 18,
-                                  icon: Icons.lock_clock,
-                                ),
-                                DeliveryDetail(
-                                  text: 'Delivery Time',
-                                  fontSize: 15,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                DeliveryDetail(
-                                  text: 'Yorkland Blvd',
-                                  fontSize: 18,
-                                  icon: Icons.pin_drop,
-                                ),
-                                DeliveryDetail(
-                                  text: 'Delivery Place',
-                                  fontSize: 15,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                      DeliveryDetail(
+                        text: '9:20 pm',
+                        fontSize: 18,
+                        icon: Icons.lock_clock,
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Divider(
-                          color: AppColor.textColor,
-                        ),
+                      DeliveryDetail(
+                        text: 'Delivery Time',
+                        fontSize: 15,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      DeliveryDetail(
+                        text: 'Yorkland Blvd',
+                        fontSize: 18,
+                        icon: Icons.pin_drop,
+                      ),
+                      DeliveryDetail(
+                        text: 'Delivery Place',
+                        fontSize: 15,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Divider(
+                color: AppColor.textColor,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const LabelText(text: 'Delivery boy'),
+                  Icon(
+                    Icons.keyboard_arrow_down,
+                    size: 35,
+                    color: AppColor.primaryColor,
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Row(
+                    children: [
+                      CircularImage(
+                        radius: 35,
+                        image:
+                            'https://buffer.com/library/content/images/2020/05/Ash-Read.png',
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        child: Row(
+                        padding: EdgeInsets.only(left: 25),
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const LabelText(text: 'Delivery boy'),
-                            Icon(
-                              Icons.keyboard_arrow_down,
-                              size: 35,
-                              color: AppColor.primaryColor,
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Row(
-                              children: [
-                                CircularImage(
-                                  radius: 35,
-                                  image:
-                                      'https://buffer.com/library/content/images/2020/05/Ash-Read.png',
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 25),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      LabelText(
-                                        text: 'Ronish',
-                                        size: 18,
-                                      ),
-                                      LabelText(
-                                        text: '437-432-4650',
-                                        size: 18,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                            LabelText(
+                              text: 'Ronish',
+                              size: 18,
                             ),
-                            Icon(
-                              Icons.call,
-                              color: AppColor.primaryColor,
-                            )
+                            LabelText(
+                              text: '437-432-4650',
+                              size: 18,
+                            ),
                           ],
                         ),
                       ),
                     ],
                   ),
-                ),
-              )
-            ],
-          ),
+                  Icon(
+                    Icons.call,
+                    color: AppColor.primaryColor,
+                  )
+                ],
+              ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class OrderStatus extends StatelessWidget {
+  const OrderStatus({
+    super.key,
+    required this.deliveryStatus,
+  });
+
+  final Map<IconData, String> deliveryStatus;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: List.generate(
+            4,
+            (index) => Column(
+                  children: [
+                    Container(
+                        color: AppColor.searchColor,
+                        height: 60,
+                        width: 60,
+                        child: Icon(
+                          deliveryStatus.keys.elementAt(index),
+                          color: AppColor.primaryColor,
+                        )),
+                    const SizedBox(height: 10),
+                    LabelText(
+                        text: deliveryStatus.values.elementAt(index), size: 15)
+                  ],
+                )),
       ),
     );
   }
