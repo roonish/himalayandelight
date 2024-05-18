@@ -229,12 +229,13 @@ class OrderDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const EdgeInsetsGeometry gapPadding = EdgeInsets.symmetric(vertical: 15);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         LabelText(text: title, color: AppColor.primaryColor, size: 21),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
+          padding: gapPadding,
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.all(12),
