@@ -1,4 +1,5 @@
 import 'package:himalayan_delights/screen/track_order/imports.dart';
+import 'package:himalayan_delights/screen/track_order/widgets/mapview.dart';
 
 class TrackOrderScreen extends StatelessWidget {
   const TrackOrderScreen({super.key});
@@ -6,7 +7,7 @@ class TrackOrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size mediaQ = MediaQuery.of(context).size;
-    const EdgeInsetsGeometry gapPadding =  EdgeInsets.symmetric(horizontal: 20);
+    const EdgeInsetsGeometry gapPadding = EdgeInsets.symmetric(horizontal: 20);
     Map<IconData, String> deliveryStatus = {
       Icons.check: 'Conformed',
       Icons.card_giftcard: 'Preparing',
@@ -25,6 +26,7 @@ class TrackOrderScreen extends StatelessWidget {
               Container(
                 height: getDeviceExactHeight(200, mediaQ),
                 color: AppColor.primaryColor,
+                child: const MapView(),
               ),
               OrderStatus(deliveryStatus: deliveryStatus),
               const OrderDetail(title: 'Order Number', detail: '5564353445'),
@@ -37,10 +39,3 @@ class TrackOrderScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
