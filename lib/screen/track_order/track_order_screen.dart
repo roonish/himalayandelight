@@ -1,3 +1,4 @@
+import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
 import 'package:himalayan_delights/screen/track_order/imports.dart';
 import 'package:himalayan_delights/screen/track_order/widgets/mapview.dart';
 
@@ -23,15 +24,23 @@ class TrackOrderScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: getDeviceExactHeight(200, mediaQ),
-                color: AppColor.primaryColor,
-                child: const MapView(),
-              ),
+              // Container(
+              //   height: getDeviceExactHeight(200, mediaQ),
+              //   color: AppColor.primaryColor,
+              //   child: const MapView(),
+              // ),
               OrderStatus(deliveryStatus: deliveryStatus),
               const OrderDetail(title: 'Order Number', detail: '5564353445'),
               const OrderDetail(title: 'Address', detail: '52 Stanland Dr. ON'),
-              const DeliveryDetailCart(),
+              InkWell(
+                child: const DeliveryDetailCart(),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MapView()),
+                  );
+                },
+              ),
             ],
           ),
         ),
