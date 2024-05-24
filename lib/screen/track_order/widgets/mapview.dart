@@ -1,317 +1,10 @@
-// // import 'package:flutter_map/flutter_map.dart';
-// // import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
-// // import 'package:himalayan_delights/screen/order_status_screen/imports.dart';
-// // import 'package:latlong2/latlong.dart';
-
-// // class MapView extends StatelessWidget {
-// //   const MapView({super.key});
-
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return FlutterMap(
-// //       options: const MapOptions(
-// //         initialCenter: LatLng(43.73859273772607, -79.22610939815131),
-// //         // initialZoom: 9.2,
-// //       ),
-// //       children: [
-// //         TileLayer(
-// //           urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-// //           userAgentPackageName: 'com.example.app',
-// //         ),
-// //         CurrentLocationLayer(
-// //           alignPositionOnUpdate: AlignOnUpdate.always,
-// //           alignDirectionOnUpdate: AlignOnUpdate.always,
-// //           style: const LocationMarkerStyle(
-// //             marker: DefaultLocationMarker(
-// //               child: Icon(
-// //                 Icons.navigation,
-// //                 color: Colors.white,
-// //               ),
-// //             ),
-// //             markerSize: Size(40, 40),
-// //             markerDirection: MarkerDirection.heading,
-// //           ),
-// //         ),
-// //         // RichAttributionWidget(
-// //         //   attributions: [
-// //         //     TextSourceAttribution(
-// //         //       'OpenStreetMap contributors',
-// //         //       onTap: () {},
-// //         //     ),
-// //         //   ],
-// //         // ),
-// //       ],
-// //     );
-// //   }
-// // }
-
-// import 'dart:async';
-
-// import 'package:flutter/material.dart';
-// import 'package:flutter_map/flutter_map.dart';
-// import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
-// import 'package:latlong2/latlong.dart';
-
-// // If you want to act with original stream, also see the commented codes.
-// /*
-// import 'package:flutter_compass/flutter_compass.dart';
-// import 'package:geolocator/geolocator.dart';
-// */
-
-// class MapView extends StatefulWidget {
-//   const MapView({super.key});
-
-//   @override
-//   State<MapView> createState() => _MapViewState();
-// }
-
-// class _MapViewState extends State<MapView> {
-//   late final Stream<LocationMarkerPosition?> _positionStream;
-//   late final Stream<LocationMarkerHeading?> _headingStream;
-
-// /*
-//   late final Stream<Position?> _geolocatorStream;
-//   late final Stream<CompassEvent?> _compassStream;
-// */
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     const factory = LocationMarkerDataStreamFactory();
-//     _positionStream =
-//         factory.fromGeolocatorPositionStream().asBroadcastStream();
-//     _headingStream = factory.fromCompassHeadingStream().asBroadcastStream();
-
-//     // Get streams with default settings.
-// /*
-//     _geolocatorStream = factory.defaultPositionStreamSource().asBroadcastStream();
-//     _compassStream = factory.defaultHeadingStreamSource().asBroadcastStream();
-// */
-
-//     // Or get streams with your own settings.
-// /*
-//     _geolocatorStream = Geolocator.getPositionStream(
-//       locationSettings: const LocationSettings(),
-//     ).asBroadcastStream();
-//     _compassStream = FlutterCompass.events!.asBroadcastStream();
-// */
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-// /*
-//     const factory = LocationMarkerDataStreamFactory();
-// */
-//     return Scaffold(
-
-//       body: Column(
-//         children: [
-//           Expanded(
-//             flex: 2,
-//             child: FlutterMap(
-//               options: const MapOptions(
-//                 initialCenter: LatLng(0, 0),
-//                 initialZoom: 1,
-//                 minZoom: 0,
-//                 maxZoom: 19,
-//               ),
-//               children: [
-//                 TileLayer(
-//                   urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-//                   userAgentPackageName:
-//                       'net.tlserver6y.flutter_map_location_marker.example',
-//                   maxZoom: 19,
-//                 ),
-//                 CurrentLocationLayer(
-//                   positionStream: _positionStream,
-//                   headingStream: _headingStream,
-
-//                   // Use helper function in factory to cast the streams.
-// /*
-//                   positionStream: factory.fromGeolocatorPositionStream(
-//                     stream: _geolocatorStream,
-//                   ),
-//                   headingStream: factory.fromCompassHeadingStream(
-//                     stream: _compassStream,
-//                   ),
-// */
-//                 ),
-//               ],
-//             ),
-//           ),
-//           Expanded(
-//             child: Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//               children: [
-//                 PulseAnimationBox(
-//                   stream: _positionStream,
-//                   child: const Text(
-//                     'P',
-//                     style: TextStyle(
-//                       color: Colors.white,
-//                     ),
-//                   ),
-//                 ),
-//                 PulseAnimationBox(
-//                   stream: _headingStream,
-//                   child: const Text(
-//                     'H',
-//                     style: TextStyle(
-//                       color: Colors.white,
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// class PulseAnimationBox extends StatefulWidget {
-//   final Stream stream;
-//   final Widget child;
-
-//   const PulseAnimationBox({
-//     super.key,
-//     required this.stream,
-//     required this.child,
-//   });
-
-//   @override
-//   State<PulseAnimationBox> createState() => _PulseAnimationBoxState();
-// }
-
-// class _PulseAnimationBoxState extends State<PulseAnimationBox>
-//     with SingleTickerProviderStateMixin {
-//   late final AnimationController _aniController;
-//   late final Animation<double> _sizeAni;
-//   late final Animation<double> _opacityAni;
-//   late final Animation<Color?> _colorAni;
-//   StreamSubscription? _subscription;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     _aniController = AnimationController(
-//       vsync: this,
-//       duration: const Duration(milliseconds: 600),
-//       value: 1.0,
-//     );
-//     _sizeAni = Tween(
-//       begin: 20.0,
-//       end: 60.0,
-//     ).animate(
-//       CurvedAnimation(
-//         parent: _aniController,
-//         curve: const Interval(
-//           0,
-//           0.8,
-//           curve: Curves.ease,
-//         ),
-//       ),
-//     );
-//     _opacityAni = Tween(
-//       begin: 1.0,
-//       end: 0.0,
-//     ).animate(
-//       CurvedAnimation(
-//         parent: _aniController,
-//         curve: const Interval(
-//           0,
-//           0.8,
-//           curve: Curves.ease,
-//         ),
-//       ),
-//     );
-//     _colorAni = ColorTween(
-//       begin: Colors.blue,
-//       end: Colors.grey.shade300,
-//     ).animate(
-//       CurvedAnimation(
-//         parent: _aniController,
-//         curve: const Interval(
-//           0.5,
-//           1,
-//           curve: Curves.ease,
-//         ),
-//       ),
-//     );
-//     _subscript();
-//   }
-
-//   @override
-//   void didUpdateWidget(PulseAnimationBox oldWidget) {
-//     super.didUpdateWidget(oldWidget);
-//     if (oldWidget.stream != widget.stream) {
-//       _subscription?.cancel();
-//       _subscript();
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AnimatedBuilder(
-//       animation: _aniController,
-//       builder: (BuildContext context, child) {
-//         return SizedBox(
-//           height: 100,
-//           width: 100,
-//           child: Center(
-//             child: Container(
-//               height: 20,
-//               width: 20,
-//               decoration: BoxDecoration(
-//                 shape: BoxShape.circle,
-//                 boxShadow: [
-//                   BoxShadow(
-//                     color: _colorAni.value ?? Colors.grey.shade300,
-//                     blurRadius: 2,
-//                     spreadRadius: 10,
-//                   ),
-//                   BoxShadow(
-//                     color: Colors.blue.withOpacity(_opacityAni.value),
-//                     blurRadius: 10,
-//                     spreadRadius: _sizeAni.value,
-//                   ),
-//                 ],
-//               ),
-//               child: Center(
-//                 child: widget.child,
-//               ),
-//             ),
-//           ),
-//         );
-//       },
-//     );
-//   }
-
-//   @override
-//   void dispose() {
-//     _aniController.dispose();
-//     _subscription?.cancel();
-//     super.dispose();
-//   }
-
-//   void _subscript() {
-//     _subscription = widget.stream.listen((event) {
-//       _aniController.forward(from: 0.0);
-//     });
-//   }
-// }
-
-import 'dart:io';
-import 'dart:math';
-
-import 'package:avatar_glow/avatar_glow.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:himalayan_delights/screen/order_status_screen/imports.dart';
+import 'package:himalayan_delights/utils/secrets.dart';
 import 'package:latlong2/latlong.dart';
-// import 'dart:math' as Math;
+import 'package:permission_handler/permission_handler.dart';
 
 class MapView extends StatefulWidget {
   const MapView({super.key});
@@ -321,114 +14,50 @@ class MapView extends StatefulWidget {
 }
 
 class _MapViewState extends State<MapView> {
-  final _positionStream = Geolocator.getPositionStream(
-    locationSettings: const LocationSettings(
-      accuracy: LocationAccuracy.bestForNavigation,
-      //distanceFilter: 0,
-      //timeLimit: Duration(minutes: 1),
-    ),
-  );
-  Position? _previousPosition;
-  bool _trackMe = false;
-  final MapController _mapController = MapController();
-  static double getHeading(
-      double startLat, double startLong, double endLat, double endLong) {
-    final double dLon = endLong - startLong;
-    final double y = sin(dLon) * cos(endLat);
-    final double x =
-        cos(startLat) * sin(endLat) - sin(startLat) * cos(endLat) * cos(dLon);
-    double heading = atan2(y, x);
+  @override
+  void initState() {
+    super.initState();
+    locationPermission();
+  }
 
-    heading = 360 - (heading * 180 / pi) % 360;
+//find instant location of the user
+  Position? _currentPosition;
+  _determinePosition() {
+    Geolocator.getPositionStream().listen((event) {
+      _currentPosition = event;
+    });
+  }
 
-    if (Platform.isIOS) heading = heading * (pi / 180);
-
-    return heading;
+  Future<void> locationPermission() async {
+    if (await Permission.location.serviceStatus.isEnabled) {
+      var statuslocation = await Permission.location.status;
+      if (statuslocation.isDenied) {
+        Map<Permission, PermissionStatus> status =
+            await [Permission.location].request();
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Geolocator stand alone'),
-      ),
-      body: StreamBuilder<Position>(
-        stream: _positionStream,
+    return StreamBuilder<Object>(
+        stream: _determinePosition(),
         builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          final position = snapshot.data!;
-          if (_trackMe) {
-            _mapController.move(
-              LatLng(position.latitude, position.longitude),
-              _mapController.camera.zoom,
-            );
-          }
-
-          double? bearing;
-          if (_previousPosition != null) {
-            bearing = getHeading(
-              _previousPosition!.latitude,
-              _previousPosition!.longitude,
-              position.latitude,
-              position.longitude,
-            );
-            //print('Device course: $bearing');
-          }
-          _previousPosition = position;
-
           return FlutterMap(
-            mapController: _mapController,
-            options: MapOptions(
-              initialCenter: LatLng(position.latitude, position.longitude),
-              initialZoom: 1,
-              minZoom: 0,
-              maxZoom: 19,
+            options: const MapOptions(
+              initialCenter: LatLng(39.920740, 32.854072),
+              initialZoom: 5,
             ),
             children: [
               TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName:
-                    'net.tlserver6y.flutter_map_location_marker.example',
-                maxZoom: 19,
-              ),
-              // MarkerLayer(markers: markers),
-              CurrentLocationLayer(
-                alignPositionOnUpdate: AlignOnUpdate.always,
-                alignDirectionOnUpdate: AlignOnUpdate.never,
-                style: LocationMarkerStyle(
-                  showHeadingSector: false,
-                  marker: DefaultLocationMarker(
-                    child: AvatarGlow(
-                      glowColor: Colors.blue,
-                      glowRadiusFactor: 0.5,
-                      child: Transform.rotate(
-                        angle: bearing ?? 0,
-                        child: const Icon(
-                          Icons.navigation,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                  markerSize: const Size(40, 40),
-                  // markerDirection: MarkerDirection.,
-                ),
-              ),
+                  urlTemplate:
+                      "https://api.mapbox.com/styles/v1/ronish8/clwl0pfoy041t01qg1yho5oun/wmts?access_token=$mapApiKey",
+                  additionalOptions: {
+                    'accessToken': mapApiKey,
+                  }),
+              // LocationMarkerLayer(position: LocationMarkerPosition(latitude: latitude, longitude: longitude, accuracy: accuracy))
             ],
           );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            _trackMe = !_trackMe;
-          });
-        },
-        child: Icon(_trackMe ? Icons.stop : Icons.play_arrow),
-      ),
-    );
+        });
   }
 }
