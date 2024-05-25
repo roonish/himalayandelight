@@ -66,8 +66,14 @@ class Recommendation extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(foodDetail.keys.elementAt(index)),
-                            Text('\$${foodDetail.values.elementAt(index)}'),
+                            LabelText(
+                              text: foodDetail.keys.elementAt(index),
+                              size: 15,
+                            ),
+                            LabelText(
+                              text: '\$${foodDetail.values.elementAt(index)}',
+                              size: 15,
+                            ),
                           ],
                         ),
                       ),
