@@ -1,3 +1,4 @@
+import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
 import 'package:himalayan_delights/screen/track_order/imports.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -17,6 +18,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
     super.initState();
     _requestLocationPermission();
   }
+
 //ask for location permision if not given yet
   Future<void> _requestLocationPermission() async {
     var status = await Permission.location.status;
@@ -52,7 +54,7 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
   Widget build(BuildContext context) {
     final Size mediaQ = MediaQuery.of(context).size;
     const EdgeInsetsGeometry gapPadding = EdgeInsets.symmetric(horizontal: 20);
-    
+
     Map<IconData, String> deliveryStatus = {
       Icons.check: 'Conformed',
       Icons.card_giftcard: 'Preparing',
@@ -84,7 +86,9 @@ class _TrackOrderScreenState extends State<TrackOrderScreen> {
                         title: 'Address', detail: '52 Stanland Dr. ON'),
                     InkWell(
                       child: const DeliveryDetailCart(),
-                      onTap: () {},
+                      onTap: () {
+                        context.go('/CancelOrderScreen');
+                      },
                     ),
                   ],
                 ),
