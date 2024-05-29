@@ -37,7 +37,7 @@ class BannerCard extends StatelessWidget {
                       child: AppButton(
                         width: getDeviceExactWidth(120, mediaQ),
                         text: 'Order Now',
-                        ontap: () => context.go('/category'),
+                        ontap: () => context.go('/home/category'),
                         color: AppColor.headerColor,
                         textColor: AppColor.primaryColor,
                       ))
