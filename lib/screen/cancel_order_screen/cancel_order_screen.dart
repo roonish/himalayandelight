@@ -33,6 +33,7 @@ class _CancelOrderScreenState extends State<CancelOrderScreen> {
               ),
               const Divider(),
               SizedBox(height: getDeviceExactHeight(10, mediaQ)),
+              // TODO: implement good way to use this as this one is repeating for 6 time
               CancelationReasonList(
                 text: 'Waiting for long time.',
                 radioValue: OrderCancelReason.longWait,
