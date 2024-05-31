@@ -1,3 +1,4 @@
+import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
 import 'package:himalayan_delights/screen/cancel_order_screen/imports.dart';
 import 'package:himalayan_delights/screen/cancel_order_screen/widgets/cancelation_reason_list.dart';
 
@@ -93,6 +94,31 @@ class _CancelOrderScreenState extends State<CancelOrderScreen> {
                   });
                 },
               ),
+              const SizedBox(height: 10),
+              LabelText(
+                text: 'Other reason',
+                size: 20,
+                color: AppColor.primaryColor,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: AppTextField(
+                    maxLines: 4,
+                    hintText: 'Describe here',
+                    hintStyle: TextStyle(
+                        color: AppColor.primaryColor,
+                        fontWeight: FontWeight.bold),
+                    contentPadding: bodyPadding,
+                    onChanged: (_) {},
+                    textEditingController: TextEditingController()),
+              ),
+              SizedBox(
+                height: getDeviceExactHeight(40, mediaQ),
+              ),
+              const AppButton(
+                verticalPadding: 15,
+                text: 'Submit here',
+              )
             ],
           ),
         ),
