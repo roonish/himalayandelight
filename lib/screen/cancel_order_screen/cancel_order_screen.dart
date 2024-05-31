@@ -1,6 +1,4 @@
-import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
 import 'package:himalayan_delights/screen/cancel_order_screen/imports.dart';
-import 'package:himalayan_delights/screen/cancel_order_screen/widgets/cancelation_reason_list.dart';
 
 class CancelOrderScreen extends StatefulWidget {
   const CancelOrderScreen({
@@ -100,18 +98,7 @@ class _CancelOrderScreenState extends State<CancelOrderScreen> {
                 size: 20,
                 color: AppColor.primaryColor,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: AppTextField(
-                    maxLines: 4,
-                    hintText: 'Describe here',
-                    hintStyle: TextStyle(
-                        color: AppColor.primaryColor,
-                        fontWeight: FontWeight.bold),
-                    contentPadding: bodyPadding,
-                    onChanged: (_) {},
-                    textEditingController: TextEditingController()),
-              ),
+              const OtherReasonTextfield(),
               SizedBox(
                 height: getDeviceExactHeight(40, mediaQ),
               ),

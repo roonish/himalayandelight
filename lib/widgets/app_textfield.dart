@@ -98,6 +98,8 @@ class _AppTextFieldState extends State<AppTextField> {
         onTap: widget.onTap,
         controller: widget.textEditingController,
         autocorrect: false,
+        scrollPadding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         maxLength: widget.counterRequired ? widget.maxLength : null,
         cursorColor: theme.textSelectionTheme.cursorColor,
         style: widget.style ??
