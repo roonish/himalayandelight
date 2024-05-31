@@ -20,6 +20,12 @@ class _MapViewState extends State<MapView> {
   }
 
   @override
+  void dispose() {
+    _mapController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return StreamBuilder<Position>(
         stream: widget.positionStream,

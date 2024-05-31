@@ -11,6 +11,7 @@ import 'package:himalayan_delights/screen/track_order/track_order_screen.dart';
 import 'package:himalayan_delights/utils/shared_pref_helper.dart';
 import 'bloc/navbar_bloc/navbar_bloc.dart';
 import 'bloc/theme_bloc/theme_bloc.dart';
+import 'screen/cancel_order_screen/cancel_order_screen.dart';
 import 'screen/category_screen/category_screen.dart';
 import 'screen/detail_screen/detail_screen.dart';
 import 'screen/notification_screen/notification_screen.dart';
@@ -99,6 +100,10 @@ class MyApp extends StatelessWidget {
       GoRoute(
         path: "/trackOrderScreen",
         builder: (context, state) => const TrackOrderScreen(),
+      ),
+      GoRoute(
+        path: "/cancelOrderScreen",
+        builder: (context, state) => const CancelOrderScreen(),
       ),
     ],
   );
