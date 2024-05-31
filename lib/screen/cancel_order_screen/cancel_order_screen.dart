@@ -19,6 +19,7 @@ class _CancelOrderScreenState extends State<CancelOrderScreen> {
     final Size mediaQ = MediaQuery.of(context).size;
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: appBar(context, title: 'Cancel order'),
       body: SingleChildScrollView(
         child: Padding(
