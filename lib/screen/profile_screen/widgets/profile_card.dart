@@ -1,4 +1,5 @@
 import 'package:himalayan_delights/screen/profile_screen/imports.dart';
+import 'package:himalayan_delights/widgets/dialog_box.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
@@ -44,9 +45,15 @@ class ProfileCard extends StatelessWidget {
                         SizedBox(
                           width: getDeviceExactWidth(10, mediaQ),
                         ),
-                        LabelText(
-                          text: settingCard.values.elementAt(index),
-                          size: 15,
+                        InkWell(
+                          onTap: () => AppDialogBox(
+                            content: 'Abc',
+                            onConfirm: () {},
+                          ),
+                          child: LabelText(
+                            text: settingCard.values.elementAt(index),
+                            size: 15,
+                          ),
                         ),
                       ],
                     ),
