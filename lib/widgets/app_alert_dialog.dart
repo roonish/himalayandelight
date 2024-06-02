@@ -21,12 +21,12 @@ class AppAlertDialog extends StatelessWidget {
     final _actionsPadding = EdgeInsets.only(bottom: 28);
 
     return AlertDialog(
-      backgroundColor: AppColor.backgroundColor,
+      backgroundColor: AppColor.darkBackgroundColor,
       surfaceTintColor: AppColor.searchColor,
       title: LabelText(
         text: title,
         size: 20,
-        color: AppColor.blackColor,
+        color: AppColor.primaryColor,
         textAlign: TextAlign.center,
       ),
       shape: const RoundedRectangleBorder(
@@ -37,7 +37,7 @@ class AppAlertDialog extends StatelessWidget {
       actionsAlignment: MainAxisAlignment.spaceEvenly,
       content: LabelText(
         text: content,
-        color: AppColor.textColor,
+        color: AppColor.primaryColor,
         fontWeight: FontWeight.w400,
         maxLine: 3,
         textAlign: TextAlign.center,
