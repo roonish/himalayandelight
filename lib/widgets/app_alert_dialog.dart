@@ -16,9 +16,9 @@ class AppAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _titlePadding = EdgeInsets.only(top: 28);
-    final _contentPadding = EdgeInsets.symmetric(horizontal: 26, vertical: 19);
-    final _actionsPadding = EdgeInsets.only(bottom: 28);
+    const titlePadding = EdgeInsets.only(top: 28);
+    const contentPadding = EdgeInsets.symmetric(horizontal: 26, vertical: 19);
+    const actionsPadding = EdgeInsets.only(bottom: 28);
 
     return AlertDialog(
       backgroundColor: AppColor.darkBackgroundColor,
@@ -31,9 +31,9 @@ class AppAlertDialog extends StatelessWidget {
       ),
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(10))),
-      titlePadding: _titlePadding,
-      contentPadding: _contentPadding,
-      actionsPadding: _actionsPadding,
+      titlePadding: titlePadding,
+      contentPadding: contentPadding,
+      actionsPadding: actionsPadding,
       actionsAlignment: MainAxisAlignment.spaceEvenly,
       content: LabelText(
         text: content,
