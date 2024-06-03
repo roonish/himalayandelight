@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
 import 'package:himalayan_delights/themes/color_theme.dart';
 import 'package:himalayan_delights/widgets/app_button.dart';
 import 'package:himalayan_delights/widgets/label_text.dart';
@@ -16,9 +17,9 @@ class AppAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const titlePadding = EdgeInsets.only(top: 28, left: 26);
-    const contentPadding = EdgeInsets.symmetric(horizontal: 26, vertical: 19);
-    const actionsPadding = EdgeInsets.only(bottom: 28);
+    const titlePadding = EdgeInsets.only(top: 20, left: 20);
+    const contentPadding = EdgeInsets.symmetric(horizontal: 20, vertical: 20);
+    const actionsPadding = EdgeInsets.only(bottom: 20, right: 20);
 
     return AlertDialog(
       backgroundColor: AppColor.darkBackgroundColor,
@@ -44,6 +45,7 @@ class AppAlertDialog extends StatelessWidget {
           buttonText: 'Cancel',
           borderColor: AppColor.headerColor,
         ),
+        const SizedBox(width: 5),
         DialogButton(
           buttonText: 'Ok',
           borderColor: AppColor.primaryColor,
@@ -67,19 +69,25 @@ class DialogButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size mediaQ = MediaQuery.of(context).size;
+    const buttonPadding = EdgeInsets.symmetric(horizontal: 15, vertical: 7);
+
     return InkWell(
       onTap: () {
         Navigator.pop(context, false);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+        width: getDeviceExactWidth(90, mediaQ),
+        padding: buttonPadding,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: borderColor, width: 2),
             color: buttonBgColor ?? Colors.transparent),
-        child: LabelText(
-          text: buttonText,
-          size: 15,
+        child: Center(
+          child: LabelText(
+            text: buttonText,
+            size: 15,
+          ),
         ),
       ),
     );
