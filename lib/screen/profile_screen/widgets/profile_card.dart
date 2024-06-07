@@ -1,4 +1,6 @@
 import 'package:himalayan_delights/screen/profile_screen/imports.dart';
+import 'package:himalayan_delights/widgets/app_alert_dialog.dart';
+import 'package:himalayan_delights/widgets/dialog_box.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
@@ -44,9 +46,27 @@ class ProfileCard extends StatelessWidget {
                         SizedBox(
                           width: getDeviceExactWidth(10, mediaQ),
                         ),
-                        LabelText(
-                          text: settingCard.values.elementAt(index),
-                          size: 15,
+                        InkWell(
+                          onTap: () => showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AppAlertDialog(
+                                title: "Logout",
+                                content: "Are you sure, do you want to logout?",
+                                onConfirm: () async {
+                                  Navigator.pop(context);
+                                },
+                              );
+                            },
+                          ),
+                          // AppDialogBox(
+                          //   content: 'Abc',
+                          //   onConfirm: () {},
+                          // ),
+                          child: LabelText(
+                            text: settingCard.values.elementAt(index),
+                            size: 15,
+                          ),
                         ),
                       ],
                     ),
