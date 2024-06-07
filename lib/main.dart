@@ -15,9 +15,14 @@ import 'screen/cancel_order_screen/cancel_order_screen.dart';
 import 'screen/category_screen/category_screen.dart';
 import 'screen/detail_screen/detail_screen.dart';
 import 'screen/notification_screen/notification_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await SharedPrefs().init();
   runApp(MyApp());
 }
