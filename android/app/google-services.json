@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "875400248405",
+    "project_id": "himalayan-delight",
+    "storage_bucket": "himalayan-delight.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875400248405:android:e86b8c726154239b67a8dc",
+        "android_client_info": {
+          "package_name": "com.example.himalayan_delights"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc3DWb0EjHwLlG6y-RD5nZ84nfxSj8Hos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

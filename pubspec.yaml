@@ -49,6 +49,11 @@ dependencies:
   geolocator:
   flutter_map_location_marker: ^8.0.8
   permission_handler: ^11.3.1
+  firebase_core: ^3.0.0
+  firebase_auth: ^5.0.0
+  cloud_firestore: ^5.0.0
+
+
 
 dev_dependencies:
   build_runner: ^2.3.3
