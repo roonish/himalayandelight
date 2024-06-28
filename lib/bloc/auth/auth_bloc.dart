@@ -4,7 +4,6 @@ import 'package:meta/meta.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
