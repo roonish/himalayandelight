@@ -1,18 +1,14 @@
+
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:himalayan_delights/bloc/auth/auth_event.dart';
+import 'package:himalayan_delights/bloc/auth/auth_state.dart';
 
-part 'auth_event.dart';
-part 'auth_state.dart';
-
-import 'package:firebase_auth/firebase_auth.dart';
-import 'auth_event.dart';
-import 'auth_state.dart';
-import 'auth_repository.dart';
+import '../../repositories/auth_repository.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthRepository _authRepository;
+  final AuthRepo authRepo;
 
-  AuthBloc(this._authRepository) : super(AuthInitial());
+  AuthBloc(this.authRepo) : super(AuthInitial());
 
   @override
   Stream<AuthState> mapEventToState(AuthEvent event) async* {
