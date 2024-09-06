@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:himalayan_delights/bloc/auth/auth_bloc.dart';
 import 'package:himalayan_delights/screen/authentication_screen/login_screen/login_screen.dart';
 import 'package:himalayan_delights/screen/authentication_screen/register_screen/register_screen.dart';
 import 'package:himalayan_delights/screen/onboarding_screen/onboarding_root_screen.dart';
@@ -9,8 +10,10 @@ import 'package:himalayan_delights/screen/order_status_screen/order_unsuccess_sc
 import 'package:himalayan_delights/screen/root_screen/root_screen.dart';
 import 'package:himalayan_delights/screen/track_order/track_order_screen.dart';
 import 'package:himalayan_delights/utils/shared_pref_helper.dart';
+import 'bloc/auth/auth_state.dart';
 import 'bloc/navbar_bloc/navbar_bloc.dart';
 import 'bloc/theme_bloc/theme_bloc.dart';
+import 'repositories/auth_repository.dart';
 import 'screen/cancel_order_screen/cancel_order_screen.dart';
 import 'screen/category_screen/category_screen.dart';
 import 'screen/detail_screen/detail_screen.dart';
@@ -32,20 +35,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => ThemeBloc(),
+    final AuthRepo _authRepo = AuthRepo();
+    return RepositoryProvider(
+      create: (context) => _authRepo,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => ThemeBloc(),
+          ),
+          BlocProvider(
+            create: (context) => NavbarBloc(),
+          ),
+          BlocProvider(create: (context) => AuthBloc(_authRepo)),
+        ],
+        child: BlocBuilder<ThemeBloc, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp.router(
+                routerConfig: _router, theme: state.themeData);
+          },
         ),
-        BlocProvider(
-          create: (context) => NavbarBloc(),
-        ),
-      ],
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (context, state) {
-          return MaterialApp.router(
-              routerConfig: _router, theme: state.themeData);
-        },
       ),
     );
   }
@@ -56,10 +64,16 @@ class MyApp extends StatelessWidget {
         path: "/",
         builder: (context, state) {
           bool showOnboarding = SharedPrefs().showOnboarding;
+          Widget homeScreen = const LoginScreen();
+          BlocListener<AuthBloc, AuthState>(listener: (context, state) {
+            if (state is AuthSuccess) {
+              homeScreen = const RootScreen();
+            } else {
+              homeScreen = const LoginScreen();
+            }
+          });
 
-          return showOnboarding
-              ? const OnboardingRootScreen()
-              : const LoginScreen();
+          return showOnboarding ? const OnboardingRootScreen() : homeScreen;
         },
       ),
       GoRoute(

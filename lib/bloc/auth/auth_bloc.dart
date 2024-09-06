@@ -6,21 +6,27 @@ import '../../repositories/auth_repository.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepo authRepo;
 
-  AuthBloc(this.authRepo) : super(AuthInitial());
+  AuthBloc(this.authRepo) : super(AuthInitial()) {
+    on<AuthEvent>(_signInWithGoogle);
+  }
 
   @override
-  Stream<AuthState> mapEventToState(AuthEvent event) async* {
+  Future<void> _signInWithGoogle(
+      AuthEvent event, Emitter<AuthState> emit) async {
     if (event is AuthSignInRequested) {
-      yield AuthInProgress();
+      emit(AuthInProgress());
       try {
         final user = await authRepo.signInWithGoogle();
-        yield AuthSuccess(user!);
+        user == null
+            ? emit(AuthFailure('User is Empty'))
+            : emit(AuthSuccess(user!));
       } catch (e) {
-        yield AuthFailure(e.toString());
+        emit(AuthFailure(e.toString()));
       }
-    } else if (event is AuthSignOutRequested) {
-      await authRepo.signOut();
-      yield AuthInitial();
     }
+    //  else if (event is AuthSignOutRequested) {
+    //   await authRepo.signOut();
+    //   emit( AuthInitial());
+    // }
   }
 }
