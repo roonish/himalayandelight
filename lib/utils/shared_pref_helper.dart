@@ -11,10 +11,16 @@ class SharedPrefs {
   }
 
   bool get showOnboarding => _sharedPrefs.getBool(onboarding) ?? true;
+  bool get isLogin => _sharedPrefs.getBool(login) ?? false;
 
   set showOnboarding(bool value) {
-    _sharedPrefs.setBool(onboarding,value);
+    _sharedPrefs.setBool(onboarding, value);
+  }
+
+  set isLogin(bool value) {
+    _sharedPrefs.setBool(login, value);
   }
 }
 
 const String onboarding = "showOnboarding";
+const String login = "login";
