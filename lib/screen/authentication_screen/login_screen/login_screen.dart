@@ -3,6 +3,7 @@ import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
 
 import '../../../bloc/auth/auth_bloc.dart';
 import '../../../bloc/auth/auth_state.dart';
+import '../../../utils/shared_pref_helper.dart';
 import '../../../utils/snackbar.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -57,7 +58,15 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: bodyPadding,
-          child: BlocBuilder<AuthBloc, AuthState>(
+          child: BlocConsumer<AuthBloc, AuthState>(
+            listener: (context, state) {
+              if (state is AuthSuccess) {
+                SharedPrefs().isLogin = true;
+                context.go('/home');
+              } else if (state is AuthFailure) {
+                SnackBarHelper.showError(context, state.error);
+              }
+            },
             builder: (context, state) {
               if (state is AuthInProgress) {
                 return Stack(
@@ -74,9 +83,6 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ],
                 );
-              }
-              else if (state is AuthFailure) {
-                // SnackBarHelper.showError(context, state.error);
               }
               return loginScreen;
             },

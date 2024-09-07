@@ -10,7 +10,6 @@ import 'package:himalayan_delights/screen/order_status_screen/order_unsuccess_sc
 import 'package:himalayan_delights/screen/root_screen/root_screen.dart';
 import 'package:himalayan_delights/screen/track_order/track_order_screen.dart';
 import 'package:himalayan_delights/utils/shared_pref_helper.dart';
-import 'bloc/auth/auth_state.dart';
 import 'bloc/navbar_bloc/navbar_bloc.dart';
 import 'bloc/theme_bloc/theme_bloc.dart';
 import 'repositories/auth_repository.dart';
@@ -64,16 +63,13 @@ class MyApp extends StatelessWidget {
         path: "/",
         builder: (context, state) {
           bool showOnboarding = SharedPrefs().showOnboarding;
-          Widget homeScreen = const LoginScreen();
-          BlocListener<AuthBloc, AuthState>(listener: (context, state) {
-            if (state is AuthSuccess) {
-              homeScreen = const RootScreen();
-            } else {
-              homeScreen = const LoginScreen();
-            }
-          });
+          bool isGoogleLogin = SharedPrefs().isLogin;
 
-          return showOnboarding ? const OnboardingRootScreen() : homeScreen;
+          return showOnboarding
+              ? const OnboardingRootScreen()
+              : isGoogleLogin
+                  ? const RootScreen()
+                  : const LoginScreen();
         },
       ),
       GoRoute(

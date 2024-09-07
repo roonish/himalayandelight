@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:himalayan_delights/bloc/auth/auth_event.dart';
 import 'package:himalayan_delights/bloc/auth/auth_state.dart';
 import '../../repositories/auth_repository.dart';
@@ -16,10 +17,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (event is AuthSignInRequested) {
       emit(AuthInProgress());
       try {
-        final user = await authRepo.signInWithGoogle();
+        final User? user = await authRepo.signInWithGoogle();
         user == null
             ? emit(AuthFailure('User is Empty'))
-            : emit(AuthSuccess(user!));
+            : emit(AuthSuccess(user));
       } catch (e) {
         emit(AuthFailure(e.toString()));
       }

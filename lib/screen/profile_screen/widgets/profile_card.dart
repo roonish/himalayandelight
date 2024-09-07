@@ -1,6 +1,5 @@
 import 'package:himalayan_delights/screen/profile_screen/imports.dart';
 import 'package:himalayan_delights/widgets/app_alert_dialog.dart';
-import 'package:himalayan_delights/widgets/dialog_box.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard({
