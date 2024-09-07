@@ -11,7 +11,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEvent>(_signInWithGoogle);
   }
 
-  @override
   Future<void> _signInWithGoogle(
       AuthEvent event, Emitter<AuthState> emit) async {
     if (event is AuthSignInRequested) {
@@ -24,10 +23,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       } catch (e) {
         emit(AuthFailure(e.toString()));
       }
+    } else if (event is AuthSignOutRequested) {
+      emit(AuthInProgress());
+      await authRepo.signOutWithGoogle();
+      emit(AuthInitial());
     }
-    //  else if (event is AuthSignOutRequested) {
-    //   await authRepo.signOut();
-    //   emit( AuthInitial());
-    // }
   }
 }

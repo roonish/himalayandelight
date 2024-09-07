@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepo {
-  final _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<User?> signInWithGoogle() async {
     try {
@@ -17,6 +17,15 @@ class AuthRepo {
     } catch (e) {
       print(e);
       return null;
+    }
+  }
+
+  Future<void> signOutWithGoogle() async {
+    try {
+      await _auth.signOut();
+      await GoogleSignIn().signOut();
+    } catch (e) {
+      print(e);
     }
   }
 }
