@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
+import 'package:himalayan_delights/screen/cancel_order_screen/imports.dart';
 
 import '../../../bloc/auth/auth_bloc.dart';
 import '../../../bloc/auth/auth_event.dart';
@@ -18,11 +19,16 @@ class SocialLogin extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const CircularImage(
-              image:
-                  'https://static.vecteezy.com/system/resources/previews/018/930/476/non_2x/facebook-logo-facebook-icon-transparent-free-png.png'),
           InkWell(
-            onTap: () => context.read<AuthBloc>().add(AuthSignInRequested()),
+            onTap: () => context.read<AuthBloc>().add(const AuthSignInRequested(
+                authprovider: SocialLoginType.facebook)),
+            child: const CircularImage(
+                image:
+                    'https://static.vecteezy.com/system/resources/previews/018/930/476/non_2x/facebook-logo-facebook-icon-transparent-free-png.png'),
+          ),
+          InkWell(
+            onTap: () => context.read<AuthBloc>().add(const AuthSignInRequested(
+                authprovider: SocialLoginType.google)),
             child: const CircularImage(
                 radius: 25,
                 image:

@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:himalayan_delights/bloc/auth/auth_bloc.dart';
+import 'package:himalayan_delights/screen/cancel_order_screen/imports.dart';
 import 'package:himalayan_delights/screen/profile_screen/imports.dart';
 import 'package:himalayan_delights/widgets/app_alert_dialog.dart';
 
@@ -53,9 +54,10 @@ class ProfileCard extends StatelessWidget {
                                   content:
                                       "Are you sure, do you want to logout?",
                                   onConfirm: () async {
-                                    context
-                                        .read<AuthBloc>()
-                                        .add(AuthSignOutRequested());
+                                    context.read<AuthBloc>().add(
+                                        const AuthSignOutRequested(
+                                            authprovider:
+                                                SocialLoginType.google));
                                     // to remove dialog box
                                     Navigator.pop(context);
                                   },

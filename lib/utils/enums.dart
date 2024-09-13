@@ -11,3 +11,6 @@ enum OrderCancelReason {
   justWantToCancel,
   orderSomethingElse
 }
+
+//for login
+enum SocialLoginType { google, facebook }
