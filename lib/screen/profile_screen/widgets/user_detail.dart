@@ -42,7 +42,7 @@ class UserDetail extends StatelessWidget {
                 color: AppColor.primaryColor,
                 fontWeight: FontWeight.w500,
                 size: 16,
-              )
+              ),
             ],
           );
         }
