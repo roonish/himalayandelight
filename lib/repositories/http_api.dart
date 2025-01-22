@@ -33,7 +33,7 @@ class HttpApi {
   ]) async {
     http.Response response;
     response = await http.get(
-      Uri.parse(_baseUrl + uri),
+      Uri.parse('http://127.0.0.1:8000/' + uri),
       headers: await _getHeaders(),
     );
 
@@ -47,7 +47,7 @@ class HttpApi {
   Future<dynamic> delete(String uri) async {
     http.Response response;
     response = await http.delete(
-      Uri.parse(_baseUrl + uri),
+      Uri.parse("http://127.0.0.1:8000/" + uri),
       headers: await _getHeaders(),
     );
 
@@ -64,7 +64,7 @@ class HttpApi {
     http.Response response;
 
     response = await http.post(
-      Uri.parse(_baseUrl + uri),
+      Uri.parse("http://127.0.0.1:8000/" + uri),
       headers: await _getHeaders(),
       body: jsonEncode(body),
     );
@@ -81,7 +81,7 @@ class HttpApi {
     http.Response response;
 
     response = await http.put(
-      Uri.parse(_baseUrl + uri),
+      Uri.parse("http://127.0.0.1:8000/" + uri),
       headers: await _getHeaders(),
       body: jsonEncode(body),
     );
