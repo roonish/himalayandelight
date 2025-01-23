@@ -5,7 +5,7 @@ sealed class FavEvent extends Equatable {
 }
 
 class AddToFav extends FavEvent {
-  final Favourite foodItem;
+  final FoodItem foodItem;
 
   const AddToFav({required this.foodItem});
   @override
