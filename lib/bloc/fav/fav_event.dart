@@ -11,3 +11,8 @@ class AddToFav extends FavEvent {
   @override
   List<Object?> get props => [foodItem];
 }
+
+class DisplayFav extends FavEvent {
+  @override
+  List<Object?> get props => throw UnimplementedError();
+}
