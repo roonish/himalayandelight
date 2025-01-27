@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:himalayan_delights/bloc/auth/auth_bloc.dart';
+import 'package:himalayan_delights/bloc/fav/fav_bloc.dart';
+import 'package:himalayan_delights/repositories/fav_repository.dart';
 import 'package:himalayan_delights/screen/authentication_screen/login_screen/login_screen.dart';
 import 'package:himalayan_delights/screen/authentication_screen/register_screen/register_screen.dart';
 import 'package:himalayan_delights/screen/onboarding_screen/onboarding_root_screen.dart';
@@ -19,6 +21,7 @@ import 'screen/detail_screen/detail_screen.dart';
 import 'screen/notification_screen/notification_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'utils/secrets.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,8 +38,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthRepo _authRepo = AuthRepo();
-    return RepositoryProvider(
-      create: (context) => _authRepo,
+    final ApiFavRepository _favRepository = ApiFavRepository(favFoodApiKey);
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => _authRepo,
+        ),
+        RepositoryProvider(
+          create: (context) => _favRepository,
+        ),
+      ],
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -46,6 +57,7 @@ class MyApp extends StatelessWidget {
             create: (context) => NavbarBloc(),
           ),
           BlocProvider(create: (context) => AuthBloc(_authRepo)),
+          BlocProvider(create: (context) => FavBloc(_favRepository)),
         ],
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, state) {
