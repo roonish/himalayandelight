@@ -1,12 +1,13 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
+import 'package:himalayan_delights/model/foodItem.dart';
 import '../model/favourite.dart';
 import '../model/serializers.dart';
 import '../utils/exceptions.dart';
 import 'http_api.dart';
 
 abstract class FavRepository {
-  Future<Favourite> addFavFood(Favourite data);
+  Future<Favourite> addFavFood(FoodItem data);
   Future<BuiltList<Favourite>?> getFavFood({int page = 1});
 }
 
@@ -15,7 +16,7 @@ class ApiFavRepository implements FavRepository {
   final HttpApi _api;
 
   @override
-  Future<Favourite> addFavFood(Favourite data) async {
+  Future<Favourite> addFavFood(FoodItem data) async {
     dynamic rawData = await _api.post(
       '/himalayandelight/favourites',
       serializers.serializeWith(
