@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:himalayan_delights/bloc/fav/fav_bloc.dart';
 import 'package:himalayan_delights/bloc/navbar_bloc/navbar_bloc.dart';
 import 'package:himalayan_delights/screen/cart_screen/cart_screen.dart';
 import 'package:himalayan_delights/screen/home_screen/home_screen.dart';
@@ -20,6 +21,8 @@ class RootScreen extends StatelessWidget {
       MessagesScreen(),
       ProfileScreen(),
     ];
+    final favEvent = BlocProvider.of<FavBloc>(context);
+    favEvent.add(DisplayFav());
 
     return BlocBuilder<NavbarBloc, NavbarState>(
       builder: (context, state) {

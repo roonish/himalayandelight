@@ -1,5 +1,10 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:himalayan_delights/bloc/fav/fav_bloc.dart';
 import 'package:himalayan_delights/screen/detail_screen/imports.dart';
+import 'package:himalayan_delights/screen/error_screen/error_screen.dart';
 import 'package:himalayan_delights/screen/favourite_screen/widgets/item_card.dart';
+
+import '../../widgets/loading.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({
@@ -28,10 +33,31 @@ class FavouriteScreen extends StatelessWidget {
         appBar: appBar(context, title: 'Favourite', showLeadingIcon: false),
         body: Padding(
           padding: bodyPadding,
-          child: ListView.builder(
-            itemCount: 12,
-            itemBuilder: (context, index) {
-              return ItemCard(image: images[index]);
+          child: BlocBuilder<FavBloc, FavState>(
+            builder: (context, state) {
+              if (state is FavInitial) {}
+              if (state is FavFailed) {
+                return ErrorScreen(
+                  errorText: state.errorMsg,
+                );
+              }
+              if (state is FavLoading) {
+                return LoadingScreen();
+              }
+              if (state is FavFoodListSuccess) {
+                return ListView.builder(
+                  itemCount: state.favFoodItem.length,
+                  itemBuilder: (context, index) {
+                    return ItemCard(
+                      image: images[index],
+                      foodName: state.favFoodItem[index].foodItem.name,
+                      desc: state.favFoodItem[index].foodItem.desc,
+                      rating: state.favFoodItem[index].foodItem.rating,
+                    );
+                  },
+                );
+              }
+              return SizedBox();
             },
           ),
         ));

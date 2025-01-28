@@ -2,9 +2,15 @@ import 'package:himalayan_delights/screen/favourite_screen/widgets/food_name_des
 import 'package:himalayan_delights/screen/home_screen/imports.dart';
 
 class ItemCard extends StatelessWidget {
+  final String foodName;
+  final String desc;
+  final int rating;
   const ItemCard({
     super.key,
     required this.image,
+    required this.foodName,
+    required this.desc,
+    required this.rating,
   });
 
   final String image;
@@ -27,9 +33,13 @@ class ItemCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             CircularImage(radius: 40, image: image),
-            const Padding(
+            Padding(
               padding: containerMargin,
-              child: FoodNameDescRating(),
+              child: FoodNameDescRating(
+                foodName: foodName,
+                desc: desc,
+                rating: rating,
+              ),
             ),
             Container(
                 alignment: Alignment.topRight,
