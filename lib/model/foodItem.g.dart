@@ -32,6 +32,9 @@ class _$FoodItemSerializer implements StructuredSerializer<FoodItem> {
       'collection',
       serializers.serialize(object.collection,
           specifiedType: const FullType(int)),
+      'img',
+      serializers.serialize(object.image,
+          specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -72,6 +75,10 @@ class _$FoodItemSerializer implements StructuredSerializer<FoodItem> {
           result.collection = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
+        case 'img':
+          result.image = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
       }
     }
 
@@ -92,6 +99,8 @@ class _$FoodItem extends FoodItem {
   final int rating;
   @override
   final int collection;
+  @override
+  final String image;
 
   factory _$FoodItem([void Function(FoodItemBuilder)? updates]) =>
       (new FoodItemBuilder()..update(updates))._build();
@@ -102,7 +111,8 @@ class _$FoodItem extends FoodItem {
       required this.calory,
       required this.unitPrice,
       required this.rating,
-      required this.collection})
+      required this.collection,
+      required this.image})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(name, r'FoodItem', 'name');
     BuiltValueNullFieldError.checkNotNull(desc, r'FoodItem', 'desc');
@@ -111,6 +121,7 @@ class _$FoodItem extends FoodItem {
     BuiltValueNullFieldError.checkNotNull(rating, r'FoodItem', 'rating');
     BuiltValueNullFieldError.checkNotNull(
         collection, r'FoodItem', 'collection');
+    BuiltValueNullFieldError.checkNotNull(image, r'FoodItem', 'image');
   }
 
   @override
@@ -129,7 +140,8 @@ class _$FoodItem extends FoodItem {
         calory == other.calory &&
         unitPrice == other.unitPrice &&
         rating == other.rating &&
-        collection == other.collection;
+        collection == other.collection &&
+        image == other.image;
   }
 
   @override
@@ -141,6 +153,7 @@ class _$FoodItem extends FoodItem {
     _$hash = $jc(_$hash, unitPrice.hashCode);
     _$hash = $jc(_$hash, rating.hashCode);
     _$hash = $jc(_$hash, collection.hashCode);
+    _$hash = $jc(_$hash, image.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -153,7 +166,8 @@ class _$FoodItem extends FoodItem {
           ..add('calory', calory)
           ..add('unitPrice', unitPrice)
           ..add('rating', rating)
-          ..add('collection', collection))
+          ..add('collection', collection)
+          ..add('image', image))
         .toString();
   }
 }
@@ -185,6 +199,10 @@ class FoodItemBuilder implements Builder<FoodItem, FoodItemBuilder> {
   int? get collection => _$this._collection;
   set collection(int? collection) => _$this._collection = collection;
 
+  String? _image;
+  String? get image => _$this._image;
+  set image(String? image) => _$this._image = image;
+
   FoodItemBuilder();
 
   FoodItemBuilder get _$this {
@@ -196,6 +214,7 @@ class FoodItemBuilder implements Builder<FoodItem, FoodItemBuilder> {
       _unitPrice = $v.unitPrice;
       _rating = $v.rating;
       _collection = $v.collection;
+      _image = $v.image;
       _$v = null;
     }
     return this;
@@ -230,6 +249,8 @@ class FoodItemBuilder implements Builder<FoodItem, FoodItemBuilder> {
               rating, r'FoodItem', 'rating'),
           collection: BuiltValueNullFieldError.checkNotNull(
               collection, r'FoodItem', 'collection'),
+          image: BuiltValueNullFieldError.checkNotNull(
+              image, r'FoodItem', 'image'),
         );
     replace(_$result);
     return _$result;

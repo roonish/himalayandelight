@@ -25,6 +25,9 @@ abstract class FoodItem implements Built<FoodItem, FoodItemBuilder> {
   int get rating;
   @BuiltValueField(wireName: 'collection')
   int get collection;
+  @BuiltValueField(wireName: 'img')
+  String get image;
 
   static Serializer<FoodItem> get serializer => _$foodItemSerializer;
 }
+

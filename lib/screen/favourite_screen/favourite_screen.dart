@@ -49,7 +49,7 @@ class FavouriteScreen extends StatelessWidget {
                   itemCount: state.favFoodItem.length,
                   itemBuilder: (context, index) {
                     return ItemCard(
-                      image: images[index],
+                      image: state.favFoodItem[index].foodItem.image,
                       foodName: state.favFoodItem[index].foodItem.name,
                       desc: state.favFoodItem[index].foodItem.desc,
                       rating: state.favFoodItem[index].foodItem.rating,
