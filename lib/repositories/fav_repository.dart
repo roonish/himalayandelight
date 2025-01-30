@@ -57,7 +57,7 @@ class ApiFavRepository implements FavRepository {
   @override
   Future<void> deleteFav(int postId) async {
     await _api.delete(
-      '/himalayandelight/favourites$postId',
+      '/himalayandelight/favourites/$postId/',
     );
   }
 }

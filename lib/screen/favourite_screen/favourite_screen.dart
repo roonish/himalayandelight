@@ -38,6 +38,8 @@ class FavouriteScreen extends StatelessWidget {
           child: BlocConsumer<FavBloc, FavState>(
             listener: (context, state) {
               if (state is FavFoodDeleted) {
+                final favEvent = BlocProvider.of<FavBloc>(context);
+                favEvent.add(DisplayFav());
                 return SnackBarHelper.showMesseges(
                     context, "Successfully Deleted");
               }
@@ -65,7 +67,7 @@ class FavouriteScreen extends StatelessWidget {
                           foodName: foodItem.name,
                           desc: foodItem.desc,
                           rating: foodItem.rating,
-                          foodId: foodItem.id,
+                          favId: state.favFoodItem[index].favId,
                         );
                       },
                     );

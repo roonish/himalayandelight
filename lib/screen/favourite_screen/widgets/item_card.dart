@@ -4,7 +4,7 @@ import 'package:himalayan_delights/screen/favourite_screen/widgets/food_name_des
 import 'package:himalayan_delights/screen/home_screen/imports.dart';
 
 class ItemCard extends StatelessWidget {
-  final int foodId;
+  final int favId;
   final String foodName;
   final String desc;
   final int rating;
@@ -14,7 +14,7 @@ class ItemCard extends StatelessWidget {
     required this.foodName,
     required this.desc,
     required this.rating,
-    required this.foodId,
+    required this.favId,
   });
 
   final String image;
@@ -51,7 +51,7 @@ class ItemCard extends StatelessWidget {
                 padding: iconPadding,
                 child: InkWell(
                     onTap: () {
-                      favEvent.add(DeleteFav(id: foodId));
+                      favEvent.add(DeleteFav(id: favId));
                     },
                     child: const Icon(Icons.delete)))
           ],

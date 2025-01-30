@@ -51,6 +51,7 @@ class FavBloc extends Bloc<FavEvent, FavState> {
     try {
       await favRepository.deleteFav(event.id);
       emit(FavFoodDeleted());
+      
     } on Exception catch (e) {
       emit(FavFailed(e.toString()));
     }

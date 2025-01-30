@@ -10,7 +10,7 @@ class ErrorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: LabelText(text: errorText),
+        child: LabelText(text: errorText, maxLine: 5),
       ),
     );
   }

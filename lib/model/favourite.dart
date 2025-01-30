@@ -14,6 +14,8 @@ abstract class Favourite implements Built<Favourite, FavouriteBuilder> {
 
   factory Favourite([updates(FavouriteBuilder b)]) = _$Favourite;
 
+  @BuiltValueField(wireName: 'id')
+  int get favId;
   @BuiltValueField(wireName: 'foodItem')
   FoodItem get foodItem;
 
