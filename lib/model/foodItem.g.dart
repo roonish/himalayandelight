@@ -18,6 +18,8 @@ class _$FoodItemSerializer implements StructuredSerializer<FoodItem> {
   Iterable<Object?> serialize(Serializers serializers, FoodItem object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(int)),
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'desc',
@@ -51,6 +53,10 @@ class _$FoodItemSerializer implements StructuredSerializer<FoodItem> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
         case 'name':
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
@@ -88,6 +94,8 @@ class _$FoodItemSerializer implements StructuredSerializer<FoodItem> {
 
 class _$FoodItem extends FoodItem {
   @override
+  final int id;
+  @override
   final String name;
   @override
   final String desc;
@@ -106,7 +114,8 @@ class _$FoodItem extends FoodItem {
       (new FoodItemBuilder()..update(updates))._build();
 
   _$FoodItem._(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.desc,
       required this.calory,
       required this.unitPrice,
@@ -114,6 +123,7 @@ class _$FoodItem extends FoodItem {
       required this.collection,
       required this.image})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, r'FoodItem', 'id');
     BuiltValueNullFieldError.checkNotNull(name, r'FoodItem', 'name');
     BuiltValueNullFieldError.checkNotNull(desc, r'FoodItem', 'desc');
     BuiltValueNullFieldError.checkNotNull(calory, r'FoodItem', 'calory');
@@ -135,6 +145,7 @@ class _$FoodItem extends FoodItem {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is FoodItem &&
+        id == other.id &&
         name == other.name &&
         desc == other.desc &&
         calory == other.calory &&
@@ -147,6 +158,7 @@ class _$FoodItem extends FoodItem {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, desc.hashCode);
     _$hash = $jc(_$hash, calory.hashCode);
@@ -161,6 +173,7 @@ class _$FoodItem extends FoodItem {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'FoodItem')
+          ..add('id', id)
           ..add('name', name)
           ..add('desc', desc)
           ..add('calory', calory)
@@ -174,6 +187,10 @@ class _$FoodItem extends FoodItem {
 
 class FoodItemBuilder implements Builder<FoodItem, FoodItemBuilder> {
   _$FoodItem? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
   String? _name;
   String? get name => _$this._name;
@@ -208,6 +225,7 @@ class FoodItemBuilder implements Builder<FoodItem, FoodItemBuilder> {
   FoodItemBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _id = $v.id;
       _name = $v.name;
       _desc = $v.desc;
       _calory = $v.calory;
@@ -237,6 +255,7 @@ class FoodItemBuilder implements Builder<FoodItem, FoodItemBuilder> {
   _$FoodItem _build() {
     final _$result = _$v ??
         new _$FoodItem._(
+          id: BuiltValueNullFieldError.checkNotNull(id, r'FoodItem', 'id'),
           name:
               BuiltValueNullFieldError.checkNotNull(name, r'FoodItem', 'name'),
           desc:

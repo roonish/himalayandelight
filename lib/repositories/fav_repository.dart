@@ -9,6 +9,7 @@ import 'http_api.dart';
 abstract class FavRepository {
   Future<Favourite> addFavFood(FoodItem data);
   Future<BuiltList<Favourite>?> getFavFood({int page = 1});
+  Future<void> deleteFav(int postId);
 }
 
 class ApiFavRepository implements FavRepository {
@@ -51,5 +52,12 @@ class ApiFavRepository implements FavRepository {
       //reached end of page
       return null;
     }
+  }
+
+  @override
+  Future<void> deleteFav(int postId) async {
+    await _api.delete(
+      '/himalayandelight/favourites$postId',
+    );
   }
 }

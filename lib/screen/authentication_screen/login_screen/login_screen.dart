@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                 SharedPrefs().isLogin = true;
                 context.go('/home');
               } else if (state is AuthFailure) {
-                SnackBarHelper.showError(context, state.error);
+                SnackBarHelper.showMesseges(context, state.error);
               }
             },
             builder: (context, state) {

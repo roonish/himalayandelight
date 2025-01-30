@@ -14,5 +14,13 @@ class AddToFav extends FavEvent {
 
 class DisplayFav extends FavEvent {
   @override
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
+}
+
+class DeleteFav extends FavEvent {
+  final int id;
+
+  const DeleteFav({required this.id});
+  @override
+  List<Object?> get props => [id];
 }
