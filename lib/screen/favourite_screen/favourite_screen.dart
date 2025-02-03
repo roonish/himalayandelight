@@ -1,9 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:himalayan_delights/bloc/fav/fav_bloc.dart';
+import 'package:himalayan_delights/model/foodItem.dart';
 import 'package:himalayan_delights/screen/detail_screen/imports.dart';
 import 'package:himalayan_delights/screen/error_screen/error_screen.dart';
 import 'package:himalayan_delights/screen/favourite_screen/widgets/item_card.dart';
 
+import '../../utils/snackbar.dart';
 import '../../widgets/loading.dart';
 
 class FavouriteScreen extends StatelessWidget {
@@ -33,31 +35,46 @@ class FavouriteScreen extends StatelessWidget {
         appBar: appBar(context, title: 'Favourite', showLeadingIcon: false),
         body: Padding(
           padding: bodyPadding,
-          child: BlocBuilder<FavBloc, FavState>(
+          child: BlocConsumer<FavBloc, FavState>(
+            listener: (context, state) {
+              if (state is FavFoodDeleted) {
+                final favEvent = BlocProvider.of<FavBloc>(context);
+                favEvent.add(DisplayFav());
+                return SnackBarHelper.showMesseges(
+                    context, "Successfully Deleted");
+              }
+            },
             builder: (context, state) {
-              if (state is FavInitial) {}
-              if (state is FavFailed) {
-                return ErrorScreen(
-                  errorText: state.errorMsg,
-                );
-              }
-              if (state is FavLoading) {
-                return LoadingScreen();
-              }
-              if (state is FavFoodListSuccess) {
-                return ListView.builder(
-                  itemCount: state.favFoodItem.length,
-                  itemBuilder: (context, index) {
-                    return ItemCard(
-                      image: images[index],
-                      foodName: state.favFoodItem[index].foodItem.name,
-                      desc: state.favFoodItem[index].foodItem.desc,
-                      rating: state.favFoodItem[index].foodItem.rating,
+              return BlocBuilder<FavBloc, FavState>(
+                builder: (context, state) {
+                  if (state is FavInitial) {}
+                  if (state is FavFailed) {
+                    return ErrorScreen(
+                      errorText: state.errorMsg,
                     );
-                  },
-                );
-              }
-              return SizedBox();
+                  }
+                  if (state is FavLoading) {
+                    return LoadingScreen();
+                  }
+                  if (state is FavFoodListSuccess) {
+                    return ListView.builder(
+                      itemCount: state.favFoodItem.length,
+                      itemBuilder: (context, index) {
+                        FoodItem foodItem = state.favFoodItem[index].foodItem;
+
+                        return ItemCard(
+                          image: foodItem.image,
+                          foodName: foodItem.name,
+                          desc: foodItem.desc,
+                          rating: foodItem.rating,
+                          favId: state.favFoodItem[index].favId,
+                        );
+                      },
+                    );
+                  }
+                  return SizedBox();
+                },
+              );
             },
           ),
         ));

@@ -13,6 +13,8 @@ abstract class FoodItem implements Built<FoodItem, FoodItemBuilder> {
 
   factory FoodItem([updates(FoodItemBuilder b)]) = _$FoodItem;
 
+  @BuiltValueField(wireName: 'id')
+  int get id;
   @BuiltValueField(wireName: 'name')
   String get name;
   @BuiltValueField(wireName: 'desc')
@@ -25,6 +27,8 @@ abstract class FoodItem implements Built<FoodItem, FoodItemBuilder> {
   int get rating;
   @BuiltValueField(wireName: 'collection')
   int get collection;
+  @BuiltValueField(wireName: 'img')
+  String get image;
 
   static Serializer<FoodItem> get serializer => _$foodItemSerializer;
 }

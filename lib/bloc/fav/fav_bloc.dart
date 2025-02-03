@@ -14,6 +14,7 @@ class FavBloc extends Bloc<FavEvent, FavState> {
   FavBloc(this.favRepository) : super(const FavInitial()) {
     on<DisplayFav>(_displayFavFood);
     on<AddToFav>(_addFavFood);
+    on<DeleteFav>(_deleteFavFood);
   }
 
   void _displayFavFood(DisplayFav event, Emitter<FavState> emit) async {
@@ -40,6 +41,17 @@ class FavBloc extends Bloc<FavEvent, FavState> {
       } else {
         emit(FavFoodAddedSucessful());
       }
+    } on Exception catch (e) {
+      emit(FavFailed(e.toString()));
+    }
+  }
+
+  void _deleteFavFood(DeleteFav event, Emitter<FavState> emit) async {
+    emit(const FavLoading());
+    try {
+      await favRepository.deleteFav(event.id);
+      emit(FavFoodDeleted());
+      
     } on Exception catch (e) {
       emit(FavFailed(e.toString()));
     }

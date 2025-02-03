@@ -35,3 +35,9 @@ final class FavFailed extends FavState {
   @override
   List<Object?> get props => [errorMsg];
 }
+
+final class FavFoodDeleted extends FavState {
+  const FavFoodDeleted();
+  @override
+  List<Object?> get props => [];
+}

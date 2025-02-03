@@ -18,6 +18,8 @@ class _$FavouriteSerializer implements StructuredSerializer<Favourite> {
   Iterable<Object?> serialize(Serializers serializers, Favourite object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
+      'id',
+      serializers.serialize(object.favId, specifiedType: const FullType(int)),
       'foodItem',
       serializers.serialize(object.foodItem,
           specifiedType: const FullType(FoodItem)),
@@ -37,6 +39,10 @@ class _$FavouriteSerializer implements StructuredSerializer<Favourite> {
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
+        case 'id':
+          result.favId = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
         case 'foodItem':
           result.foodItem.replace(serializers.deserialize(value,
               specifiedType: const FullType(FoodItem))! as FoodItem);
@@ -50,12 +56,15 @@ class _$FavouriteSerializer implements StructuredSerializer<Favourite> {
 
 class _$Favourite extends Favourite {
   @override
+  final int favId;
+  @override
   final FoodItem foodItem;
 
   factory _$Favourite([void Function(FavouriteBuilder)? updates]) =>
       (new FavouriteBuilder()..update(updates))._build();
 
-  _$Favourite._({required this.foodItem}) : super._() {
+  _$Favourite._({required this.favId, required this.foodItem}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(favId, r'Favourite', 'favId');
     BuiltValueNullFieldError.checkNotNull(foodItem, r'Favourite', 'foodItem');
   }
 
@@ -69,12 +78,15 @@ class _$Favourite extends Favourite {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Favourite && foodItem == other.foodItem;
+    return other is Favourite &&
+        favId == other.favId &&
+        foodItem == other.foodItem;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, favId.hashCode);
     _$hash = $jc(_$hash, foodItem.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -83,6 +95,7 @@ class _$Favourite extends Favourite {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'Favourite')
+          ..add('favId', favId)
           ..add('foodItem', foodItem))
         .toString();
   }
@@ -90,6 +103,10 @@ class _$Favourite extends Favourite {
 
 class FavouriteBuilder implements Builder<Favourite, FavouriteBuilder> {
   _$Favourite? _$v;
+
+  int? _favId;
+  int? get favId => _$this._favId;
+  set favId(int? favId) => _$this._favId = favId;
 
   FoodItemBuilder? _foodItem;
   FoodItemBuilder get foodItem => _$this._foodItem ??= new FoodItemBuilder();
@@ -100,6 +117,7 @@ class FavouriteBuilder implements Builder<Favourite, FavouriteBuilder> {
   FavouriteBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _favId = $v.favId;
       _foodItem = $v.foodItem.toBuilder();
       _$v = null;
     }
@@ -125,6 +143,8 @@ class FavouriteBuilder implements Builder<Favourite, FavouriteBuilder> {
     try {
       _$result = _$v ??
           new _$Favourite._(
+            favId: BuiltValueNullFieldError.checkNotNull(
+                favId, r'Favourite', 'favId'),
             foodItem: foodItem.build(),
           );
     } catch (_) {

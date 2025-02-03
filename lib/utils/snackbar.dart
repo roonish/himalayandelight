@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../themes/color_theme.dart';
 
 class SnackBarHelper {
-  static void showError(
+  static void showMesseges(
     BuildContext context,
     String message, {
     SnackBarAction? action,
