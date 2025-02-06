@@ -4,13 +4,17 @@ import 'package:built_value/standard_json_plugin.dart';
 import 'package:himalayan_delights/model/favourite.dart';
 import 'package:himalayan_delights/model/foodItem.dart';
 
+import 'recommendation.dart';
+
 part 'serializers.g.dart';
 
-@SerializersFor(const [Favourite, FoodItem])
+@SerializersFor([Favourite, FoodItem])
 final Serializers serializers = (_$serializers.toBuilder()
       ..addPlugin(StandardJsonPlugin())
       ..addBuilderFactory(const FullType(BuiltList, [FullType(Favourite)]),
-          () => new ListBuilder<Favourite>())
+          () => ListBuilder<Favourite>())
       ..addBuilderFactory(const FullType(BuiltList, [FullType(FoodItem)]),
-          () => new ListBuilder<FoodItem>()))
+          () => ListBuilder<FoodItem>())
+      ..addBuilderFactory(const FullType(BuiltList, [FullType(Recommendation)]),
+          () => ListBuilder<Recommendation>()))
     .build();
