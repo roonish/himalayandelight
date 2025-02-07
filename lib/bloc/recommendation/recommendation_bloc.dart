@@ -8,9 +8,8 @@ part 'recommendation_event.dart';
 part 'recommendation_state.dart';
 
 class RecommendationBloc extends Bloc<RecommendationEvent, RecommendationState> {
+  final Rec
   RecommendationBloc() : super(RecommendationInitial()) {
-    on<RecommendationEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+  
   }
 }

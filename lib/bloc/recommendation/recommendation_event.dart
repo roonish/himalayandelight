@@ -6,3 +6,7 @@ sealed class RecommendationEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class DisplayRecm extends RecommendationEvent{
+
+}
