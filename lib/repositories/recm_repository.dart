@@ -1,13 +1,12 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
-import 'package:himalayan_delights/model/foodItem.dart';
 import '../model/recommendation.dart';
 import '../model/serializers.dart';
 import '../utils/exceptions.dart';
 import 'http_api.dart';
 
 abstract class RecmRepository {
-  Future<BuiltList<Recommendation>?> getFavFood({int page = 1});
+  Future<BuiltList<Recommendation>?> getRecmFood({int page = 1});
 }
 
 class ApiRecmRepository implements RecmRepository {
@@ -15,7 +14,7 @@ class ApiRecmRepository implements RecmRepository {
   final HttpApi _api;
 
   @override
-  Future<BuiltList<Recommendation>?> getFavFood({int page = 1}) async {
+  Future<BuiltList<Recommendation>?> getRecmFood({int page = 1}) async {
     try {
       final List<dynamic> rawData = await _api.get(
         '/himalayandelight/recommendation',

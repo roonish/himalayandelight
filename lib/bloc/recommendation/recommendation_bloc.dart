@@ -11,5 +11,23 @@ part 'recommendation_state.dart';
 class RecommendationBloc
     extends Bloc<RecommendationEvent, RecommendationState> {
   final RecmRepository recmRepository;
-  RecommendationBloc(this.recmRepository) : super(RecommendationInitial()) {}
+  RecommendationBloc(this.recmRepository) : super(RecommendationInitial()) {
+    on<DisplayRecm>(_displayRecmFood);
+  }
+
+  void _displayRecmFood(
+      DisplayRecm event, Emitter<RecommendationState> emit) async {
+    emit(const RecommendationLoading());
+    try {
+      final BuiltList<Recommendation>? recmFood =
+          await recmRepository.getRecmFood();
+      if (recmFood!.isEmpty) {
+        emit(const RecommendationFailed("Empty"));
+      } else {
+        emit(RecommendationFoodListSuccess(recmFood));
+      }
+    } on Exception catch (e) {
+      emit(RecommendationFailed(e.toString()));
+    }
+  }
 }
