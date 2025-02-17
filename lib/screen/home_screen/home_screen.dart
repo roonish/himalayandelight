@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
       'https://live.staticflickr.com/65535/53621572825_abe447c506_o.jpg',
     ];
     Map<String, String> foodItem = {
-      'Chinese': '4.00',
+      'Chinese': '4.00', 
       'BBQ': '7.00',
       'Vegeterian': '2.00',
       'Drinks': '2.00',

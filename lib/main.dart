@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:himalayan_delights/bloc/auth/auth_bloc.dart';
 import 'package:himalayan_delights/bloc/fav/fav_bloc.dart';
+import 'package:himalayan_delights/bloc/recommendation/recommendation_bloc.dart';
 import 'package:himalayan_delights/repositories/fav_repository.dart';
+import 'package:himalayan_delights/repositories/recm_repository.dart';
 import 'package:himalayan_delights/screen/authentication_screen/login_screen/login_screen.dart';
 import 'package:himalayan_delights/screen/authentication_screen/register_screen/register_screen.dart';
 import 'package:himalayan_delights/screen/onboarding_screen/onboarding_root_screen.dart';
@@ -38,7 +40,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthRepo _authRepo = AuthRepo();
-    final ApiFavRepository _favRepository = ApiFavRepository(favFoodApiKey);
+    final ApiFavRepository _favRepository = ApiFavRepository(foodApiKey);
+    final ApiRecmRepository _recmRepository = ApiRecmRepository(foodApiKey);
+
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
@@ -46,6 +50,9 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (context) => _favRepository,
+        ),
+        RepositoryProvider(
+          create: (context) => _recmRepository,
         ),
       ],
       child: MultiBlocProvider(
@@ -58,6 +65,8 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(create: (context) => AuthBloc(_authRepo)),
           BlocProvider(create: (context) => FavBloc(_favRepository)),
+          BlocProvider(
+              create: (context) => RecommendationBloc(_recmRepository)),
         ],
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, state) {
