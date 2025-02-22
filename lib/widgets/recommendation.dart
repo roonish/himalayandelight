@@ -43,7 +43,7 @@ class Recommendation extends StatelessWidget {
           return GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: itemCount,
+              itemCount: state.recommendedFood.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 15,
