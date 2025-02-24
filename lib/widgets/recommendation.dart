@@ -9,16 +9,10 @@ import 'loading.dart';
 class Recommendation extends StatelessWidget {
   const Recommendation({
     super.key,
-    required this.contentImage,
-    required this.itemCount,
     this.bottomPosition = 15,
     this.boxWidth = 30,
-    required this.foodDetail,
   });
 
-  final List<String> contentImage;
-  final Map<String, String> foodDetail;
-  final int itemCount;
   final double bottomPosition;
   final double boxWidth;
 
@@ -52,9 +46,9 @@ class Recommendation extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () => context.go('/home/detail', extra: {
-                    'title': foodDetail.keys.elementAt(index),
-                    'price': foodDetail.values.elementAt(index),
-                    'image': contentImage[index]
+                    'title': state.recommendedFood[index].foodItem.name,
+                    'price': state.recommendedFood[index].foodItem.unitPrice,
+                    'image': state.recommendedFood[index].foodItem.image,
                   }),
                   child: Stack(
                     fit: StackFit.loose,
@@ -74,7 +68,8 @@ class Recommendation extends StatelessWidget {
                                     color: AppColor.primaryColor,
                                     borderRadius: BorderRadius.circular(7)),
                                 child: AppImage(
-                                  image: contentImage[index],
+                                  image: state
+                                      .recommendedFood[index].foodItem.image,
                                 )),
                             Padding(
                               padding: textPadding,
@@ -83,12 +78,13 @@ class Recommendation extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   LabelText(
-                                    text: foodDetail.keys.elementAt(index),
+                                    text: state
+                                        .recommendedFood[index].foodItem.name,
                                     size: 15,
                                   ),
                                   LabelText(
                                     text:
-                                        '\$${foodDetail.values.elementAt(index)}',
+                                        '\$${state.recommendedFood[index].foodItem.unitPrice}',
                                     size: 15,
                                   ),
                                 ],
@@ -111,9 +107,12 @@ class Recommendation extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50)),
                             onPressed: () => context.go('/home/detail', extra: {
-                              'title': foodDetail.keys.elementAt(index),
-                              'price': foodDetail.values.elementAt(index),
-                              'image': contentImage[index]
+                              'title':
+                                  state.recommendedFood[index].foodItem.name,
+                              'price': state
+                                  .recommendedFood[index].foodItem.unitPrice,
+                              'image':
+                                  state.recommendedFood[index].foodItem.image,
                             }),
                             child: const Icon(
                               Icons.add,
