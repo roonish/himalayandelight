@@ -8,7 +8,7 @@ import 'recommendation.dart';
 
 part 'serializers.g.dart';
 
-@SerializersFor([Favourite, FoodItem])
+@SerializersFor([Favourite, FoodItem,Recommendation])
 final Serializers serializers = (_$serializers.toBuilder()
       ..addPlugin(StandardJsonPlugin())
       ..addBuilderFactory(const FullType(BuiltList, [FullType(Favourite)]),

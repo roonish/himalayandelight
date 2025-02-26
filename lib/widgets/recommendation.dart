@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:himalayan_delights/widgets/rating_star.dart';
 import '../bloc/recommendation/recommendation_bloc.dart';
-import '../screen/error_screen/error_screen.dart';
 import '../screen/home_screen/imports.dart';
 import 'loading.dart';
 
@@ -29,9 +28,7 @@ class Recommendation extends StatelessWidget {
           return LoadingScreen();
         }
         if (state is RecommendationFailed) {
-          return ErrorScreen(
-            errorText: state.errorMsg,
-          );
+          return LoadingScreen();
         }
         if (state is RecommendationFoodListSuccess) {
           return GridView.builder(
@@ -90,7 +87,9 @@ class Recommendation extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            const RatingStar(starCount: 5)
+                            RatingStar(
+                                starCount: state
+                                    .recommendedFood[index].foodItem.rating)
                           ],
                         ),
                       ),
@@ -113,6 +112,12 @@ class Recommendation extends StatelessWidget {
                                   .recommendedFood[index].foodItem.unitPrice,
                               'image':
                                   state.recommendedFood[index].foodItem.image,
+                              'desc':
+                                  state.recommendedFood[index].foodItem.desc,
+                              'rating':
+                                  state.recommendedFood[index].foodItem.rating,
+                              'calory':
+                                  state.recommendedFood[index].foodItem.calory,
                             }),
                             child: const Icon(
                               Icons.add,

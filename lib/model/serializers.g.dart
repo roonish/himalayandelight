@@ -8,7 +8,8 @@ part of 'serializers.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Favourite.serializer)
-      ..add(FoodItem.serializer))
+      ..add(FoodItem.serializer)
+      ..add(Recommendation.serializer))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint
