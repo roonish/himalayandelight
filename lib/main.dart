@@ -112,9 +112,13 @@ class MyApp extends StatelessWidget {
                   Map<String, dynamic> args =
                       state.extra as Map<String, dynamic>;
                   return DetailScreen(
-                      title: args['title'] as String,
-                      price: args['price'] as String,
-                      image: args['image'] as String);
+                    title: args['title'] as String,
+                    price: args['price'] as String,
+                    image: args['image'] as String,
+                    desc: args['desc'] as String,
+                    rating: args['rating'] as int,
+                    calory: args['calory'] as int,
+                  );
                 }),
           ]),
       GoRoute(

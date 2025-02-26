@@ -5,6 +5,7 @@ import 'package:himalayan_delights/screen/cart_screen/cart_screen.dart';
 import 'package:himalayan_delights/screen/home_screen/home_screen.dart';
 import 'package:himalayan_delights/screen/home_screen/imports.dart';
 import 'package:himalayan_delights/screen/profile_screen/profile_screen.dart';
+import '../../bloc/recommendation/recommendation_bloc.dart';
 import '../favourite_screen/favourite_screen.dart';
 import '../message_screen/message_screen.dart';
 
@@ -23,6 +24,9 @@ class RootScreen extends StatelessWidget {
     ];
     final favEvent = BlocProvider.of<FavBloc>(context);
     favEvent.add(DisplayFav());
+
+    final recmEvent = BlocProvider.of<RecommendationBloc>(context);
+    recmEvent.add(DisplayRecm());
 
     return BlocBuilder<NavbarBloc, NavbarState>(
       builder: (context, state) {
