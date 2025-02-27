@@ -39,7 +39,7 @@ class FavBloc extends Bloc<FavEvent, FavState> {
       if (favourite.foodItem.name.isEmpty) {
         emit(const FavInitial());
       } else {
-        emit(FavFoodAddedSucessful());
+        emit(FavFoodAddedSucessful(favourite));
       }
     } on Exception catch (e) {
       emit(FavFailed(e.toString()));
@@ -51,7 +51,6 @@ class FavBloc extends Bloc<FavEvent, FavState> {
     try {
       await favRepository.deleteFav(event.id);
       emit(FavFoodDeleted());
-      
     } on Exception catch (e) {
       emit(FavFailed(e.toString()));
     }

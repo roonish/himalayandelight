@@ -18,12 +18,9 @@ class ApiFavRepository implements FavRepository {
 
   @override
   Future<Favourite> addFavFood(FoodItem data) async {
-    dynamic rawData = await _api.post(
-      '/himalayandelight/favourites',
-      serializers.serializeWith(
-        Favourite.serializer,
-        data,
-      ),
+    final rawData = await _api.post(
+      '/himalayandelight/favourites/',
+      {"food_item": data.id},
     );
 
     return serializers.deserialize(
