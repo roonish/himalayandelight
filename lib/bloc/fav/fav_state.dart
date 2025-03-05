@@ -17,9 +17,10 @@ final class FavLoading extends FavState {
 }
 
 final class FavFoodAddedSucessful extends FavState {
-  const FavFoodAddedSucessful();
+  final Favourite favFood;
+  const FavFoodAddedSucessful(this.favFood);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [favFood];
 }
 
 final class FavFoodListSuccess extends FavState {

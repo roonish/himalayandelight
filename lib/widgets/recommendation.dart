@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:himalayan_delights/widgets/rating_star.dart';
+import '../bloc/fav/fav_bloc.dart';
 import '../bloc/recommendation/recommendation_bloc.dart';
 import '../screen/home_screen/imports.dart';
 import 'loading.dart';
@@ -21,6 +22,7 @@ class Recommendation extends StatelessWidget {
     const EdgeInsetsGeometry boxPadding = EdgeInsets.all(12);
     const EdgeInsetsGeometry textPadding = EdgeInsets.only(top: 5, bottom: 2);
     final Size mediaQ = MediaQuery.of(context).size;
+    bool isFavFood = false;
 
     return BlocBuilder<RecommendationBloc, RecommendationState>(
       builder: (context, state) {
@@ -46,6 +48,9 @@ class Recommendation extends StatelessWidget {
                     'title': state.recommendedFood[index].foodItem.name,
                     'price': state.recommendedFood[index].foodItem.unitPrice,
                     'image': state.recommendedFood[index].foodItem.image,
+                    'desc': state.recommendedFood[index].foodItem.desc,
+                    'rating': state.recommendedFood[index].foodItem.rating,
+                    'calory': state.recommendedFood[index].foodItem.calory,
                   }),
                   child: Stack(
                     fit: StackFit.loose,
@@ -105,23 +110,27 @@ class Recommendation extends StatelessWidget {
                             backgroundColor: AppColor.primaryColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(50)),
-                            onPressed: () => context.go('/home/detail', extra: {
-                              'title':
-                                  state.recommendedFood[index].foodItem.name,
-                              'price': state
-                                  .recommendedFood[index].foodItem.unitPrice,
-                              'image':
-                                  state.recommendedFood[index].foodItem.image,
-                              'desc':
-                                  state.recommendedFood[index].foodItem.desc,
-                              'rating':
-                                  state.recommendedFood[index].foodItem.rating,
-                              'calory':
-                                  state.recommendedFood[index].foodItem.calory,
-                            }),
-                            child: const Icon(
-                              Icons.add,
-                              color: AppColor.searchColor,
+                            onPressed: () {
+                              final favEvent =
+                                  BlocProvider.of<FavBloc>(context);
+                              favEvent.add(AddToFav(
+                                  foodItem:
+                                      state.recommendedFood[index].foodItem));
+                            },
+
+                            child: BlocListener<FavBloc, FavState>(
+                              listener: (context, favState) {
+                                if (favState is FavFoodAddedSucessful) {
+                                  isFavFood = favState.favFood.foodItem.id ==
+                                      state.recommendedFood[index].foodItem.id;
+                                }
+                              },
+                              child: Icon(
+                                isFavFood
+                                    ? Icons.favorite
+                                    : Icons.favorite_border_outlined,
+                                color: AppColor.searchColor,
+                              ),
                             ),
                           ),
                         ),

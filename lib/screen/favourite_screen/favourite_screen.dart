@@ -43,6 +43,12 @@ class FavouriteScreen extends StatelessWidget {
                 return SnackBarHelper.showMesseges(
                     context, "Successfully Deleted");
               }
+              if (state is FavFoodAddedSucessful) {
+                final favEvent = BlocProvider.of<FavBloc>(context);
+                favEvent.add(DisplayFav());
+                return SnackBarHelper.showMesseges(
+                    context, "Successfully Added");
+              }
             },
             builder: (context, state) {
               return BlocBuilder<FavBloc, FavState>(
