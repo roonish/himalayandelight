@@ -22,7 +22,6 @@ class Recommendation extends StatelessWidget {
     const EdgeInsetsGeometry boxPadding = EdgeInsets.all(12);
     const EdgeInsetsGeometry textPadding = EdgeInsets.only(top: 5, bottom: 2);
     final Size mediaQ = MediaQuery.of(context).size;
-    bool isFavFood = false;
 
     return BlocBuilder<RecommendationBloc, RecommendationState>(
       builder: (context, state) {
@@ -118,19 +117,20 @@ class Recommendation extends StatelessWidget {
                                       state.recommendedFood[index].foodItem));
                             },
 
-                            child: BlocListener<FavBloc, FavState>(
-                              listener: (context, favState) {
-                                if (favState is FavFoodAddedSucessful) {
-                                  isFavFood = favState.favFood.foodItem.id ==
-                                      state.recommendedFood[index].foodItem.id;
-                                }
+                            child: BlocBuilder<FavBloc, FavState>(
+                              builder: (context, favState) {
+                                final favBloc =
+                                    BlocProvider.of<FavBloc>(context);
+                                bool isFavFood = favBloc.isFavorite(
+                                    state.recommendedFood[index].foodItem.id);
+
+                                return Icon(
+                                  isFavFood
+                                      ? Icons.favorite
+                                      : Icons.favorite_border_outlined,
+                                  color: AppColor.searchColor,
+                                );
                               },
-                              child: Icon(
-                                isFavFood
-                                    ? Icons.favorite
-                                    : Icons.favorite_border_outlined,
-                                color: AppColor.searchColor,
-                              ),
                             ),
                           ),
                         ),
