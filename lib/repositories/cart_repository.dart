@@ -7,10 +7,10 @@ import '../utils/exceptions.dart';
 import 'http_api.dart';
 
 abstract class CartRepository {
-  Future<CartItem> addCartItem(FoodItem data);
+  Future<CartItem> addCartItem(int foodItemId);
   Future<BuiltList<CartItem>?> getCartItems({int page = 1});
   Future<void> deleteCartItem(int cartId);
-    Future<void> updateCartItem(int cartId);
+  Future<void> updateCartItem(int cartId, CartItem updatedcartItem);
 }
 
 class ApiCartRepository implements CartRepository {
@@ -18,11 +18,9 @@ class ApiCartRepository implements CartRepository {
   final HttpApi _api;
 
   @override
-  Future<CartItem> addCartItem(FoodItem data) async {
-    final rawData = await _api.post(
-      '/himalayandelight/cartitems/',
-      {"food_item": data.id},
-    );
+  Future<CartItem> addCartItem(int foodItemId) async {
+    final rawData = await _api.post('/himalayandelight/cartitems/',
+        serializers.serializeWith(FoodItem.serializer, foodItemId));
 
     return serializers.deserialize(
       rawData,
@@ -53,10 +51,16 @@ class ApiCartRepository implements CartRepository {
   }
 
   @override
-  Future<void> updateCartItem(int cartId) async {
-    await _api.put(
-      '/himalayandelight/cartitems/$cartId/',
-    );
+  Future<CartItem> updateCartItem(int cartId, CartItem updatedcartItem) async {
+    final rawData = await _api.put('/himalayandelight/cartitems/$cartId/',
+        serializers.serializeWith(CartItem.serializer, updatedcartItem));
+
+    return serializers.deserialize(
+      rawData,
+      specifiedType: const FullType(
+        CartItem,
+      ),
+    ) as CartItem;
   }
 
   @override
