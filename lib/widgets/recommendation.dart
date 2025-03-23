@@ -128,7 +128,9 @@ class Recommendation extends StatelessWidget {
                                   isFavFood
                                       ? Icons.favorite
                                       : Icons.favorite_border_outlined,
-                                  color: AppColor.searchColor,
+                                  color: isFavFood
+                                      ? AppColor.backgroundColor
+                                      : AppColor.searchColor,
                                 );
                               },
                             ),

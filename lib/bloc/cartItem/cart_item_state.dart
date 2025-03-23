@@ -44,8 +44,8 @@ final class CartItemUpdated extends CartItemState {
   List<Object?> get props => [cartItem];
 }
 
-final class CartItemFoodDeleted extends CartItemState {
-  const CartItemFoodDeleted();
+final class CartItemDeleted extends CartItemState {
+  const CartItemDeleted();
   @override
   List<Object?> get props => [];
 }
