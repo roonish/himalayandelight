@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:himalayan_delights/model/foodItem.dart';
 
 part 'cartItem.g.dart';
 
@@ -16,7 +17,7 @@ abstract class CartItem implements Built<CartItem, CartItemBuilder> {
   @BuiltValueField(wireName: 'id')
   int get cartItemId;
   @BuiltValueField(wireName: 'foodItem')
-  int get foodItemId;
+  FoodItem get foodItem;
   @BuiltValueField(wireName: 'quantity')
   int get quantity;
 

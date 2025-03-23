@@ -1,14 +1,15 @@
+import 'package:built_collection/built_collection.dart' show BuiltList;
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
+
+import '../../../model/cartItem.dart';
 
 class CartList extends StatelessWidget {
   const CartList({
     super.key,
-    required this.images,
-    required this.itemCount,
+    required this.cartItems,
   });
 
-  final List<String> images;
-  final ValueNotifier<int> itemCount;
+  final BuiltList<CartItem> cartItems;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class CartList extends StatelessWidget {
       height: getDeviceExactHeight(275, mediaQ),
       width: double.infinity,
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: cartItems.length,
         itemBuilder: (context, index) {
           return Container(
             padding: containerPadding,
@@ -32,7 +33,8 @@ class CartList extends StatelessWidget {
                 color: AppColor.searchColor),
             child: Row(
               children: [
-                CircularImage(radius: 40, image: images[index]),
+                CircularImage(
+                    radius: 40, image: cartItems[index].foodItem.image),
                 SizedBox(
                   width: getDeviceExactWidth(10, mediaQ),
                 ),
@@ -40,14 +42,16 @@ class CartList extends StatelessWidget {
                   child: IntrinsicWidth(
                     child: Column(
                       children: [
-                        const FoodTitleAndRemove(
-                          foodName: 'Pasta',
+                        FoodTitleAndRemove(
+                          foodName: cartItems[index].foodItem.name,
                         ),
-                        const Padding(
+                        Padding(
                           padding: containerMargin,
-                          child: CaloriesAndWeight(),
+                          child: CaloriesAndWeight(
+                            foodItem: cartItems[index].foodItem,
+                          ),
                         ),
-                        PriceAndQuantity(itemCount: itemCount),
+                        PriceAndQuantity(cartItem:cartItems[index]),
                       ],
                     ),
                   ),

@@ -22,8 +22,8 @@ class _$CartItemSerializer implements StructuredSerializer<CartItem> {
       serializers.serialize(object.cartItemId,
           specifiedType: const FullType(int)),
       'foodItem',
-      serializers.serialize(object.foodItemId,
-          specifiedType: const FullType(int)),
+      serializers.serialize(object.foodItem,
+          specifiedType: const FullType(FoodItem)),
       'quantity',
       serializers.serialize(object.quantity,
           specifiedType: const FullType(int)),
@@ -48,8 +48,8 @@ class _$CartItemSerializer implements StructuredSerializer<CartItem> {
               specifiedType: const FullType(int))! as int;
           break;
         case 'foodItem':
-          result.foodItemId = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.foodItem.replace(serializers.deserialize(value,
+              specifiedType: const FullType(FoodItem))! as FoodItem);
           break;
         case 'quantity':
           result.quantity = serializers.deserialize(value,
@@ -66,7 +66,7 @@ class _$CartItem extends CartItem {
   @override
   final int cartItemId;
   @override
-  final int foodItemId;
+  final FoodItem foodItem;
   @override
   final int quantity;
 
@@ -75,13 +75,12 @@ class _$CartItem extends CartItem {
 
   _$CartItem._(
       {required this.cartItemId,
-      required this.foodItemId,
+      required this.foodItem,
       required this.quantity})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         cartItemId, r'CartItem', 'cartItemId');
-    BuiltValueNullFieldError.checkNotNull(
-        foodItemId, r'CartItem', 'foodItemId');
+    BuiltValueNullFieldError.checkNotNull(foodItem, r'CartItem', 'foodItem');
     BuiltValueNullFieldError.checkNotNull(quantity, r'CartItem', 'quantity');
   }
 
@@ -97,7 +96,7 @@ class _$CartItem extends CartItem {
     if (identical(other, this)) return true;
     return other is CartItem &&
         cartItemId == other.cartItemId &&
-        foodItemId == other.foodItemId &&
+        foodItem == other.foodItem &&
         quantity == other.quantity;
   }
 
@@ -105,7 +104,7 @@ class _$CartItem extends CartItem {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, cartItemId.hashCode);
-    _$hash = $jc(_$hash, foodItemId.hashCode);
+    _$hash = $jc(_$hash, foodItem.hashCode);
     _$hash = $jc(_$hash, quantity.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -115,7 +114,7 @@ class _$CartItem extends CartItem {
   String toString() {
     return (newBuiltValueToStringHelper(r'CartItem')
           ..add('cartItemId', cartItemId)
-          ..add('foodItemId', foodItemId)
+          ..add('foodItem', foodItem)
           ..add('quantity', quantity))
         .toString();
   }
@@ -128,9 +127,9 @@ class CartItemBuilder implements Builder<CartItem, CartItemBuilder> {
   int? get cartItemId => _$this._cartItemId;
   set cartItemId(int? cartItemId) => _$this._cartItemId = cartItemId;
 
-  int? _foodItemId;
-  int? get foodItemId => _$this._foodItemId;
-  set foodItemId(int? foodItemId) => _$this._foodItemId = foodItemId;
+  FoodItemBuilder? _foodItem;
+  FoodItemBuilder get foodItem => _$this._foodItem ??= new FoodItemBuilder();
+  set foodItem(FoodItemBuilder? foodItem) => _$this._foodItem = foodItem;
 
   int? _quantity;
   int? get quantity => _$this._quantity;
@@ -142,7 +141,7 @@ class CartItemBuilder implements Builder<CartItem, CartItemBuilder> {
     final $v = _$v;
     if ($v != null) {
       _cartItemId = $v.cartItemId;
-      _foodItemId = $v.foodItemId;
+      _foodItem = $v.foodItem.toBuilder();
       _quantity = $v.quantity;
       _$v = null;
     }
@@ -164,15 +163,27 @@ class CartItemBuilder implements Builder<CartItem, CartItemBuilder> {
   CartItem build() => _build();
 
   _$CartItem _build() {
-    final _$result = _$v ??
-        new _$CartItem._(
-          cartItemId: BuiltValueNullFieldError.checkNotNull(
-              cartItemId, r'CartItem', 'cartItemId'),
-          foodItemId: BuiltValueNullFieldError.checkNotNull(
-              foodItemId, r'CartItem', 'foodItemId'),
-          quantity: BuiltValueNullFieldError.checkNotNull(
-              quantity, r'CartItem', 'quantity'),
-        );
+    _$CartItem _$result;
+    try {
+      _$result = _$v ??
+          new _$CartItem._(
+            cartItemId: BuiltValueNullFieldError.checkNotNull(
+                cartItemId, r'CartItem', 'cartItemId'),
+            foodItem: foodItem.build(),
+            quantity: BuiltValueNullFieldError.checkNotNull(
+                quantity, r'CartItem', 'quantity'),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'foodItem';
+        foodItem.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'CartItem', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

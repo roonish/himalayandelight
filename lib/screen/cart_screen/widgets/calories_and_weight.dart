@@ -1,8 +1,13 @@
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
 
+import '../../../model/foodItem.dart';
+import '../../../widgets/rating_star.dart';
+
 class CaloriesAndWeight extends StatelessWidget {
+  final FoodItem foodItem;
   const CaloriesAndWeight({
     super.key,
+    required this.foodItem,
   });
 
   @override
@@ -11,15 +16,11 @@ class CaloriesAndWeight extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         CartItemDetail(
-          icon: Icons.fitness_center,
-          label: '400 g',
+          icon: Icons.local_fire_department_sharp,
+          label: '${foodItem.calory} calories',
           iconColor: AppColor.primaryColor,
         ),
-        const CartItemDetail(
-          icon: Icons.local_fire_department_sharp,
-          label: '50 calories',
-          iconColor: AppColor.ratingColor,
-        )
+        RatingStar(starCount: foodItem.rating),
       ],
     );
   }

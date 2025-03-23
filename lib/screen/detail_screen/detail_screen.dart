@@ -34,10 +34,10 @@ class DetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             FoodImage(mediaQ: mediaQ, image: image),
-            Padding(
-              padding: quantityButtonPadding,
-              child: QuantityButton(itemCount: itemCount),
-            ),
+            // Padding(
+            //   padding: quantityButtonPadding,
+            //   child: QuantityButton(itemCount: itemCount),
+            // ),
             Padding(
               padding: bodyPadding,
               child: Column(

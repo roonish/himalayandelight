@@ -9,7 +9,7 @@ class QuantityButton extends StatelessWidget {
     this.buttonLabelSize = 18,
   });
 
-  final ValueNotifier<int> itemCount;
+  final int itemCount;
   final Color buttonColor;
   final double buttonWidth;
   final double buttonLabelSize;

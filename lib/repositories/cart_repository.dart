@@ -7,7 +7,7 @@ import '../utils/exceptions.dart';
 import 'http_api.dart';
 
 abstract class CartRepository {
-  Future<CartItem> addCartItem(int foodItemId);
+  Future<CartItem> addCartItem(FoodItem foodItem);
   Future<BuiltList<CartItem>?> getCartItems({int page = 1});
   Future<void> deleteCartItem(int cartId);
   Future<void> updateCartItem(int cartId, CartItem updatedcartItem);
@@ -18,9 +18,9 @@ class ApiCartRepository implements CartRepository {
   final HttpApi _api;
 
   @override
-  Future<CartItem> addCartItem(int foodItemId) async {
+  Future<CartItem> addCartItem(FoodItem foodItem) async {
     final rawData = await _api.post('/himalayandelight/cartitems/',
-        serializers.serializeWith(FoodItem.serializer, foodItemId));
+        serializers.serializeWith(FoodItem.serializer, foodItem));
 
     return serializers.deserialize(
       rawData,
