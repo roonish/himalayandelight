@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:equatable/equatable.dart';
+import 'package:himalayan_delights/model/cartDetail.dart';
 import 'package:himalayan_delights/model/cartItem.dart';
 import 'package:himalayan_delights/repositories/cart_repository.dart';
 
@@ -19,11 +20,11 @@ class CartItemBloc extends Bloc<CartItemEvent, CartItemState> {
   void _displayCartItem(DisplayCart event, Emitter<CartItemState> emit) async {
     emit(const CartItemLoading());
     try {
-      final BuiltList<CartItem>? cartItem = await cartRepository.getCartItems();
-      if (cartItem!.isEmpty) {
+      final CartDetail? cartDetail = await cartRepository.getCartItems();
+      if (cartDetail!.cartItems.isEmpty) {
         emit(const CartItemInitial());
       } else {
-        emit(CartItemFoodListSuccess(cartItem));
+        emit(CartItemFoodListSuccess(cartDetail));
       }
     } on Exception catch (e) {
       emit(CartItemFailed(e.toString()));

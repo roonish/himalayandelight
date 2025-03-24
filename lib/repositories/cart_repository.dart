@@ -1,5 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
+import 'package:himalayan_delights/model/cartDetail.dart';
 import 'package:himalayan_delights/model/cartItem.dart';
 import 'package:himalayan_delights/model/foodItem.dart';
 import '../model/serializers.dart';
@@ -8,7 +9,7 @@ import 'http_api.dart';
 
 abstract class CartRepository {
   Future<CartItem> addCartItem(FoodItem foodItem);
-  Future<BuiltList<CartItem>?> getCartItems({int page = 1});
+  Future<CartDetail?> getCartItems({int page = 1});
   Future<void> deleteCartItem(int cartId);
   Future<void> updateCartItem(int cartId, CartItem updatedcartItem);
 }
@@ -19,7 +20,7 @@ class ApiCartRepository implements CartRepository {
 
   @override
   Future<CartItem> addCartItem(FoodItem foodItem) async {
-    final rawData = await _api.post('/himalayandelight/cartitems/',
+    final rawData = await _api.post('/himalayandelight/cartDetails/',
         serializers.serializeWith(FoodItem.serializer, foodItem));
 
     return serializers.deserialize(
@@ -31,19 +32,18 @@ class ApiCartRepository implements CartRepository {
   }
 
   @override
-  Future<BuiltList<CartItem>?> getCartItems({int page = 1}) async {
+  Future<CartDetail?> getCartItems({int page = 1}) async {
     try {
-      final List<dynamic> rawData = await _api.get(
-        '/himalayandelight/cartitems',
+      final dynamic rawData = await _api.get(
+        '/himalayandelight/cartDetails',
       );
 
       return serializers.deserialize(
         rawData,
         specifiedType: const FullType(
-          BuiltList,
-          [FullType(CartItem)],
+          CartDetail,
         ),
-      ) as BuiltList<CartItem>;
+      ) as CartDetail;
     } on ClientException {
       //reached end of page
       return null;
@@ -52,7 +52,7 @@ class ApiCartRepository implements CartRepository {
 
   @override
   Future<CartItem> updateCartItem(int cartId, CartItem updatedcartItem) async {
-    final rawData = await _api.put('/himalayandelight/cartitems/$cartId/',
+    final rawData = await _api.put('/himalayandelight/cartDetails/$cartId/',
         serializers.serializeWith(CartItem.serializer, updatedcartItem));
 
     return serializers.deserialize(
@@ -66,7 +66,7 @@ class ApiCartRepository implements CartRepository {
   @override
   Future<void> deleteCartItem(int cartId) async {
     await _api.delete(
-      '/himalayandelight/cartitems/$cartId/',
+      '/himalayandelight/cartDetails/$cartId/',
     );
   }
 }

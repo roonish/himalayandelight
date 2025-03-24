@@ -27,6 +27,9 @@ class _$CartItemSerializer implements StructuredSerializer<CartItem> {
       'quantity',
       serializers.serialize(object.quantity,
           specifiedType: const FullType(int)),
+      'subTotal',
+      serializers.serialize(object.subTotal,
+          specifiedType: const FullType(double)),
     ];
 
     return result;
@@ -55,6 +58,10 @@ class _$CartItemSerializer implements StructuredSerializer<CartItem> {
           result.quantity = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
+        case 'subTotal':
+          result.subTotal = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
       }
     }
 
@@ -69,6 +76,8 @@ class _$CartItem extends CartItem {
   final FoodItem foodItem;
   @override
   final int quantity;
+  @override
+  final double subTotal;
 
   factory _$CartItem([void Function(CartItemBuilder)? updates]) =>
       (new CartItemBuilder()..update(updates))._build();
@@ -76,12 +85,14 @@ class _$CartItem extends CartItem {
   _$CartItem._(
       {required this.cartItemId,
       required this.foodItem,
-      required this.quantity})
+      required this.quantity,
+      required this.subTotal})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         cartItemId, r'CartItem', 'cartItemId');
     BuiltValueNullFieldError.checkNotNull(foodItem, r'CartItem', 'foodItem');
     BuiltValueNullFieldError.checkNotNull(quantity, r'CartItem', 'quantity');
+    BuiltValueNullFieldError.checkNotNull(subTotal, r'CartItem', 'subTotal');
   }
 
   @override
@@ -97,7 +108,8 @@ class _$CartItem extends CartItem {
     return other is CartItem &&
         cartItemId == other.cartItemId &&
         foodItem == other.foodItem &&
-        quantity == other.quantity;
+        quantity == other.quantity &&
+        subTotal == other.subTotal;
   }
 
   @override
@@ -106,6 +118,7 @@ class _$CartItem extends CartItem {
     _$hash = $jc(_$hash, cartItemId.hashCode);
     _$hash = $jc(_$hash, foodItem.hashCode);
     _$hash = $jc(_$hash, quantity.hashCode);
+    _$hash = $jc(_$hash, subTotal.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -115,7 +128,8 @@ class _$CartItem extends CartItem {
     return (newBuiltValueToStringHelper(r'CartItem')
           ..add('cartItemId', cartItemId)
           ..add('foodItem', foodItem)
-          ..add('quantity', quantity))
+          ..add('quantity', quantity)
+          ..add('subTotal', subTotal))
         .toString();
   }
 }
@@ -135,6 +149,10 @@ class CartItemBuilder implements Builder<CartItem, CartItemBuilder> {
   int? get quantity => _$this._quantity;
   set quantity(int? quantity) => _$this._quantity = quantity;
 
+  double? _subTotal;
+  double? get subTotal => _$this._subTotal;
+  set subTotal(double? subTotal) => _$this._subTotal = subTotal;
+
   CartItemBuilder();
 
   CartItemBuilder get _$this {
@@ -143,6 +161,7 @@ class CartItemBuilder implements Builder<CartItem, CartItemBuilder> {
       _cartItemId = $v.cartItemId;
       _foodItem = $v.foodItem.toBuilder();
       _quantity = $v.quantity;
+      _subTotal = $v.subTotal;
       _$v = null;
     }
     return this;
@@ -172,6 +191,8 @@ class CartItemBuilder implements Builder<CartItem, CartItemBuilder> {
             foodItem: foodItem.build(),
             quantity: BuiltValueNullFieldError.checkNotNull(
                 quantity, r'CartItem', 'quantity'),
+            subTotal: BuiltValueNullFieldError.checkNotNull(
+                subTotal, r'CartItem', 'subTotal'),
           );
     } catch (_) {
       late String _$failedField;

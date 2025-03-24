@@ -24,10 +24,10 @@ final class CartItemAddedSucessful extends CartItemState {
 }
 
 final class CartItemFoodListSuccess extends CartItemState {
-  final BuiltList<CartItem> cartItemList;
-  const CartItemFoodListSuccess(this.cartItemList);
+  final CartDetail cartDetail;
+  const CartItemFoodListSuccess(this.cartDetail);
   @override
-  List<Object?> get props => [cartItemList];
+  List<Object?> get props => [cartDetail];
 }
 
 final class CartItemFailed extends CartItemState {

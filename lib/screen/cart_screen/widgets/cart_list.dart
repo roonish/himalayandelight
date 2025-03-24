@@ -1,15 +1,13 @@
-import 'package:built_collection/built_collection.dart' show BuiltList;
+import 'package:himalayan_delights/model/cartDetail.dart';
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
-
-import '../../../model/cartItem.dart';
 
 class CartList extends StatelessWidget {
   const CartList({
     super.key,
-    required this.cartItems,
+    required this.cartDetail,
   });
 
-  final BuiltList<CartItem> cartItems;
+  final CartDetail cartDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class CartList extends StatelessWidget {
       height: getDeviceExactHeight(275, mediaQ),
       width: double.infinity,
       child: ListView.builder(
-        itemCount: cartItems.length,
+        itemCount: cartDetail.cartItems.length,
         itemBuilder: (context, index) {
           return Container(
             padding: containerPadding,
@@ -34,7 +32,8 @@ class CartList extends StatelessWidget {
             child: Row(
               children: [
                 CircularImage(
-                    radius: 40, image: cartItems[index].foodItem.image),
+                    radius: 40,
+                    image: cartDetail.cartItems[index].foodItem.image),
                 SizedBox(
                   width: getDeviceExactWidth(10, mediaQ),
                 ),
@@ -43,15 +42,15 @@ class CartList extends StatelessWidget {
                     child: Column(
                       children: [
                         FoodTitleAndRemove(
-                          foodName: cartItems[index].foodItem.name,
+                          foodName: cartDetail.cartItems[index].foodItem.name,
                         ),
                         Padding(
                           padding: containerMargin,
                           child: CaloriesAndWeight(
-                            foodItem: cartItems[index].foodItem,
+                            foodItem: cartDetail.cartItems[index].foodItem,
                           ),
                         ),
-                        PriceAndQuantity(cartItem:cartItems[index]),
+                        PriceAndQuantity(cartItem: cartDetail.cartItems[index]),
                       ],
                     ),
                   ),

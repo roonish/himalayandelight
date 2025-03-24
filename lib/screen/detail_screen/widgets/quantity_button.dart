@@ -3,19 +3,20 @@ import 'package:himalayan_delights/screen/detail_screen/imports.dart';
 class QuantityButton extends StatelessWidget {
   const QuantityButton({
     super.key,
-    required this.itemCount,
+    required this.quantity,
     this.buttonColor = AppColor.searchColor,
     this.buttonWidth = 110,
     this.buttonLabelSize = 18,
   });
 
-  final int itemCount;
+  final int quantity;
   final Color buttonColor;
   final double buttonWidth;
   final double buttonLabelSize;
 
   @override
   Widget build(BuildContext context) {
+    final  ValueNotifier<int> itemCount = ValueNotifier<int>(quantity);
     final Size mediaQ = MediaQuery.of(context).size;
     const EdgeInsetsGeometry gapPadding = EdgeInsets.symmetric(
       vertical: 4.0,

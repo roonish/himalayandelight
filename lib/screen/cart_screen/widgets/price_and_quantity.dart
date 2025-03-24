@@ -28,7 +28,7 @@ class PriceAndQuantity extends StatelessWidget {
         QuantityButton(
           buttonLabelSize: 15,
           buttonWidth: 100,
-          itemCount: itemCount,
+          quantity: cartItem.quantity,
           buttonColor: AppColor.buttonColor,
         ),
       ],

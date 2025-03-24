@@ -50,7 +50,7 @@ class CartScreen extends StatelessWidget {
             if (state is CartItemFoodListSuccess) {
               return Column(
                 children: [
-                  CartList(cartItems: state.cartItemList),
+                  CartList(cartDetail: state.cartDetail),
                   const Spacer(),
                   const TotalCost(),
                   const AppButton(

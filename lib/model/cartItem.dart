@@ -20,6 +20,8 @@ abstract class CartItem implements Built<CartItem, CartItemBuilder> {
   FoodItem get foodItem;
   @BuiltValueField(wireName: 'quantity')
   int get quantity;
+  @BuiltValueField(wireName: 'subTotal')
+  double get subTotal;
 
   static Serializer<CartItem> get serializer => _$cartItemSerializer;
 }
