@@ -10,6 +10,5 @@ export 'package:himalayan_delights/screen/cart_screen/widgets/cart_item_detail.d
 export 'package:himalayan_delights/screen/detail_screen/widgets/quantity_button.dart';
 export 'package:himalayan_delights/screen/cart_screen/widgets/total_cost.dart';
 export 'package:himalayan_delights/screen/cart_screen/widgets/cart_list.dart';
-export '../cart_screen/widgets/calories_and_weight.dart';
 export '../cart_screen/widgets/food_title_and_remove.dart';
 export '../cart_screen/widgets/price_and_quantity.dart';

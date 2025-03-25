@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:built_collection/built_collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:himalayan_delights/model/cartDetail.dart';
 import 'package:himalayan_delights/model/cartItem.dart';
@@ -13,7 +12,7 @@ class CartItemBloc extends Bloc<CartItemEvent, CartItemState> {
   CartItemBloc(this.cartRepository) : super(CartItemInitial()) {
     on<DisplayCart>(_displayCartItem);
     //     on<AddToCart>(_addCartItem);
-    // on<UpdateCart>(_updateCartItem);
+    on<UpdateCart>(_updateCartItem);
     // on<DeleteCart>(_deleteCartItem);
   }
 
@@ -44,4 +43,25 @@ class CartItemBloc extends Bloc<CartItemEvent, CartItemState> {
   //     emit(CartItemFailed(e.toString()));
   //   }
   // }
+
+  void _updateCartItem(UpdateCart event, Emitter<CartItemState> emit) async {
+    emit(const CartItemLoading());
+    try {
+      final CartItem? updatedCartItem =
+          await cartRepository.updateCartItem(event.id, event.updatedCartItem);
+      if (updatedCartItem == null) {
+        emit(const CartItemInitial());
+      } else {
+        //once updated get newly updated cartdetails
+        final CartDetail? cartDetail = await cartRepository.getCartItems();
+        if (cartDetail == null || cartDetail.cartItems.isEmpty) {
+          emit(const CartItemInitial());
+        } else {
+          emit(CartItemFoodListSuccess(cartDetail));
+        }
+      }
+    } on Exception catch (e) {
+      emit(CartItemFailed(e.toString()));
+    }
+  }
 }

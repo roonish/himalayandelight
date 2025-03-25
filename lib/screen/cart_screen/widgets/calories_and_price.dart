@@ -1,11 +1,10 @@
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
 
 import '../../../model/foodItem.dart';
-import '../../../widgets/rating_star.dart';
 
-class CaloriesAndWeight extends StatelessWidget {
+class CaloriesAndPrice extends StatelessWidget {
   final FoodItem foodItem;
-  const CaloriesAndWeight({
+  const CaloriesAndPrice({
     super.key,
     required this.foodItem,
   });
@@ -20,7 +19,10 @@ class CaloriesAndWeight extends StatelessWidget {
           label: '${foodItem.calory} calories',
           iconColor: AppColor.primaryColor,
         ),
-        RatingStar(starCount: foodItem.rating),
+        LabelText(
+          text: "\$ ${foodItem.unitPrice}",
+          size: 15,
+        ),
       ],
     );
   }

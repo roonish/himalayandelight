@@ -37,13 +37,6 @@ final class CartItemFailed extends CartItemState {
   List<Object?> get props => [errorMsg];
 }
 
-final class CartItemUpdated extends CartItemState {
-  final CartItem cartItem;
-  const CartItemUpdated(this.cartItem);
-  @override
-  List<Object?> get props => [cartItem];
-}
-
 final class CartItemDeleted extends CartItemState {
   const CartItemDeleted();
   @override

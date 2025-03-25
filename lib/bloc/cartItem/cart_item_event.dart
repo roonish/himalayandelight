@@ -26,11 +26,11 @@ class DeleteCart extends CartItemEvent {
 }
 
 class UpdateCart extends CartItemEvent {
-  final CartItem cartItem;
+  final CartItem updatedCartItem;
 
   final int id;
 
-  const UpdateCart({required this.id, required this.cartItem});
+  const UpdateCart({required this.id, required this.updatedCartItem});
   @override
-  List<Object?> get props => [id, cartItem];
+  List<Object?> get props => [id, updatedCartItem];
 }

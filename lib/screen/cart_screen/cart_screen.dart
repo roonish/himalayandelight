@@ -52,7 +52,9 @@ class CartScreen extends StatelessWidget {
                 children: [
                   CartList(cartDetail: state.cartDetail),
                   const Spacer(),
-                  const TotalCost(),
+                  TotalCost(
+                    subTotal: state.cartDetail.totalSubtotal,
+                  ),
                   const AppButton(
                     text: 'Check Out',
                     verticalPadding: 13,
@@ -60,6 +62,7 @@ class CartScreen extends StatelessWidget {
                 ],
               );
             }
+
             // Return nothing if no matching state
             return const SizedBox.shrink();
           },

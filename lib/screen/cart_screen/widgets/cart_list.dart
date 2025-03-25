@@ -1,5 +1,6 @@
 import 'package:himalayan_delights/model/cartDetail.dart';
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
+import 'package:himalayan_delights/screen/cart_screen/widgets/calories_and_price.dart';
 
 class CartList extends StatelessWidget {
   const CartList({
@@ -46,11 +47,13 @@ class CartList extends StatelessWidget {
                         ),
                         Padding(
                           padding: containerMargin,
-                          child: CaloriesAndWeight(
+                          child: CaloriesAndPrice(
                             foodItem: cartDetail.cartItems[index].foodItem,
                           ),
                         ),
-                        PriceAndQuantity(cartItem: cartDetail.cartItems[index]),
+                        PriceAndQuantity(
+                          cartItem: cartDetail.cartItems[index],
+                        ),
                       ],
                     ),
                   ),

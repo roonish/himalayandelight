@@ -1,8 +1,10 @@
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
 
 class TotalCost extends StatelessWidget {
+  final double subTotal;
   const TotalCost({
     super.key,
+    required this.subTotal,
   });
 
   @override
@@ -11,6 +13,11 @@ class TotalCost extends StatelessWidget {
     const EdgeInsetsGeometry gapPadding = EdgeInsets.symmetric(vertical: 20);
     const EdgeInsetsGeometry containerPadding =
         EdgeInsets.symmetric(vertical: 15.0, horizontal: 25.0);
+    //TODO:Add logic for delivery fee and tips later
+    final double deliveryCharge = 10.0;
+    final double tips = 20.0;
+    final double totalCost = subTotal + deliveryCharge + tips;
+
     return Padding(
       padding: gapPadding,
       child: Container(
@@ -20,13 +27,14 @@ class TotalCost extends StatelessWidget {
             borderRadius: BorderRadius.circular(18)),
         child: Column(
           children: [
-            const TotalDetail(leadingTitle: 'Sub total', trailingInfo: '120'),
+            TotalDetail(leadingTitle: 'Sub total', trailingInfo: '$subTotal'),
             SizedBox(height: getDeviceExactHeight(8, mediaQ)),
-            const TotalDetail(leadingTitle: 'Delivery fee', trailingInfo: '40'),
+            TotalDetail(
+                leadingTitle: 'Delivery fee', trailingInfo: '$deliveryCharge'),
             SizedBox(height: getDeviceExactHeight(8, mediaQ)),
-            const TotalDetail(leadingTitle: 'Tip', trailingInfo: '10'),
+            TotalDetail(leadingTitle: 'Tip', trailingInfo: '$tips'),
             SizedBox(height: getDeviceExactHeight(8, mediaQ)),
-            const TotalDetail(leadingTitle: 'Total', trailingInfo: '170'),
+            TotalDetail(leadingTitle: 'Total', trailingInfo: '$totalCost'),
           ],
         ),
       ),

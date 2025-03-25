@@ -1,3 +1,4 @@
+import 'package:himalayan_delights/model/cartDetail.dart';
 import 'package:himalayan_delights/model/cartItem.dart';
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
 
@@ -21,14 +22,14 @@ class PriceAndQuantity extends StatelessWidget {
               borderRadius: BorderRadius.circular(9),
               color: AppColor.buttonColor),
           child: LabelText(
-            text: '${cartItem.foodItem.unitPrice} \$',
+            text: '${cartItem.subTotal} \$',
             size: 15,
           ),
         ),
         QuantityButton(
           buttonLabelSize: 15,
           buttonWidth: 100,
-          quantity: cartItem.quantity,
+          cartItem: cartItem,
           buttonColor: AppColor.buttonColor,
         ),
       ],
