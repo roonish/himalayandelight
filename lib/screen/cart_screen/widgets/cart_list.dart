@@ -43,7 +43,7 @@ class CartList extends StatelessWidget {
                     child: Column(
                       children: [
                         FoodTitleAndRemove(
-                          foodName: cartDetail.cartItems[index].foodItem.name,
+                          cartDetail: cartDetail.cartItems[index],
                         ),
                         Padding(
                           padding: containerMargin,

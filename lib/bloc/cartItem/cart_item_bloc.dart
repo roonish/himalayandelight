@@ -13,7 +13,7 @@ class CartItemBloc extends Bloc<CartItemEvent, CartItemState> {
     on<DisplayCart>(_displayCartItem);
     //     on<AddToCart>(_addCartItem);
     on<UpdateCart>(_updateCartItem);
-    // on<DeleteCart>(_deleteCartItem);
+    on<DeleteCart>(_deleteCartItem);
   }
 
   void _displayCartItem(DisplayCart event, Emitter<CartItemState> emit) async {
@@ -59,6 +59,23 @@ class CartItemBloc extends Bloc<CartItemEvent, CartItemState> {
         } else {
           emit(CartItemFoodListSuccess(cartDetail));
         }
+      }
+    } on Exception catch (e) {
+      emit(CartItemFailed(e.toString()));
+    }
+  }
+
+  void _deleteCartItem(DeleteCart event, Emitter<CartItemState> emit) async {
+    emit(const CartItemLoading());
+    try {
+      await cartRepository.deleteCartItem(event.id);
+      //once updated get newly updated cartdetails
+      final CartDetail? cartDetail = await cartRepository.getCartItems();
+      if (cartDetail == null || cartDetail.cartItems.isEmpty) {
+        emit(const CartItemInitial());
+      } else {
+        emit(CartItemDeleted());
+        emit(CartItemFoodListSuccess(cartDetail));
       }
     } on Exception catch (e) {
       emit(CartItemFailed(e.toString()));
