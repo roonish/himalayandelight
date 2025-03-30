@@ -54,10 +54,11 @@ class DetailScreen extends StatelessWidget {
                   Padding(
                     padding: buttonPadding,
                     child: AppButton(
-                      text: 'Add to cart',
-                      verticalPadding: 12,
-                      ontap: () => context.go('/orderSuccess'),
-                    ),
+                        text: 'Add to cart',
+                        verticalPadding: 12,
+                        ontap: () {
+                          context.go('/orderSuccess');
+                        }),
                   )
                 ],
               ),
