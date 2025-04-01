@@ -1,4 +1,5 @@
-import 'package:himalayan_delights/model/cartDetail.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:himalayan_delights/bloc/cartItem/cart_item_bloc.dart';
 import 'package:himalayan_delights/model/cartItem.dart';
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
 

@@ -44,12 +44,7 @@ class Recommendation extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () => context.go('/home/detail', extra: {
-                    'title': state.recommendedFood[index].foodItem.name,
-                    'price': state.recommendedFood[index].foodItem.unitPrice,
-                    'image': state.recommendedFood[index].foodItem.image,
-                    'desc': state.recommendedFood[index].foodItem.desc,
-                    'rating': state.recommendedFood[index].foodItem.rating,
-                    'calory': state.recommendedFood[index].foodItem.calory,
+                    'foodItem': state.recommendedFood[index].foodItem,
                   }),
                   child: Stack(
                     fit: StackFit.loose,

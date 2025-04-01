@@ -1,3 +1,5 @@
+import 'package:himalayan_delights/model/foodItem.dart';
+
 import 'screen/cancel_order_screen/cancel_order_screen.dart';
 import 'screen/category_screen/category_screen.dart';
 import 'screen/detail_screen/detail_screen.dart';
@@ -46,12 +48,7 @@ final GoRouter router = GoRouter(
               builder: (context, state) {
                 Map<String, dynamic> args = state.extra as Map<String, dynamic>;
                 return DetailScreen(
-                  title: args['title'] as String,
-                  price: args['price'] as String,
-                  image: args['image'] as String,
-                  desc: args['desc'] as String,
-                  rating: args['rating'] as int,
-                  calory: args['calory'] as int,
+                  foodItem: args['foodItem'] as FoodItem,
                 );
               }),
         ]),

@@ -7,7 +7,7 @@ export '../../widgets/appbar.dart';
 export 'package:himalayan_delights/utils/safe_size.dart';
 export 'package:himalayan_delights/widgets/app_button.dart';
 export 'package:himalayan_delights/screen/cart_screen/widgets/cart_item_detail.dart';
-export 'package:himalayan_delights/screen/detail_screen/widgets/quantity_button.dart';
+export 'package:himalayan_delights/screen/cart_screen/widgets/quantity_button.dart';
 export 'package:himalayan_delights/screen/cart_screen/widgets/total_cost.dart';
 export 'package:himalayan_delights/screen/cart_screen/widgets/cart_list.dart';
 export '../cart_screen/widgets/food_title_and_remove.dart';

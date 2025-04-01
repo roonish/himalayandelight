@@ -1,32 +1,27 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:himalayan_delights/bloc/cartItem/cart_item_bloc.dart';
-import 'package:himalayan_delights/bloc/recommendation/recommendation_bloc.dart';
-import 'package:himalayan_delights/model/cartItem.dart';
 import 'package:himalayan_delights/screen/detail_screen/imports.dart';
 
-class QuantityButton extends StatelessWidget {
-  const QuantityButton({
+class DetailQuantityButton extends StatelessWidget {
+  const DetailQuantityButton({
     super.key,
-    required this.cartItem,
     this.buttonColor = AppColor.searchColor,
     this.buttonWidth = 110,
     this.buttonLabelSize = 18,
+    required this.detailItemCount,
   });
 
-  final CartItem cartItem;
   final Color buttonColor;
   final double buttonWidth;
   final double buttonLabelSize;
+  final int detailItemCount;
 
   @override
   Widget build(BuildContext context) {
-    final ValueNotifier<int> itemCount = ValueNotifier<int>(cartItem.quantity);
     final Size mediaQ = MediaQuery.of(context).size;
     const EdgeInsetsGeometry gapPadding = EdgeInsets.symmetric(
       vertical: 4.0,
       horizontal: 10.0,
     );
-    final updateCartEvent = BlocProvider.of<CartItemBloc>(context);
+    final ValueNotifier<int> itemCount = ValueNotifier<int>(detailItemCount);
 
     return Container(
       width: getDeviceExactWidth(buttonWidth, mediaQ),
@@ -43,13 +38,6 @@ class QuantityButton extends StatelessWidget {
                     onTap: () {
                       if (noOfOrder > 1) {
                         itemCount.value--;
-//updated cartitem with new quantity
-                        final updatedCartItem = cartItem
-                            .rebuild((b) => b..quantity = itemCount.value);
-
-                        updateCartEvent.add(UpdateCart(
-                            id: cartItem.cartItemId,
-                            updatedCartItem: updatedCartItem));
                       }
                     },
                     child: Icon(
@@ -66,13 +54,6 @@ class QuantityButton extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     itemCount.value++;
-
-                    final updatedCartItem =
-                        cartItem.rebuild((b) => b..quantity = itemCount.value);
-
-                    updateCartEvent.add(UpdateCart(
-                        id: cartItem.cartItemId,
-                        updatedCartItem: updatedCartItem));
                   },
                   child: Icon(
                     Icons.add,

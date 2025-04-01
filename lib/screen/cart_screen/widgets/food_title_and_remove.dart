@@ -23,7 +23,7 @@ class FoodTitleAndRemove extends StatelessWidget {
       ),
       InkWell(
           onTap: () {
-            cartEvent.add(DeleteCart(id: cartDetail.cartItemId));
+            cartEvent.add(DeleteCart(id: cartDetail.cartItemId!));
           },
           child: const Icon(Icons.delete))
     ]);

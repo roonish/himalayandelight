@@ -18,20 +18,27 @@ class _$CartItemSerializer implements StructuredSerializer<CartItem> {
   Iterable<Object?> serialize(Serializers serializers, CartItem object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'id',
-      serializers.serialize(object.cartItemId,
-          specifiedType: const FullType(int)),
       'foodItem',
       serializers.serialize(object.foodItem,
           specifiedType: const FullType(FoodItem)),
       'quantity',
       serializers.serialize(object.quantity,
           specifiedType: const FullType(int)),
-      'subTotal',
-      serializers.serialize(object.subTotal,
-          specifiedType: const FullType(double)),
     ];
-
+    Object? value;
+    value = object.cartItemId;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.subTotal;
+    if (value != null) {
+      result
+        ..add('subTotal')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
     return result;
   }
 
@@ -48,7 +55,7 @@ class _$CartItemSerializer implements StructuredSerializer<CartItem> {
       switch (key) {
         case 'id':
           result.cartItemId = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'foodItem':
           result.foodItem.replace(serializers.deserialize(value,
@@ -60,7 +67,7 @@ class _$CartItemSerializer implements StructuredSerializer<CartItem> {
           break;
         case 'subTotal':
           result.subTotal = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+              specifiedType: const FullType(double)) as double?;
           break;
       }
     }
@@ -71,28 +78,25 @@ class _$CartItemSerializer implements StructuredSerializer<CartItem> {
 
 class _$CartItem extends CartItem {
   @override
-  final int cartItemId;
+  final int? cartItemId;
   @override
   final FoodItem foodItem;
   @override
   final int quantity;
   @override
-  final double subTotal;
+  final double? subTotal;
 
   factory _$CartItem([void Function(CartItemBuilder)? updates]) =>
       (new CartItemBuilder()..update(updates))._build();
 
   _$CartItem._(
-      {required this.cartItemId,
+      {this.cartItemId,
       required this.foodItem,
       required this.quantity,
-      required this.subTotal})
+      this.subTotal})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        cartItemId, r'CartItem', 'cartItemId');
     BuiltValueNullFieldError.checkNotNull(foodItem, r'CartItem', 'foodItem');
     BuiltValueNullFieldError.checkNotNull(quantity, r'CartItem', 'quantity');
-    BuiltValueNullFieldError.checkNotNull(subTotal, r'CartItem', 'subTotal');
   }
 
   @override
@@ -186,13 +190,11 @@ class CartItemBuilder implements Builder<CartItem, CartItemBuilder> {
     try {
       _$result = _$v ??
           new _$CartItem._(
-            cartItemId: BuiltValueNullFieldError.checkNotNull(
-                cartItemId, r'CartItem', 'cartItemId'),
+            cartItemId: cartItemId,
             foodItem: foodItem.build(),
             quantity: BuiltValueNullFieldError.checkNotNull(
                 quantity, r'CartItem', 'quantity'),
-            subTotal: BuiltValueNullFieldError.checkNotNull(
-                subTotal, r'CartItem', 'subTotal'),
+            subTotal: subTotal,
           );
     } catch (_) {
       late String _$failedField;
