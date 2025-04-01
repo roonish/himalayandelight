@@ -1,9 +1,7 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:himalayan_delights/bloc/cartItem/cart_item_bloc.dart';
 import 'package:himalayan_delights/model/cartItem.dart';
 import 'package:himalayan_delights/screen/detail_screen/imports.dart';
-import 'package:himalayan_delights/screen/detail_screen/widgets/detail_quantity_button.dart';
 
 import '../../model/foodItem.dart';
 
@@ -42,8 +40,8 @@ class DetailScreen extends StatelessWidget {
             FoodImage(mediaQ: mediaQ, image: foodItem.image),
             Padding(
               padding: quantityButtonPadding,
-              child: DetailQuantityButton(
-                detailItemCount: 1,
+              child: QuantityButton(
+                itemCount: itemCount,
               ),
             ),
             Padding(
@@ -66,7 +64,8 @@ class DetailScreen extends StatelessWidget {
                         verticalPadding: 12,
                         ontap: () {
                           // cartEvent.add(AddToCart(cartItem: foodItem));
-                          context.go('/orderSuccess');
+                          // context.go('/orderSuccess');
+                          print(itemCount.value);
                         }),
                   )
                 ],

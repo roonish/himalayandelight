@@ -14,6 +14,8 @@ class PriceAndQuantity extends StatelessWidget {
   Widget build(BuildContext context) {
     const EdgeInsetsGeometry pricePadding =
         EdgeInsets.symmetric(vertical: 4.0, horizontal: 20.0);
+            final ValueNotifier<int> itemCount = ValueNotifier<int>(cartItem.quantity);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -30,6 +32,7 @@ class PriceAndQuantity extends StatelessWidget {
         QuantityButton(
           buttonLabelSize: 15,
           buttonWidth: 100,
+          itemCount: itemCount,
           cartItem: cartItem,
           buttonColor: AppColor.buttonColor,
         ),

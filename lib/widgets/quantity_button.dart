@@ -1,18 +1,23 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:himalayan_delights/bloc/cartItem/cart_item_bloc.dart';
+import 'package:himalayan_delights/model/cartItem.dart';
 import 'package:himalayan_delights/screen/detail_screen/imports.dart';
 
-class DetailQuantityButton extends StatelessWidget {
-  const DetailQuantityButton({
+class QuantityButton extends StatelessWidget {
+  const QuantityButton({
     super.key,
     this.buttonColor = AppColor.searchColor,
     this.buttonWidth = 110,
     this.buttonLabelSize = 18,
-    required this.detailItemCount,
+    this.cartItem,
+    required this.itemCount,
   });
 
   final Color buttonColor;
   final double buttonWidth;
   final double buttonLabelSize;
-  final int detailItemCount;
+  final CartItem? cartItem;
+  final ValueNotifier<int> itemCount;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,7 @@ class DetailQuantityButton extends StatelessWidget {
       vertical: 4.0,
       horizontal: 10.0,
     );
-    final ValueNotifier<int> itemCount = ValueNotifier<int>(detailItemCount);
+    final updateCartEvent = BlocProvider.of<CartItemBloc>(context);
 
     return Container(
       width: getDeviceExactWidth(buttonWidth, mediaQ),
@@ -38,6 +43,15 @@ class DetailQuantityButton extends StatelessWidget {
                     onTap: () {
                       if (noOfOrder > 1) {
                         itemCount.value--;
+//updated cartitem with new quantity
+                        if (cartItem != null) {
+                          final updatedCartItem = cartItem!
+                              .rebuild((b) => b..quantity = itemCount.value);
+
+                          updateCartEvent.add(UpdateCart(
+                              id: cartItem!.cartItemId!,
+                              updatedCartItem: updatedCartItem));
+                        }
                       }
                     },
                     child: Icon(
@@ -54,6 +68,14 @@ class DetailQuantityButton extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     itemCount.value++;
+                    if (cartItem != null) {
+                      final updatedCartItem = cartItem!
+                          .rebuild((b) => b..quantity = itemCount.value);
+
+                      updateCartEvent.add(UpdateCart(
+                          id: cartItem!.cartItemId!,
+                          updatedCartItem: updatedCartItem));
+                    }
                   },
                   child: Icon(
                     Icons.add,

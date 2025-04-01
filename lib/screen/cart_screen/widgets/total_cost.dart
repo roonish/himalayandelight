@@ -34,7 +34,9 @@ class TotalCost extends StatelessWidget {
             SizedBox(height: getDeviceExactHeight(8, mediaQ)),
             TotalDetail(leadingTitle: 'Tip', trailingInfo: '$tips'),
             SizedBox(height: getDeviceExactHeight(8, mediaQ)),
-            TotalDetail(leadingTitle: 'Total', trailingInfo: '$totalCost'),
+            TotalDetail(
+                leadingTitle: 'Total',
+                trailingInfo: totalCost.toStringAsFixed(2)),
           ],
         ),
       ),
