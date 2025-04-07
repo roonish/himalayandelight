@@ -33,22 +33,20 @@ class CartScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
+          vertical: 10,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CartList(images: images, itemCount: itemCount),
-              const TotalCost(),
-              const AppButton(
-                text: 'Check Out',
-                verticalPadding: 13,
-              )
-            ],
-          ),
+        child: Column(
+          children: [
+            CartList(images: images, itemCount: itemCount),
+            const Spacer(),
+            const TotalCost(),
+            const AppButton(
+              text: 'Check Out',
+              verticalPadding: 13,
+            )
+          ],
         ),
       ),
     );
   }
 }
-
-

@@ -1,20 +1,18 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:himalayan_delights/widgets/rating_star.dart';
+import '../bloc/fav/fav_bloc.dart';
+import '../bloc/recommendation/recommendation_bloc.dart';
 import '../screen/home_screen/imports.dart';
+import 'loading.dart';
 
 class Recommendation extends StatelessWidget {
   const Recommendation({
     super.key,
-    required this.contentImage,
-    required this.itemCount,
     this.bottomPosition = 15,
     this.boxWidth = 30,
-    required this.foodDetail,
   });
 
-  final List<String> contentImage;
-  final Map<String, String> foodDetail;
-  final int itemCount;
   final double bottomPosition;
   final double boxWidth;
 
@@ -24,84 +22,126 @@ class Recommendation extends StatelessWidget {
     const EdgeInsetsGeometry boxPadding = EdgeInsets.all(12);
     const EdgeInsetsGeometry textPadding = EdgeInsets.only(top: 5, bottom: 2);
     final Size mediaQ = MediaQuery.of(context).size;
+    bool isFavFood = false;
 
-    return GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: itemCount,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 15,
-            childAspectRatio: 0.76,
-            mainAxisSpacing: 10),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () => context.go('/detail', extra: {
-              'title': foodDetail.keys.elementAt(index),
-              'price': foodDetail.values.elementAt(index),
-              'image': contentImage[index]
-            }),
-            child: Stack(
-              fit: StackFit.loose,
-              children: [
-                Container(
-                  margin: boxMargin,
-                  padding: boxPadding,
-                  decoration: BoxDecoration(
-                      color: AppColor.searchColor,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Column(
+    return BlocBuilder<RecommendationBloc, RecommendationState>(
+      builder: (context, state) {
+        if (state is RecommendationLoading) {
+          return LoadingScreen();
+        }
+        if (state is RecommendationFailed) {
+          return LoadingScreen();
+        }
+        if (state is RecommendationFoodListSuccess) {
+          return GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: state.recommendedFood.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 15,
+                  childAspectRatio: 0.76,
+                  mainAxisSpacing: 10),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () => context.go('/home/detail', extra: {
+                    'title': state.recommendedFood[index].foodItem.name,
+                    'price': state.recommendedFood[index].foodItem.unitPrice,
+                    'image': state.recommendedFood[index].foodItem.image,
+                    'desc': state.recommendedFood[index].foodItem.desc,
+                    'rating': state.recommendedFood[index].foodItem.rating,
+                    'calory': state.recommendedFood[index].foodItem.calory,
+                  }),
+                  child: Stack(
+                    fit: StackFit.loose,
                     children: [
                       Container(
-                          height: getDeviceExactHeight(90, mediaQ),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              color: AppColor.primaryColor,
-                              borderRadius: BorderRadius.circular(7)),
-                          child: AppImage(
-                            image: contentImage[index],
-                          )),
-                      Padding(
-                        padding: textPadding,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        margin: boxMargin,
+                        padding: boxPadding,
+                        decoration: BoxDecoration(
+                            color: AppColor.searchColor,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Column(
                           children: [
-                            Text(foodDetail.keys.elementAt(index)),
-                            Text('\$${foodDetail.values.elementAt(index)}'),
+                            Container(
+                                height: getDeviceExactHeight(90, mediaQ),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    color: AppColor.primaryColor,
+                                    borderRadius: BorderRadius.circular(7)),
+                                child: AppImage(
+                                  image: state
+                                      .recommendedFood[index].foodItem.image,
+                                )),
+                            Padding(
+                              padding: textPadding,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  LabelText(
+                                    text: state
+                                        .recommendedFood[index].foodItem.name,
+                                    size: 15,
+                                  ),
+                                  LabelText(
+                                    text:
+                                        '\$${state.recommendedFood[index].foodItem.unitPrice}',
+                                    size: 15,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            RatingStar(
+                                starCount: state
+                                    .recommendedFood[index].foodItem.rating)
                           ],
                         ),
                       ),
-                      const RatingStar(starCount: 5)
+                      Positioned(
+                        bottom: bottomPosition,
+                        right: 15,
+                        child: SizedBox(
+                          height: 35,
+                          width: 35,
+                          child: FloatingActionButton(
+                            //making every floating button unique
+                            heroTag: UniqueKey(),
+                            backgroundColor: AppColor.primaryColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50)),
+                            onPressed: () {
+                              final favEvent =
+                                  BlocProvider.of<FavBloc>(context);
+                              favEvent.add(AddToFav(
+                                  foodItem:
+                                      state.recommendedFood[index].foodItem));
+                            },
+
+                            child: BlocListener<FavBloc, FavState>(
+                              listener: (context, favState) {
+                                if (favState is FavFoodAddedSucessful) {
+                                  isFavFood = favState.favFood.foodItem.id ==
+                                      state.recommendedFood[index].foodItem.id;
+                                }
+                              },
+                              child: Icon(
+                                isFavFood
+                                    ? Icons.favorite
+                                    : Icons.favorite_border_outlined,
+                                color: AppColor.searchColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
                     ],
                   ),
-                ),
-                Positioned(
-                  bottom: bottomPosition,
-                  right: 15,
-                  child: SizedBox(
-                    height: 35,
-                    width: 35,
-                    child: FloatingActionButton(
-                      //making every floating button unique
-                      heroTag: UniqueKey(),
-                      backgroundColor: AppColor.primaryColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50)),
-                      onPressed: () => context.go('/detail', extra: {
-                        'title': foodDetail.keys.elementAt(index),
-                        'price': foodDetail.values.elementAt(index),
-                        'image': contentImage[index]
-                      }),
-                      child: const Icon(
-                        Icons.add,
-                        color: AppColor.searchColor,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          );
-        });
+                );
+              });
+        }
+        return SizedBox();
+      },
+    );
   }
 }

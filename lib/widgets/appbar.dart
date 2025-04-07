@@ -20,7 +20,7 @@ AppBar appBar(
     leading: showLeadingIcon
         ? InkWell(
             onTap: () {
-              context.go('/');
+              context.go('/home');
             },
             child: Icon(Icons.arrow_back_ios_outlined,
                 size: 20, color: AppColor.primaryColor))
@@ -29,7 +29,7 @@ AppBar appBar(
     actions: [
       showAction
           ? InkWell(
-              onTap: () {},
+              onTap: () => context.go('/notification'),
               child: Padding(
                 padding: const EdgeInsets.only(right: 8.0),
                 child: Icon(Icons.notifications_none,

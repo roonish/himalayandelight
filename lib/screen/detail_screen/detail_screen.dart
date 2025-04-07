@@ -3,12 +3,19 @@ import 'package:himalayan_delights/screen/detail_screen/imports.dart';
 class DetailScreen extends StatelessWidget {
   final String title;
   final String price;
+  final String desc;
+  final int rating;
+  final int calory;
   final String image;
+
   const DetailScreen(
       {super.key,
       required this.title,
       required this.price,
-      required this.image});
+      required this.image,
+      required this.desc,
+      required this.rating,
+      required this.calory});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +36,7 @@ class DetailScreen extends StatelessWidget {
             FoodImage(mediaQ: mediaQ, image: image),
             Padding(
               padding: quantityButtonPadding,
-              child: QuantityButton( itemCount: itemCount),
+              child: QuantityButton(itemCount: itemCount),
             ),
             Padding(
               padding: bodyPadding,
@@ -38,18 +45,18 @@ class DetailScreen extends StatelessWidget {
                   FoodTitle(title: title, price: price),
                   Padding(
                     padding: descPadding,
-                    child: LabelText(
-                        maxLine: 6,
-                        size: 15,
-                        text:
-                            '$title fjnk j gk  kngij gnkdn kgn kn  jg bfkh kohio s ep vmlfmdbl jhtoi gn fbfgh rtoi gp/jmbkmgfgrtkjp r;d jbngfgn b skg s.ghsroe. ggj/ s/ijgs j ghresh rg dhg .hrt  j ghd.ig hsgj s'),
+                    child: LabelText(maxLine: 6, size: 15, text: desc),
                   ),
-                  const FoodDetail(),
-                  const Padding(
+                  FoodDetail(
+                    calory: calory,
+                    rating: rating,
+                  ),
+                  Padding(
                     padding: buttonPadding,
                     child: AppButton(
                       text: 'Add to cart',
                       verticalPadding: 12,
+                      ontap: () => context.go('/orderSuccess'),
                     ),
                   )
                 ],
