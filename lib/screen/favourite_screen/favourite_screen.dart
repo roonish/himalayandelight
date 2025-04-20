@@ -78,7 +78,7 @@ class FavouriteScreen extends StatelessWidget {
                       },
                     );
                   }
-                  return SizedBox();
+                  return SizedBox.shrink();
                 },
               );
             },

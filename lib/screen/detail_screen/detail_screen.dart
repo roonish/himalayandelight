@@ -1,21 +1,17 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:himalayan_delights/bloc/cartItem/cart_item_bloc.dart';
+import 'package:himalayan_delights/model/cartItem.dart';
 import 'package:himalayan_delights/screen/detail_screen/imports.dart';
 
-class DetailScreen extends StatelessWidget {
-  final String title;
-  final String price;
-  final String desc;
-  final int rating;
-  final int calory;
-  final String image;
+import '../../model/foodItem.dart';
 
-  const DetailScreen(
-      {super.key,
-      required this.title,
-      required this.price,
-      required this.image,
-      required this.desc,
-      required this.rating,
-      required this.calory});
+class DetailScreen extends StatelessWidget {
+  final FoodItem foodItem;
+
+  const DetailScreen({
+    super.key,
+    required this.foodItem,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,37 +23,50 @@ class DetailScreen extends StatelessWidget {
     const EdgeInsetsGeometry descPadding = EdgeInsets.symmetric(vertical: 20);
     const EdgeInsetsGeometry buttonPadding = EdgeInsets.symmetric(vertical: 20);
 
+    final cartEvent = BlocProvider.of<CartItemBloc>(context);
+    final CartItem cartItem = CartItem(
+      (b) {
+        b.foodItem = foodItem.toBuilder();
+        b.quantity = 1;
+      },
+    );
+
     return Scaffold(
       appBar: appBar(context, title: 'Food detail'),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            FoodImage(mediaQ: mediaQ, image: image),
+            FoodImage(mediaQ: mediaQ, image: foodItem.image),
             Padding(
               padding: quantityButtonPadding,
-              child: QuantityButton(itemCount: itemCount),
+              child: QuantityButton(
+                itemCount: itemCount,
+              ),
             ),
             Padding(
               padding: bodyPadding,
               child: Column(
                 children: [
-                  FoodTitle(title: title, price: price),
+                  FoodTitle(title: foodItem.name, price: foodItem.unitPrice),
                   Padding(
                     padding: descPadding,
-                    child: LabelText(maxLine: 6, size: 15, text: desc),
+                    child: LabelText(maxLine: 6, size: 15, text: foodItem.desc),
                   ),
                   FoodDetail(
-                    calory: calory,
-                    rating: rating,
+                    calory: foodItem.calory,
+                    rating: foodItem.rating,
                   ),
                   Padding(
                     padding: buttonPadding,
                     child: AppButton(
-                      text: 'Add to cart',
-                      verticalPadding: 12,
-                      ontap: () => context.go('/orderSuccess'),
-                    ),
+                        text: 'Add to cart',
+                        verticalPadding: 12,
+                        ontap: () {
+                          // cartEvent.add(AddToCart(cartItem: foodItem));
+                          // context.go('/orderSuccess');
+                          print(itemCount.value);
+                        }),
                   )
                 ],
               ),

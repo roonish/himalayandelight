@@ -10,10 +10,12 @@ part 'fav_event.dart';
 part 'fav_state.dart';
 
 class FavBloc extends Bloc<FavEvent, FavState> {
+  //  keep track of which food items are marked as favorites
+  final Set<int> favoriteFoodIds = {}; // Store favorite item IDs
   final ApiFavRepository favRepository;
   FavBloc(this.favRepository) : super(const FavInitial()) {
     on<DisplayFav>(_displayFavFood);
-    on<AddToFav>(_addFavFood);
+    on<AddToFav>(_addToggleFavFood);
     on<DeleteFav>(_deleteFavFood);
   }
 
@@ -24,6 +26,8 @@ class FavBloc extends Bloc<FavEvent, FavState> {
       if (favItems!.isEmpty) {
         emit(const FavInitial());
       } else {
+        favoriteFoodIds.clear();
+        favoriteFoodIds.addAll(favItems.map((fav) => fav.foodItem.id));
         emit(FavFoodListSuccess(favItems));
       }
     } on Exception catch (e) {
@@ -31,18 +35,30 @@ class FavBloc extends Bloc<FavEvent, FavState> {
     }
   }
 
-  void _addFavFood(AddToFav event, Emitter<FavState> emit) async {
+  void _addToggleFavFood(AddToFav event, Emitter<FavState> emit) async {
+    final foodId = event.foodItem.id;
     emit(const FavLoading());
-    try {
-      final Favourite favourite =
-          await favRepository.addFavFood(event.foodItem);
-      if (favourite.foodItem.name.isEmpty) {
-        emit(const FavInitial());
-      } else {
-        emit(FavFoodAddedSucessful(favourite));
+    // If the item is already a favorite (foodId is in favoriteFoodIds) → Remove it
+    if (favoriteFoodIds.contains(foodId)) {
+      // Remove from favorites
+      favoriteFoodIds.remove(foodId);
+      await favRepository.deleteFav(foodId);
+      emit(FavFoodDeleted());
+    } else {
+      // Add to favorites
+      favoriteFoodIds.add(foodId);
+
+      try {
+        final Favourite favourite =
+            await favRepository.addFavFood(event.foodItem);
+        if (favourite.foodItem.name.isEmpty) {
+          emit(const FavInitial());
+        } else {
+          emit(FavFoodAddedSucessful(favourite));
+        }
+      } on Exception catch (e) {
+        emit(FavFailed(e.toString()));
       }
-    } on Exception catch (e) {
-      emit(FavFailed(e.toString()));
     }
   }
 
@@ -50,9 +66,14 @@ class FavBloc extends Bloc<FavEvent, FavState> {
     emit(const FavLoading());
     try {
       await favRepository.deleteFav(event.id);
+      favoriteFoodIds.remove(event.id);
       emit(FavFoodDeleted());
     } on Exception catch (e) {
       emit(FavFailed(e.toString()));
     }
+  }
+
+  bool isFavorite(int id) {
+    return favoriteFoodIds.contains(id);
   }
 }

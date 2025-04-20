@@ -9,5 +9,5 @@ export '../detail_screen/widgets/food_sub_info.dart';
 export 'package:himalayan_delights/screen/detail_screen/widgets/food_detail.dart';
 export 'package:himalayan_delights/screen/detail_screen/widgets/food_image.dart';
 export 'package:himalayan_delights/screen/detail_screen/widgets/food_title.dart';
-export 'package:himalayan_delights/screen/detail_screen/widgets/quantity_button.dart';
+export 'package:himalayan_delights/widgets/quantity_button.dart';
 export 'package:go_router/go_router.dart';
