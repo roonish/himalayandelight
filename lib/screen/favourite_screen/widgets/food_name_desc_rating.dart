@@ -2,8 +2,14 @@ import 'package:himalayan_delights/screen/home_screen/imports.dart';
 import 'package:himalayan_delights/widgets/rating_star.dart';
 
 class FoodNameDescRating extends StatelessWidget {
+  final String foodName;
+  final String desc;
+  final int rating;
   const FoodNameDescRating({
+    required this.foodName,
     super.key,
+    required this.desc,
+    required this.rating,
   });
 
   @override
@@ -13,13 +19,12 @@ class FoodNameDescRating extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        LabelText(text: 'Sushi', color: AppColor.primaryColor, size: 18),
+        LabelText(text: foodName, color: AppColor.primaryColor, size: 18),
         SizedBox(
           width: MediaQuery.of(context).size.width -
               getDeviceExactWidth(200, mediaQ),
-          child: const LabelText(
-            text:
-                'Sushi jfl j n kfh  nkhoihg jg jgoerhg h hgihg hg ngng kng kng ',
+          child: LabelText(
+            text: desc,
             size: 12,
             maxLine: 2,
           ),
@@ -27,7 +32,7 @@ class FoodNameDescRating extends StatelessWidget {
         SizedBox(
           height: getDeviceExactHeight(8, mediaQ),
         ),
-        const RatingStar(starCount: 2),
+        RatingStar(starCount: rating),
       ],
     );
   }

@@ -1,12 +1,7 @@
 export 'package:flutter/material.dart';
-export 'package:himalayan_delights/widgets/app_button.dart';
+export 'package:himalayan_delights/screen/profile_screen/widgets/user_detail.dart';
+export 'package:himalayan_delights/themes/color_theme.dart';
+export 'package:himalayan_delights/utils/safe_size.dart';
+export 'package:himalayan_delights/widgets/circularImage.dart';
 export 'package:himalayan_delights/widgets/label_text.dart';
-export '../../themes/color_theme.dart';
-export '../../utils/safe_size.dart';
-export '../../widgets/appBar.dart';
-export '../../widgets/app_image.dart';
-export '../detail_screen/widgets/food_sub_info.dart';
-export 'package:himalayan_delights/screen/detail_screen/widgets/food_detail.dart';
-export 'package:himalayan_delights/screen/detail_screen/widgets/food_image.dart';
-export 'package:himalayan_delights/screen/detail_screen/widgets/food_title.dart';
-export 'package:himalayan_delights/screen/detail_screen/widgets/quantity_button.dart';
+export 'package:himalayan_delights/screen/profile_screen/widgets/profile_card.dart';

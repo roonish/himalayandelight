@@ -1,4 +1,8 @@
+import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
+import 'package:himalayan_delights/bloc/cartItem/cart_item_bloc.dart';
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
+import 'package:himalayan_delights/screen/error_screen/error_screen.dart';
+import 'package:himalayan_delights/widgets/loading.dart' show LoadingScreen;
 
 class CartScreen extends StatelessWidget {
   const CartScreen({
@@ -7,7 +11,7 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ValueNotifier<int> itemCount = ValueNotifier<int>(1);
+    // final ValueNotifier<int> itemCount = ValueNotifier<int>(1);
 
     List<String> images = [
       'https://live.staticflickr.com/65535/53617693698_9a55f62c16_o.png',
@@ -33,22 +37,37 @@ class CartScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
+          vertical: 10,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CartList(images: images, itemCount: itemCount),
-              const TotalCost(),
-              const AppButton(
-                text: 'Check Out',
-                verticalPadding: 13,
-              )
-            ],
-          ),
+        child: BlocBuilder<CartItemBloc, CartItemState>(
+          builder: (context, state) {
+            if (state is CartItemLoading) {
+              return LoadingScreen();
+            }
+            if (state is CartItemFailed) {
+              return ErrorScreen(errorText: state.errorMsg);
+            }
+            if (state is CartItemFoodListSuccess) {
+              return Column(
+                children: [
+                  CartList(cartDetail: state.cartDetail),
+                  const Spacer(),
+                  TotalCost(
+                    subTotal: state.cartDetail.totalSubtotal,
+                  ),
+                  const AppButton(
+                    text: 'Check Out',
+                    verticalPadding: 13,
+                  )
+                ],
+              );
+            }
+
+            // Return nothing if no matching state
+            return const SizedBox.shrink();
+          },
         ),
       ),
     );
   }
 }
-
-
