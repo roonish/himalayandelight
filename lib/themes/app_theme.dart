@@ -93,6 +93,7 @@ class AppThemes {
     // Dark Theme
     AppTheme.darkTheme: ThemeData(
         scaffoldBackgroundColor: AppColor.darkBackgroundColor,
+        unselectedWidgetColor: AppColor.headerColor,
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColor.darkBackgroundColor,
           elevation: 0,

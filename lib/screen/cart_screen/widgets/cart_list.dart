@@ -1,14 +1,14 @@
+import 'package:himalayan_delights/model/cartDetail.dart';
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
+import 'package:himalayan_delights/screen/cart_screen/widgets/calories_and_price.dart';
 
 class CartList extends StatelessWidget {
   const CartList({
     super.key,
-    required this.images,
-    required this.itemCount,
+    required this.cartDetail,
   });
 
-  final List<String> images;
-  final ValueNotifier<int> itemCount;
+  final CartDetail cartDetail;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class CartList extends StatelessWidget {
       height: getDeviceExactHeight(275, mediaQ),
       width: double.infinity,
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: cartDetail.cartItems.length,
         itemBuilder: (context, index) {
           return Container(
             padding: containerPadding,
@@ -32,7 +32,9 @@ class CartList extends StatelessWidget {
                 color: AppColor.searchColor),
             child: Row(
               children: [
-                CircularImage(radius: 40, image: images[index]),
+                CircularImage(
+                    radius: 40,
+                    image: cartDetail.cartItems[index].foodItem.image),
                 SizedBox(
                   width: getDeviceExactWidth(10, mediaQ),
                 ),
@@ -40,14 +42,18 @@ class CartList extends StatelessWidget {
                   child: IntrinsicWidth(
                     child: Column(
                       children: [
-                        const FoodTitleAndRemove(
-                          foodName: 'Pasta',
+                        FoodTitleAndRemove(
+                          cartDetail: cartDetail.cartItems[index],
                         ),
-                        const Padding(
+                        Padding(
                           padding: containerMargin,
-                          child: CaloriesAndWeight(),
+                          child: CaloriesAndPrice(
+                            foodItem: cartDetail.cartItems[index].foodItem,
+                          ),
                         ),
-                        PriceAndQuantity(itemCount: itemCount),
+                        PriceAndQuantity(
+                          cartItem: cartDetail.cartItems[index],
+                        ),
                       ],
                     ),
                   ),

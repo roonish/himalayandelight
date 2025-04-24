@@ -1,5 +1,12 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:himalayan_delights/bloc/fav/fav_bloc.dart';
+import 'package:himalayan_delights/model/foodItem.dart';
 import 'package:himalayan_delights/screen/detail_screen/imports.dart';
+import 'package:himalayan_delights/screen/error_screen/error_screen.dart';
 import 'package:himalayan_delights/screen/favourite_screen/widgets/item_card.dart';
+
+import '../../utils/snackbar.dart';
+import '../../widgets/loading.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({
@@ -28,10 +35,52 @@ class FavouriteScreen extends StatelessWidget {
         appBar: appBar(context, title: 'Favourite', showLeadingIcon: false),
         body: Padding(
           padding: bodyPadding,
-          child: ListView.builder(
-            itemCount: 12,
-            itemBuilder: (context, index) {
-              return ItemCard(image: images[index]);
+          child: BlocConsumer<FavBloc, FavState>(
+            listener: (context, state) {
+              if (state is FavFoodDeleted) {
+                final favEvent = BlocProvider.of<FavBloc>(context);
+                favEvent.add(DisplayFav());
+                return SnackBarHelper.showMesseges(
+                    context, "Successfully Deleted");
+              }
+              if (state is FavFoodAddedSucessful) {
+                final favEvent = BlocProvider.of<FavBloc>(context);
+                favEvent.add(DisplayFav());
+                return SnackBarHelper.showMesseges(
+                    context, "Successfully Added");
+              }
+            },
+            builder: (context, state) {
+              return BlocBuilder<FavBloc, FavState>(
+                builder: (context, state) {
+                  if (state is FavInitial) {}
+                  if (state is FavFailed) {
+                    return ErrorScreen(
+                      errorText: state.errorMsg,
+                    );
+                  }
+                  if (state is FavLoading) {
+                    return LoadingScreen();
+                  }
+                  if (state is FavFoodListSuccess) {
+                    return ListView.builder(
+                      itemCount: state.favFoodItem.length,
+                      itemBuilder: (context, index) {
+                        FoodItem foodItem = state.favFoodItem[index].foodItem;
+
+                        return ItemCard(
+                          image: foodItem.image,
+                          foodName: foodItem.name,
+                          desc: foodItem.desc,
+                          rating: foodItem.rating,
+                          favId: state.favFoodItem[index].favId,
+                        );
+                      },
+                    );
+                  }
+                  return SizedBox.shrink();
+                },
+              );
             },
           ),
         ));

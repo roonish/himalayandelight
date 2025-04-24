@@ -1,17 +1,21 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:himalayan_delights/bloc/cartItem/cart_item_bloc.dart';
+import 'package:himalayan_delights/model/cartItem.dart';
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
 
 class PriceAndQuantity extends StatelessWidget {
+  final CartItem cartItem;
   const PriceAndQuantity({
     super.key,
-    required this.itemCount,
+    required this.cartItem,
   });
-
-  final ValueNotifier<int> itemCount;
 
   @override
   Widget build(BuildContext context) {
     const EdgeInsetsGeometry pricePadding =
         EdgeInsets.symmetric(vertical: 4.0, horizontal: 20.0);
+            final ValueNotifier<int> itemCount = ValueNotifier<int>(cartItem.quantity);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -20,8 +24,8 @@ class PriceAndQuantity extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(9),
               color: AppColor.buttonColor),
-          child: const LabelText(
-            text: '30 \$',
+          child: LabelText(
+            text: '${cartItem.subTotal} \$',
             size: 15,
           ),
         ),
@@ -29,6 +33,7 @@ class PriceAndQuantity extends StatelessWidget {
           buttonLabelSize: 15,
           buttonWidth: 100,
           itemCount: itemCount,
+          cartItem: cartItem,
           buttonColor: AppColor.buttonColor,
         ),
       ],

@@ -1,4 +1,8 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:himalayan_delights/screen/profile_screen/imports.dart';
+
+import '../../bloc/auth/auth_bloc.dart';
+import '../../bloc/auth/auth_state.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({
@@ -19,10 +23,22 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const CircularImage(
-                  radius: 50,
-                  image:
-                      'https://buffer.com/library/content/images/2020/05/Ash-Read.png',
+                BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    if (state is AuthSuccess) {
+                      return CircularImage(
+                        radius: 50,
+                        image: state.user.photoURL ??
+                            'https://buffer.com/library/content/images/2020/05/Ash-Read.png',
+                      );
+                    } else {
+                      return const CircularImage(
+                        radius: 50,
+                        image:
+                            'https://buffer.com/library/content/images/2020/05/Ash-Read.png',
+                      );
+                    }
+                  },
                 ),
                 const UserDetail(),
                 SizedBox(
