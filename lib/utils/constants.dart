@@ -12,3 +12,4 @@ const kStyle = TextStyle(
 final kBorderRadius = BorderRadius.circular(12.0);
 const double kDesignScreenWidth = 375.0;
 const double kDesignScreenHeight = 667.0;
+

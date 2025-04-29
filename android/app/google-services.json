@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "875400248405",
+    "project_id": "himalayan-delight",
+    "storage_bucket": "himalayan-delight.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875400248405:android:e86b8c726154239b67a8dc",
+        "android_client_info": {
+          "package_name": "com.example.himalayan_delights"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875400248405-aiduj7n2khjr51n5qrtk3767ndhkrpe3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.himalayan_delights",
+            "certificate_hash": "5a1716db3a6d1be01d6b4b90ba5fc0564017ef2b"
+          }
+        },
+        {
+          "client_id": "875400248405-qshe7h0nn6rn98v5i149g7djukf1pn3m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc3DWb0EjHwLlG6y-RD5nZ84nfxSj8Hos"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875400248405-qshe7h0nn6rn98v5i149g7djukf1pn3m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "875400248405-pa5ienqavfmo04dnth4sejp66skahbnp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.himalayanDelights"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
