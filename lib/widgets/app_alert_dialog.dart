@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:himalayan_delights/screen/authentication_screen/imports.dart';
-import 'package:himalayan_delights/themes/color_theme.dart';
-import 'package:himalayan_delights/widgets/app_button.dart';
-import 'package:himalayan_delights/widgets/label_text.dart';
 
 class AppAlertDialog extends StatelessWidget {
   final VoidCallback onConfirm;

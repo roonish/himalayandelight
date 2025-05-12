@@ -1,5 +1,3 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:himalayan_delights/bloc/cartItem/cart_item_bloc.dart';
 import 'package:himalayan_delights/model/cartItem.dart';
 import 'package:himalayan_delights/screen/cart_screen/imports.dart';
 
@@ -14,7 +12,7 @@ class PriceAndQuantity extends StatelessWidget {
   Widget build(BuildContext context) {
     const EdgeInsetsGeometry pricePadding =
         EdgeInsets.symmetric(vertical: 4.0, horizontal: 20.0);
-            final ValueNotifier<int> itemCount = ValueNotifier<int>(cartItem.quantity);
+    final ValueNotifier<int> itemCount = ValueNotifier<int>(cartItem.quantity);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

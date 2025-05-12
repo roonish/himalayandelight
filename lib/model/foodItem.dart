@@ -1,4 +1,4 @@
-library foodItem;
+library;
 
 import 'dart:convert';
 
@@ -11,7 +11,7 @@ part 'foodItem.g.dart';
 abstract class FoodItem implements Built<FoodItem, FoodItemBuilder> {
   FoodItem._();
 
-  factory FoodItem([updates(FoodItemBuilder b)]) = _$FoodItem;
+  factory FoodItem([Function(FoodItemBuilder b) updates]) = _$FoodItem;
 
   @BuiltValueField(wireName: 'id')
   int get id;
