@@ -47,7 +47,7 @@ class CartItemBloc extends Bloc<CartItemEvent, CartItemState> {
   void _updateCartItem(UpdateCart event, Emitter<CartItemState> emit) async {
     emit(const CartItemLoading());
     try {
-      final CartItem? updatedCartItem =
+      final CartItem updatedCartItem =
           await cartRepository.updateCartItem(event.id, event.updatedCartItem);
       if (updatedCartItem == null) {
         emit(const CartItemInitial());

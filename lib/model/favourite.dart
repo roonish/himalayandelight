@@ -1,4 +1,4 @@
-library favourite;
+library;
 
 import 'dart:convert';
 
@@ -12,7 +12,7 @@ part 'favourite.g.dart';
 abstract class Favourite implements Built<Favourite, FavouriteBuilder> {
   Favourite._();
 
-  factory Favourite([updates(FavouriteBuilder b)]) = _$Favourite;
+  factory Favourite([Function(FavouriteBuilder b) updates]) = _$Favourite;
 
   @BuiltValueField(wireName: 'id')
   int get favId;

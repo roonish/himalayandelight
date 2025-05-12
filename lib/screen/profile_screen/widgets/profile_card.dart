@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:himalayan_delights/bloc/auth/auth_bloc.dart';
 import 'package:himalayan_delights/screen/cancel_order_screen/imports.dart';
-import 'package:himalayan_delights/screen/profile_screen/imports.dart';
 import 'package:himalayan_delights/widgets/app_alert_dialog.dart';
 
 import '../../../bloc/auth/auth_event.dart';
