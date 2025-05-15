@@ -1,4 +1,4 @@
-library cartDetail;
+library;
 
 import 'dart:convert';
 
@@ -12,7 +12,7 @@ part 'cartDetail.g.dart';
 abstract class CartDetail implements Built<CartDetail, CartDetailBuilder> {
   CartDetail._();
 
-  factory CartDetail([updates(CartDetailBuilder b)]) = _$CartDetail;
+  factory CartDetail([Function(CartDetailBuilder b) updates]) = _$CartDetail;
 
   @BuiltValueField(wireName: 'cart_items')
   BuiltList<CartItem> get cartItems;

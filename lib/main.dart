@@ -30,24 +30,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthRepo _authRepo = AuthRepo();
-    final ApiFavRepository _favRepository = ApiFavRepository(foodApiKey);
-    final ApiRecmRepository _recmRepository = ApiRecmRepository(foodApiKey);
-    final ApiCartRepository _cartRepository = ApiCartRepository(foodApiKey);
+    final AuthRepo authRepo = AuthRepo();
+    final ApiFavRepository favRepository = ApiFavRepository(foodApiKey);
+    final ApiRecmRepository recmRepository = ApiRecmRepository(foodApiKey);
+    final ApiCartRepository cartRepository = ApiCartRepository(foodApiKey);
 
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-          create: (context) => _authRepo,
+          create: (context) => authRepo,
         ),
         RepositoryProvider(
-          create: (context) => _favRepository,
+          create: (context) => favRepository,
         ),
         RepositoryProvider(
-          create: (context) => _recmRepository,
+          create: (context) => recmRepository,
         ),
         RepositoryProvider(
-          create: (context) => _cartRepository,
+          create: (context) => cartRepository,
         ),
       ],
       child: MultiBlocProvider(
@@ -58,11 +58,11 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => NavbarBloc(),
           ),
-          BlocProvider(create: (context) => AuthBloc(_authRepo)),
-          BlocProvider(create: (context) => FavBloc(_favRepository)),
+          BlocProvider(create: (context) => AuthBloc(authRepo)),
+          BlocProvider(create: (context) => FavBloc(favRepository)),
           BlocProvider(
-              create: (context) => RecommendationBloc(_recmRepository)),
-          BlocProvider(create: (context) => CartItemBloc(_cartRepository)),
+              create: (context) => RecommendationBloc(recmRepository)),
+          BlocProvider(create: (context) => CartItemBloc(cartRepository)),
         ],
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (context, state) {

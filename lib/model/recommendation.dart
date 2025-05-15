@@ -1,4 +1,4 @@
-library recommendation;
+library;
 
 import 'dart:convert';
 
@@ -13,7 +13,7 @@ abstract class Recommendation
     implements Built<Recommendation, RecommendationBuilder> {
   Recommendation._();
 
-  factory Recommendation([updates(RecommendationBuilder b)]) = _$Recommendation;
+  factory Recommendation([Function(RecommendationBuilder b) updates]) = _$Recommendation;
 
   @BuiltValueField(wireName: 'id')
   int get recommendationId;
