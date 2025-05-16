@@ -49,18 +49,14 @@ class CartItemBloc extends Bloc<CartItemEvent, CartItemState> {
     try {
       final CartItem updatedCartItem =
           await cartRepository.updateCartItem(event.id, event.updatedCartItem);
-      if (updatedCartItem == null) {
+      //once updated get newly updated cartdetails
+      final CartDetail? cartDetail = await cartRepository.getCartItems();
+      if (cartDetail == null || cartDetail.cartItems.isEmpty) {
         emit(const CartItemInitial());
       } else {
-        //once updated get newly updated cartdetails
-        final CartDetail? cartDetail = await cartRepository.getCartItems();
-        if (cartDetail == null || cartDetail.cartItems.isEmpty) {
-          emit(const CartItemInitial());
-        } else {
-          emit(CartItemFoodListSuccess(cartDetail));
-        }
+        emit(CartItemFoodListSuccess(cartDetail));
       }
-    } on Exception catch (e) {
+        } on Exception catch (e) {
       emit(CartItemFailed(e.toString()));
     }
   }
