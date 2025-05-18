@@ -11,29 +11,24 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size mediaQ = MediaQuery.of(context).size;
-
     final navBarEvent = BlocProvider.of<NavbarBloc>(context);
-    return SizedBox(
-      height: getDeviceExactHeight(66, mediaQ),
-      child: BottomNavigationBar(
-          currentIndex: index,
-          backgroundColor: AppColor.searchColor,
-          type: BottomNavigationBarType.fixed,
-          showUnselectedLabels: true,
-          selectedItemColor: AppColor.headerColor,
-          unselectedItemColor: AppColor.textColor,
-          unselectedLabelStyle: const TextStyle(fontSize: 10),
-          selectedLabelStyle: const TextStyle(fontSize: 10),
-          onTap: (value) => navBarEvent.add(TabChange(tabIndex: value)),
-          items: [
-            navBarItem(icon: Icons.home, label: 'Home'),
-            navBarItem(icon: Icons.favorite, label: 'Favourite'),
-            navBarItem(icon: Icons.local_grocery_store, label: 'My cart'),
-            navBarItem(icon: Icons.mail, label: 'Message'),
-            navBarItem(icon: Icons.person, label: 'Profile'),
-          ]),
-    );
+    return BottomNavigationBar(
+        currentIndex: index,
+        backgroundColor: AppColor.searchColor,
+        type: BottomNavigationBarType.fixed,
+        showUnselectedLabels: true,
+        selectedItemColor: AppColor.headerColor,
+        unselectedItemColor: AppColor.textColor,
+        unselectedLabelStyle: const TextStyle(fontSize: 10),
+        selectedLabelStyle: const TextStyle(fontSize: 10),
+        onTap: (value) => navBarEvent.add(TabChange(tabIndex: value)),
+        items: [
+          navBarItem(icon: Icons.home, label: 'Home'),
+          navBarItem(icon: Icons.favorite, label: 'Favourite'),
+          navBarItem(icon: Icons.local_grocery_store, label: 'My cart'),
+          navBarItem(icon: Icons.mail, label: 'Message'),
+          navBarItem(icon: Icons.person, label: 'Profile'),
+        ]);
   }
 
   BottomNavigationBarItem navBarItem(
