@@ -48,3 +48,4 @@ app.*.map.json
 
 # api keys
 /lib/utils/secrets.dart
+/lib/firebase_options.dart
