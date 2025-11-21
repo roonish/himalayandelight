@@ -1,16 +1,101 @@
-# himalayan_delights
+ Himalayan Delight – Flutter Food Ordering App (BLoC Architecture)
 
-A new Flutter project.
+Himalayan Delight is a beautifully designed Flutter mobile application built to demonstrate real-world app development with modern UI, scalable architecture, and API-ready integration. The app allows users to browse menus, view food details, manage their cart, and experience a smooth food-ordering workflow. The UI is inspired by a professional Behance design, delivering a polished and intuitive user experience.
 
-## Getting Started
+Design reference:
+https://www.behance.net/gallery/194732203/Food-app-UX-case-study
 
-This project is a starting point for a Flutter application.
+ Features
+ Modern Food UI
 
-A few resources to get you started if this is your first Flutter project:
+Home screen with categories and featured items
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Food detail screens with images, ingredients & pricing
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Smooth animations and transitions
+
+Clean and consistent theme
+
+ Cart Management
+
+Add items to cart
+
+Update item quantities
+
+View subtotals and checkout-ready summary
+
+Persistent cart state
+
+ Navigation & User Experience
+
+Multi-screen navigation flow
+
+Responsive layouts for various screen sizes
+
+Reusable custom widgets
+
+Error & loading states for a real production feel
+
+ Architecture & Tech Stack
+ Technologies Used
+
+Flutter (Dart)
+
+BLoC State Management
+
+REST API–ready service layer
+
+Clean folder structure
+
+Modern UI with reusable components
+
+ Project Structure (Simplified)
+lib/
+ ├── blocs/
+ ├── models/
+ ├── repositories/
+ ├── screens/
+ ├── widgets/
+ ├── theme/
+ └── utils/
+
+
+This structure supports scalability, clean separation of concerns, and maintainability.
+
+
+ Getting Started
+
+Clone the project:
+
+git clone https://github.com/roonish/himalayandelight.git
+cd himalayandelight
+
+
+Install dependencies:
+
+flutter pub get
+
+
+Run the app:
+
+flutter run
+
+ Purpose of This Project
+
+Himalayan Delight was built to practice and demonstrate:
+
+Implementing real-world UI from professional design references
+
+Applying scalable BLoC state management
+
+Building responsive and interactive Flutter screens
+
+Preparing an app structure ready for backend integration
+
+Enhancing professional Flutter development skills
+
+This project serves as an important milestone in my full-stack mobile development journey.
+
+ License
+
+This project is for educational and demonstration purposes.
